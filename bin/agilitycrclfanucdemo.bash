@@ -52,9 +52,9 @@ cmd+=( --tab   --working-directory="$p"  -e 'bash -c "printf \"\e]2;gazebo\a\";s
 
 cmd+=( --tab  --working-directory="$r" -e 'bash -c "printf \"\e]2;gz gwen\a\";sleep 20s;export LD_LIBRARY_PATH=/opt/ros/kinetic/lib:$libs:$LD_LIBRARY_PATH; echo $LD_LIBRARY_PATH; source /opt/ros/kinetic/setup.bash;  source $root/devel/setup.bash; cd $gzrosrcs; ./gzrosrcs -r fanuc_;exec bash"')
 
-cmd+=( --tab  --working-directory="$r" -e 'bash -c "printf \"\e]2;crclapp\a\";export LD_LIBRARY_PATH=/opt/ros/kinetic/lib:$libs:$LD_LIBRARY_PATH; echo $LD_LIBRARY_PATH; source /opt/ros/kinetic/setup.bash; source $root/devel/setup.bash; cd $crclapp; ./crclapp -r fanuc_;exec bash"')
+cmd+=( --tab  --working-directory="$r" -e 'bash -c "printf \"\e]2;crclapp\a\";export LD_LIBRARY_PATH=/opt/ros/kinetic/lib:$libs:$LD_LIBRARY_PATH; echo $LD_LIBRARY_PATH; source /opt/ros/kinetic/setup.bash; source $root/devel/setup.bash; sleep 20s; cd $crclapp; ./crclapp -r fanuc_;exec bash"')
 
-cmd+=( --tab  --working-directory="$q" -e 'bash -c "printf \"\e]2;ROS TOPIC\a\";source /opt/ros/kinetic/setup.bash;source $HOME/src/gzaprsros-xenial/devel/setup.bash;source $root/devel/setup.bash; rostopic list;exec bash"')
+cmd+=( --tab  --working-directory="$q" -e 'bash -c "printf \"\e]2;telnet\a\";source /opt/ros/kinetic/setup.bash;source $HOME/src/gzaprsros-xenial/devel/setup.bash;source $root/devel/setup.bash; sleep 30s; telnet 127.0.0.1 64444 ;exec bash"')
 
 cmd+=( --tab  --working-directory="$q" -e 'bash -c "printf \"\e]2;ROS TOPIC\a\";sleep 30s;source /opt/ros/kinetic/setup.bash;source $HOME/src/gzaprsros-xenial/devel/setup.bash;sleep 20;source $root/devel/setup.bash; rostopic list;exec bash"')
 

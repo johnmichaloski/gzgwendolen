@@ -3,10 +3,10 @@
 .catkin_workspace
 *build/
 *devel/
-*Log/
+*logs/
+*install/
 *.log
 Log_*
-install
 Todo.txt
 debug/
 *.so*

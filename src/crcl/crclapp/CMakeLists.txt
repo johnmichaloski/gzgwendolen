@@ -155,6 +155,8 @@ add_executable(${PROJECT_NAME}
     src/CrclWm.cpp
    src/Globals.cpp
    src/CrclApi.cpp
+   src/MTCSOCKET/client.cpp
+   src/MTCSOCKET/socketserver.cpp
 )
 
 ## Add cmake target dependencies of the library
@@ -231,20 +233,31 @@ install(TARGETS ${PROJECT_NAME}
    RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
-## Mark cpp header files for installation
-install(DIRECTORY include/${PROJECT_NAME}/
-   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-   FILES_MATCHING PATTERN "nistcrcl.h"
-#   PATTERN ".svn" EXCLUDE
-)
 
-## Mark other files for installation (e.g. launch and bag files, etc.)
-# install(FILES
-#   # myfile1
-#   # myfile2
-#   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-# )
+set(CONFIG_SOURCES
+  ${CMAKE_CURRENT_SOURCE_DIR}/config/Config.ini
+  ${CMAKE_CURRENT_SOURCE_DIR}/config/FanucLRMate200iD.urdf
+  ${CMAKE_CURRENT_SOURCE_DIR}/config/MotomanSia20d.urdf
+  ${CMAKE_CURRENT_SOURCE_DIR}/config/FanucLRMate200iD.ini
+  ${CMAKE_CURRENT_SOURCE_DIR}/config/motoman_sia20d.ini
+  )    
+  
 
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E make_directory ${CMAKE_INSTALL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION}/config/
+                   COMMAND ${CMAKE_COMMAND} -E copy
+                       ${CONFIG_SOURCES}
+                       ${CMAKE_INSTALL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION}/config/
+                   )             
+  
+  
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+                   COMMAND ${CMAKE_COMMAND} -E make_directory ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION}/config/
+                   COMMAND ${CMAKE_COMMAND} -E copy
+                       ${CONFIG_SOURCES}
+                       ${CATKIN_DEVEL_PREFIX}/${CATKIN_PACKAGE_BIN_DESTINATION}/config/
+                   )             
+                   
 #############
 ## Testing ##
 #############

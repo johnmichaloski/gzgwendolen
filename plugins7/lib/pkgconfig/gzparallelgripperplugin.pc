@@ -1,4 +1,4 @@
-prefix=/home/michalos/src/gzgwendolyn/plugins7
+prefix=/home/michalos/src/gzgwendolen/plugins7
 
 Name: gzparallelgripperplugin
 Description: Description of gzparallelgripperplugin

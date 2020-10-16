@@ -67,14 +67,14 @@ set(gzparallelgripperplugin_CONFIG_INCLUDED TRUE)
 
 # set variables for source/devel/install prefixes
 if("FALSE" STREQUAL "TRUE")
-  set(gzparallelgripperplugin_SOURCE_PREFIX /home/michalos/src/gzgwendolyn/src/gzplugins/gzparallelgripperplugin)
-  set(gzparallelgripperplugin_DEVEL_PREFIX /home/michalos/src/gzgwendolyn/devel/.private/gzparallelgripperplugin)
+  set(gzparallelgripperplugin_SOURCE_PREFIX /home/michalos/src/gzgwendolen/src/gzplugins/gzparallelgripperplugin)
+  set(gzparallelgripperplugin_DEVEL_PREFIX /home/michalos/src/gzgwendolen/devel/.private/gzparallelgripperplugin)
   set(gzparallelgripperplugin_INSTALL_PREFIX "")
   set(gzparallelgripperplugin_PREFIX ${gzparallelgripperplugin_DEVEL_PREFIX})
 else()
   set(gzparallelgripperplugin_SOURCE_PREFIX "")
   set(gzparallelgripperplugin_DEVEL_PREFIX "")
-  set(gzparallelgripperplugin_INSTALL_PREFIX /home/michalos/src/gzgwendolyn/plugins7)
+  set(gzparallelgripperplugin_INSTALL_PREFIX /home/michalos/src/gzgwendolen/plugins7)
   set(gzparallelgripperplugin_PREFIX ${gzparallelgripperplugin_INSTALL_PREFIX})
 endif()
 
@@ -154,7 +154,7 @@ foreach(library ${libraries})
     set(lib_path "")
     set(lib "${library}-NOTFOUND")
     # since the path where the library is found is returned we have to iterate over the paths manually
-    foreach(path /home/michalos/src/gzgwendolyn/plugins7/lib;/home/michalos/src/gzgwendolyn/install/lib;/opt/ros/kinetic/lib)
+    foreach(path /home/michalos/src/gzgwendolen/plugins7/lib;/home/michalos/src/gzgwendolen/install/lib;/opt/ros/kinetic/lib)
       find_library(lib ${library}
         PATHS ${path}
         NO_DEFAULT_PATH NO_CMAKE_FIND_ROOT_PATH)
