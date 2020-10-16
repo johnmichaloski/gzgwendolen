@@ -1,0 +1,179 @@
+
+
+
+Wanted to run gdb to trace why received a segmentation fault. DID NOT receive a segfault
+in Qt gdb.
+
+Added -g to linker flags in the QT Qmake .pro file
+QMAKE_LFLAGS += -g
+
+THen cd to the build folder and ran gdb
+> gdb ./crclapp
+
+# Set breakpoint at main
+> b main
+#Step through each line
+> n
+> n
+# Now at line that gave segfault, start doing s
+>s
+>n
+
+GOT:
+
+(gdb) n
+[ERROR] [1602096992.221833270, 669.608000000]: poll failed with error Interrupted system call
+244	    CrclLogger.LOG( " crclServer started %s\n", getTimeStamp(GMT_UV_SEC).c_str());
+(gdb) n
+[ERROR] [1602096996.445246687, 670.335000000]: poll failed with error Interrupted system call
+
+Thread 1 "crclapp" received signal SIGSEGV, Segmentation fault.
+0x00007ffff5987070 in std::__basic_file<char>::is_open() const ()
+   from /usr/lib/x86_64-linux-gnu/libstdc++.so.6
+
+######################################################
+Segfault in cleanup
+
+michalos@onyx:~/build/crclapp/debug$ gdb ./crclapp
+GNU gdb (Ubuntu 7.11.1-0ubuntu1~16.5) 7.11.1
+Copyright (C) 2016 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type "show copying"
+and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+<http://www.gnu.org/software/gdb/documentation/>.
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./crclapp...done.
+
+(gdb) b cleanup
+Breakpoint 1 at 0x554e48: file ../../src/gzgwendolyn/src/crcl/crclapp/src/main.cpp, line 36.
+(gdb) run -r fanuc_
+
+. . .
+
+RCS> quit
+RCS> Cntrl C pressed  or CLI quit
+
+Thread 1 "crclapp" hit Breakpoint 1, cleanup ()
+    at ../../src/gzgwendolyn/src/crcl/crclapp/src/main.cpp:36
+36	    if(geardemo.get() != nullptr)
+(gdb) n
+37	        geardemo->stop();
+(gdb) n
+[ERROR] [1602107515.444008169, 3766.194000000]: poll failed with error Interrupted system call
+40	    Globals.bRunning=false;
+(gdb) n
+[ERROR] [1602107516.833598934, 3766.602000000]: poll failed with error Interrupted system call
+43	    if(rosCrclClient.get() != nullptr)
+(gdb) n
+[ERROR] [1602107517.910348814, 3766.934000000]: poll failed with error Interrupted system call
+44	        rosCrclClient->stop();
+(gdb) n
+[ERROR] [1602107518.930678942, 3767.235000000]: poll failed with error Interrupted system call
+Thread CRosCrclClient waiting to finish
+[Thread 0x7fffdd7fa700 (LWP 20250) exited]
+47	    Ros.close();
+(gdb) n
+[ERROR] [1602107521.484644954, 3767.669000000]: poll failed with error Interrupted system call
+50	    if(pCrclServer.get() != nullptr)
+(gdb) n
+51	        pCrclServer->stop();
+(gdb) n
+[ERROR] [1602107524.069981026, 3768.652000000]: poll failed with error Interrupted system call
+[DEBUG] [1602107524.342579684, 3768.972000000]: Stop crclServer 2020-10-07T21:52:04
+
+Thread crclCommServer waiting to finish
+[Thread 0x7fffde7fc700 (LWP 20234) exited]
+Thread CCrcl2RosMsg waiting to finish
+[Thread 0x7fffddffb700 (LWP 20235) exited]
+
+Thread 1 "crclapp" received signal SIGSEGV, Segmentation fault.
+0x00007ffff5987070 in std::__basic_file<char>::is_open() const ()
+   from /usr/lib/x86_64-linux-gnu/libstdc++.so.6
+
+
+=================================================================================================
+Warnings   << crclapp:make /home/michalos/src/gzgwendolyn/logs/crclapp/build.make.003.log
+In file included from /opt/ros/kinetic/include/tf/transform_datatypes.h:44:0,
+                 from /opt/ros/kinetic/include/tf/time_cache.h:38,
+                 from /opt/ros/kinetic/include/tf/tf.h:43,
+                 from /home/michalos/src/gzgwendolyn/install/include/aprs_headers/Core.h:51,
+                 from /home/michalos/src/gzgwendolyn/install/include/aprs_headers/IRcs.h:26,
+                 from /home/michalos/src/gzgwendolyn/src/crcl/crclapp/include/crclapp/Crcl.h:19,
+                 from /home/michalos/src/gzgwendolyn/src/crcl/crclapp/include/crclapp/CrclSubscriberInterface.h:16,
+                 from /home/michalos/src/gzgwendolyn/src/crcl/crclapp/src/CrclSubscriberInterface.cpp:30:
+/home/michalos/src/gzgwendolyn/src/crcl/crclapp/src/CrclSubscriberInterface.cpp: In member function ‘Crcl::CrclReturn Crcl::CrclSubscriberDelegateInterface::DelegateCRCLCmd(std::__cxx11::string)’:
+/opt/ros/kinetic/include/ros/console.h:346:176: warning: format ‘%d’ expects argument of type ‘int’, but argument 8 has type ‘CRCLCommandType::CommandID_type {aka long long int}’ [-Wformat=]
+     ::ros::console::print(filter, __rosconsole_define_location__loc.logger_, __rosconsole_define_location__loc.level_, __FILE__, __LINE__, __ROSCONSOLE_FUNCTION__, __VA_ARGS__)
+                                                                                                                                                                                ^
+/opt/ros/kinetic/include/ros/console.h:349:5: note: in expansion of macro ‘ROSCONSOLE_PRINT_AT_LOCATION_WITH_FILTER’
+     ROSCONSOLE_PRINT_AT_LOCATION_WITH_FILTER(0, __VA_ARGS__)
+     ^
+/opt/ros/kinetic/include/ros/console.h:379:7: note: in expansion of macro ‘ROSCONSOLE_PRINT_AT_LOCATION’
+       ROSCONSOLE_PRINT_AT_LOCATION(__VA_ARGS__); \
+       ^
+/opt/ros/kinetic/include/ros/console.h:561:35: note: in expansion of macro ‘ROS_LOG_COND’
+ #define ROS_LOG(level, name, ...) ROS_LOG_COND(true, level, name, __VA_ARGS__)
+                                   ^
+/opt/ros/kinetic/include/rosconsole/macros_generated.h:58:24: note: in expansion of macro ‘ROS_LOG’
+ #define ROS_DEBUG(...) ROS_LOG(::ros::console::levels::Debug, ROSCONSOLE_DEFAULT_NAME, __VA_ARGS__)
+                        ^
+/home/michalos/src/gzgwendolyn/src/crcl/crclapp/src/CrclSubscriberInterface.cpp:111:17: note: in expansion of macro ‘ROS_DEBUG’
+                 ROS_DEBUG("GetStatus id=%d", stat->CommandID());
+                 ^
+/home/michalos/src/gzgwendolyn/src/crcl/crclapp/src/CrclSubscriberInterface.cpp: In member function ‘Crcl::CrclReturn Crcl::CrclSubscriberDelegateInterface::DelegateCRCLCmd(CRCLCommandType&)’:
+/opt/ros/kinetic/include/ros/console.h:346:176: warning: format ‘%d’ expects argument of type ‘int’, but argument 8 has type ‘CRCLCommandType::CommandID_type {aka long long int}’ [-Wformat=]
+     ::ros::console::print(filter, __rosconsole_define_location__loc.logger_, __rosconsole_define_location__loc.level_, __FILE__, __LINE__, __ROSCONSOLE_FUNCTION__, __VA_ARGS__)
+                                                                                                                                                                                ^
+/opt/ros/kinetic/include/ros/console.h:349:5: note: in expansion of macro ‘ROSCONSOLE_PRINT_AT_LOCATION_WITH_FILTER’
+     ROSCONSOLE_PRINT_AT_LOCATION_WITH_FILTER(0, __VA_ARGS__)
+     ^
+/opt/ros/kinetic/include/ros/console.h:379:7: note: in expansion of macro ‘ROSCONSOLE_PRINT_AT_LOCATION’
+       ROSCONSOLE_PRINT_AT_LOCATION(__VA_ARGS__); \
+       ^
+/opt/ros/kinetic/include/ros/console.h:561:35: note: in expansion of macro ‘ROS_LOG_COND’
+ #define ROS_LOG(level, name, ...) ROS_LOG_COND(true, level, name, __VA_ARGS__)
+                                   ^
+/opt/ros/kinetic/include/rosconsole/macros_generated.h:58:24: note: in expansion of macro ‘ROS_LOG’
+ #define ROS_DEBUG(...) ROS_LOG(::ros::console::levels::Debug, ROSCONSOLE_DEFAULT_NAME, __VA_ARGS__)
+                        ^
+/home/michalos/src/gzgwendolyn/src/crcl/crclapp/src/CrclSubscriberInterface.cpp:146:9: note: in expansion of macro ‘ROS_DEBUG’
+         ROS_DEBUG("ActuateJoints id=%d joint=%d pos = %6.5f", crclCommand.CommandID(), joints[0].JointNumber(), joints[0].JointPosition());
+         ^
+/opt/ros/kinetic/include/ros/console.h:346:176: warning: format ‘%d’ expects argument of type ‘int’, but argument 8 has type ‘CRCLCommandType::CommandID_type {aka long long int}’ [-Wformat=]
+     ::ros::console::print(filter, __rosconsole_define_location__loc.logger_, __rosconsole_define_location__loc.level_, __FILE__, __LINE__, __ROSCONSOLE_FUNCTION__, __VA_ARGS__)
+                                                                                                                                                                                ^
+/opt/ros/kinetic/include/ros/console.h:349:5: note: in expansion of macro ‘ROSCONSOLE_PRINT_AT_LOCATION_WITH_FILTER’
+     ROSCONSOLE_PRINT_AT_LOCATION_WITH_FILTER(0, __VA_ARGS__)
+     ^
+/opt/ros/kinetic/include/ros/console.h:379:7: note: in expansion of macro ‘ROSCONSOLE_PRINT_AT_LOCATION’
+       ROSCONSOLE_PRINT_AT_LOCATION(__VA_ARGS__); \
+       ^
+/opt/ros/kinetic/include/ros/console.h:561:35: note: in expansion of macro ‘ROS_LOG_COND’
+ #define ROS_LOG(level, name, ...) ROS_LOG_COND(true, level, name, __VA_ARGS__)
+                                   ^
+/opt/ros/kinetic/include/rosconsole/macros_generated.h:58:24: note: in expansion of macro ‘ROS_LOG’
+ #define ROS_DEBUG(...) ROS_LOG(::ros::console::levels::Debug, ROSCONSOLE_DEFAULT_NAME, __VA_ARGS__)
+                        ^
+/home/michalos/src/gzgwendolyn/src/crcl/crclapp/src/CrclSubscriberInterface.cpp:163:9: note: in expansion of macro ‘ROS_DEBUG’
+         ROS_DEBUG("InitCanonType id=%d", init->CommandID());
+         ^
+CMakeFiles/crclapp.dir/src/CommandLineInterface.cpp.o: In function `collectDebugInfo[abi:cxx11]()':
+CommandLineInterface.cpp:(.text+0x5f8): warning: the use of `tmpnam' is dangerous, better use `mkstemp'
+cd /home/michalos/src/gzgwendolyn/build/crclapp; catkin build --get-env crclapp | catkin env -si  /usr/bin/make --jobserver-fds=6,7 -j; cd -
+...............................................................................
+Finished  <<< crclapp                                [ 53.8 seconds ]          
+[build] Summary: All 11 packages succeeded!                                    
+[build]   Ignored:   None.                                                     
+[build]   Warnings:  1 packages succeeded with warnings.                       
+[build]   Abandoned: None.                                                     
+[build]   Failed:    None.                                                     
+[build] Runtime: 1 minute and 2.8 seconds total.
+
+

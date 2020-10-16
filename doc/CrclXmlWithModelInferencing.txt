@@ -1,0 +1,583 @@
+/usr/bin/python3.5 /snap/pycharm-community/211/plugins/python-ce/helpers/pydev/pydevd.py --multiproc --qt-support=auto --client 127.0.0.1 --port 34757 --file /home/michalos/src/gzaprsros-xenial/src/crcl/crcllibcli/bin/Python/cannedcrclclient.py
+pydev debugger: process 6235 is connecting
+Connected to pydev debugger (build 202.7319.64)
+sku_kit_m2l1_vessel14,0.399147,-1.04506,0.91599,
+sku_kit_m2l1_vessel15,0.183254,-1.05302,0.91599,
+sku_large_gear_vessel21,0.392182,-1.2629,0.915207,
+sku_medium_gear_vessel16,0.190185,-1.23805,0.923173,
+sku_part_large_gear22,0.388946074446209,-1.20772787721072,0.919346280181972,
+sku_part_large_gear23,0.393399316938225,-1.31784653219744,0.919346259443626,
+sku_part_medium_gear17,0.229421526502176,-1.19661577529888,0.919845326247212,
+sku_part_medium_gear18,0.148353444787919,-1.19894560893059,0.919840344301211,
+sku_part_medium_gear19,0.151188049025802,-1.27980569167096,0.919840712278907,
+sku_part_medium_gear20,0.231994820154765,-1.27720995801717,0.919840511332439,
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<CRCLStatus>
+  <CommandStatus>
+    <CommandID>0</CommandID>
+    <StatusID>0</StatusID>
+    <CommandState>CRCL_Done</CommandState>
+  </CommandStatus>
+  <JointStatuses>
+    <JointStatus>
+      <JointNumber>1</JointNumber>
+      <JointPosition>0</JointPosition>
+      <JointTorqueOrForce>0</JointTorqueOrForce>
+      <JointVelocity>0</JointVelocity>
+    </JointStatus>
+    <JointStatus>
+      <JointNumber>2</JointNumber>
+      <JointPosition>0</JointPosition>
+      <JointTorqueOrForce>0</JointTorqueOrForce>
+      <JointVelocity>0</JointVelocity>
+    </JointStatus>
+    <JointStatus>
+      <JointNumber>3</JointNumber>
+      <JointPosition>0</JointPosition>
+      <JointTorqueOrForce>0</JointTorqueOrForce>
+      <JointVelocity>0</JointVelocity>
+    </JointStatus>
+    <JointStatus>
+      <JointNumber>4</JointNumber>
+      <JointPosition>0</JointPosition>
+      <JointTorqueOrForce>0</JointTorqueOrForce>
+      <JointVelocity>0</JointVelocity>
+    </JointStatus>
+    <JointStatus>
+      <JointNumber>5</JointNumber>
+      <JointPosition>0</JointPosition>
+      <JointTorqueOrForce>0</JointTorqueOrForce>
+      <JointVelocity>0</JointVelocity>
+    </JointStatus>
+    <JointStatus>
+      <JointNumber>6</JointNumber>
+      <JointPosition>0</JointPosition>
+      <JointTorqueOrForce>0</JointTorqueOrForce>
+      <JointVelocity>0</JointVelocity>
+    </JointStatus>
+  </JointStatuses>
+  <PoseStatus>
+    <Pose>
+      <Point>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </Point>
+      <XAxis>
+        <I>6.93225272371906e-310</I>
+        <J>6.93225272372381e-310</J>
+        <K>6.93225272373329e-310</K>
+      </XAxis>
+      <ZAxis>
+        <I>6.93225272372302e-310</I>
+        <J>6.93225272372697e-310</J>
+        <K>1.56813273969878e-316</K>
+      </ZAxis>
+    </Pose>
+  </PoseStatus>
+  <ModelStatus>
+    <Name>sku_kit_m2l1_vessel14</Name>
+    <Pose>
+      <Point>
+        <X>0.399147</X>
+        <Y>-1.04506</Y>
+        <Z>0.91599</Z>
+      </Point>
+      <XAxis>
+        <I>-0.0369052905625051</I>
+        <J>-0.999318767725543</J>
+        <K>-0</K>
+      </XAxis>
+      <ZAxis>
+        <I>0</I>
+        <J>-0</J>
+        <K>1</K>
+      </ZAxis>
+    </Pose>
+    <Properties>
+      <map>
+        <item name="slot1">
+          <key>name</key>
+          <value>slot1</value>
+        </item>
+        <item name="slot1">
+          <key>type</key>
+          <value>sku_part_medium_gear</value>
+        </item>
+        <item name="slot1">
+          <key>location</key>
+          <value> 0.45559 -1.00712  0.91599</value>
+        </item>
+        <item name="slot1">
+          <key>state</key>
+          <value>open</value>
+        </item>
+        <item name="slot2">
+          <key>name</key>
+          <value>slot2</value>
+        </item>
+        <item name="slot2">
+          <key>type</key>
+          <value>sku_part_medium_gear</value>
+        </item>
+        <item name="slot2">
+          <key>location</key>
+          <value> 0.45263 -1.08706  0.91599</value>
+        </item>
+        <item name="slot2">
+          <key>state</key>
+          <value>open</value>
+        </item>
+        <item name="slot3">
+          <key>name</key>
+          <value>slot3</value>
+        </item>
+        <item name="slot3">
+          <key>type</key>
+          <value>sku_part_large_gear</value>
+        </item>
+        <item name="slot3">
+          <key>location</key>
+          <value> 0.35917 -1.04358  0.91599</value>
+        </item>
+        <item name="slot3">
+          <key>state</key>
+          <value>open</value>
+        </item>
+      </map>
+    </Properties>
+  </ModelStatus>
+  <ModelStatus>
+    <Name>sku_kit_m2l1_vessel15</Name>
+    <Pose>
+      <Point>
+        <X>0.183254</X>
+        <Y>-1.05302</Y>
+        <Z>0.91599</Z>
+      </Point>
+      <XAxis>
+        <I>-0.0369052905625051</I>
+        <J>-0.999318767725543</J>
+        <K>-0</K>
+      </XAxis>
+      <ZAxis>
+        <I>0</I>
+        <J>-0</J>
+        <K>1</K>
+      </ZAxis>
+    </Pose>
+    <Properties>
+      <map>
+        <item name="slot1">
+          <key>name</key>
+          <value>slot1</value>
+        </item>
+        <item name="slot1">
+          <key>type</key>
+          <value>sku_part_medium_gear</value>
+        </item>
+        <item name="slot1">
+          <key>location</key>
+          <value> 0.23969 -1.01508  0.91599</value>
+        </item>
+        <item name="slot1">
+          <key>state</key>
+          <value>open</value>
+        </item>
+        <item name="slot2">
+          <key>name</key>
+          <value>slot2</value>
+        </item>
+        <item name="slot2">
+          <key>type</key>
+          <value>sku_part_medium_gear</value>
+        </item>
+        <item name="slot2">
+          <key>location</key>
+          <value> 0.23674 -1.09502  0.91599</value>
+        </item>
+        <item name="slot2">
+          <key>state</key>
+          <value>open</value>
+        </item>
+        <item name="slot3">
+          <key>name</key>
+          <value>slot3</value>
+        </item>
+        <item name="slot3">
+          <key>type</key>
+          <value>sku_part_large_gear</value>
+        </item>
+        <item name="slot3">
+          <key>location</key>
+          <value> 0.14328 -1.05154  0.91599</value>
+        </item>
+        <item name="slot3">
+          <key>state</key>
+          <value>open</value>
+        </item>
+      </map>
+    </Properties>
+  </ModelStatus>
+  <ModelStatus>
+    <Name>sku_large_gear_vessel21</Name>
+    <Pose>
+      <Point>
+        <X>0.392182</X>
+        <Y>-1.2629</Y>
+        <Z>0.915207</Z>
+      </Point>
+      <XAxis>
+        <I>-0.0407024262848885</I>
+        <J>0.999171312886095</J>
+        <K>0</K>
+      </XAxis>
+      <ZAxis>
+        <I>0</I>
+        <J>0</J>
+        <K>1</K>
+      </ZAxis>
+    </Pose>
+    <Properties>
+      <map>
+        <item name="slot1">
+          <key>name</key>
+          <value>slot1</value>
+        </item>
+        <item name="slot1">
+          <key>type</key>
+          <value>sku_part_large_gear</value>
+        </item>
+        <item name="slot1">
+          <key>location</key>
+          <value> 0.39442 -1.31785  0.91521</value>
+        </item>
+        <item name="slot1">
+          <key>state</key>
+          <value>sku_part_large_gear23</value>
+        </item>
+        <item name="slot2">
+          <key>name</key>
+          <value>slot2</value>
+        </item>
+        <item name="slot2">
+          <key>type</key>
+          <value>sku_part_large_gear</value>
+        </item>
+        <item name="slot2">
+          <key>location</key>
+          <value> 0.38994 -1.20795  0.91521</value>
+        </item>
+        <item name="slot2">
+          <key>state</key>
+          <value>sku_part_large_gear22</value>
+        </item>
+      </map>
+    </Properties>
+  </ModelStatus>
+  <ModelStatus>
+    <Name>sku_medium_gear_vessel16</Name>
+    <Pose>
+      <Point>
+        <X>0.190185</X>
+        <Y>-1.23805</Y>
+        <Z>0.923173</Z>
+      </Point>
+      <XAxis>
+        <I>0.999425924437535</I>
+        <J>0.0338795153769614</J>
+        <K>0</K>
+      </XAxis>
+      <ZAxis>
+        <I>0</I>
+        <J>0</J>
+        <K>1</K>
+      </ZAxis>
+    </Pose>
+    <Properties>
+      <map>
+        <item name="slot1">
+          <key>name</key>
+          <value>slot1</value>
+        </item>
+        <item name="slot1">
+          <key>type</key>
+          <value>sku_part_medium_gear</value>
+        </item>
+        <item name="slot1">
+          <key>location</key>
+          <value> 0.22842 -1.19713  0.92317</value>
+        </item>
+        <item name="slot1">
+          <key>state</key>
+          <value>sku_part_medium_gear17</value>
+        </item>
+        <item name="slot2">
+          <key>name</key>
+          <value>slot2</value>
+        </item>
+        <item name="slot2">
+          <key>type</key>
+          <value>sku_part_medium_gear</value>
+        </item>
+        <item name="slot2">
+          <key>location</key>
+          <value> 0.14927 -1.19981  0.92317</value>
+        </item>
+        <item name="slot2">
+          <key>state</key>
+          <value>sku_part_medium_gear18</value>
+        </item>
+        <item name="slot3">
+          <key>name</key>
+          <value>slot3</value>
+        </item>
+        <item name="slot3">
+          <key>type</key>
+          <value>sku_part_medium_gear</value>
+        </item>
+        <item name="slot3">
+          <key>location</key>
+          <value> 0.23110 -1.27629  0.92317</value>
+        </item>
+        <item name="slot3">
+          <key>state</key>
+          <value>sku_part_medium_gear20</value>
+        </item>
+        <item name="slot4">
+          <key>name</key>
+          <value>slot4</value>
+        </item>
+        <item name="slot4">
+          <key>type</key>
+          <value>sku_part_medium_gear</value>
+        </item>
+        <item name="slot4">
+          <key>location</key>
+          <value> 0.15195 -1.27897  0.92317</value>
+        </item>
+        <item name="slot4">
+          <key>state</key>
+          <value>sku_part_medium_gear19</value>
+        </item>
+      </map>
+    </Properties>
+  </ModelStatus>
+  <ModelStatus>
+    <Name>sku_part_large_gear22</Name>
+    <Pose>
+      <Point>
+        <X>0.388946074446209</X>
+        <Y>-1.20772787721072</Y>
+        <Z>0.919346280181972</Z>
+      </Point>
+      <XAxis>
+        <I>0.99947892831718</I>
+        <J>0.032127503426377</J>
+        <K>0.00311373947672661</K>
+      </XAxis>
+      <ZAxis>
+        <I>-0.00301494058120644</I>
+        <J>-0.00312319809592316</J>
+        <K>0.999990577839084</K>
+      </ZAxis>
+    </Pose>
+    <Properties>
+      <map>
+        <item name="parent">
+          <key>name</key>
+          <value>parent</value>
+        </item>
+        <item name="parent">
+          <key>parent</key>
+          <value>sku_large_gear_vessel21</value>
+        </item>
+        <item name="parent">
+          <key>slot</key>
+          <value>slot2</value>
+        </item>
+      </map>
+    </Properties>
+  </ModelStatus>
+  <ModelStatus>
+    <Name>sku_part_large_gear23</Name>
+    <Pose>
+      <Point>
+        <X>0.393399316938225</X>
+        <Y>-1.31784653219744</Y>
+        <Z>0.919346259443626</Z>
+      </Point>
+      <XAxis>
+        <I>0.929346848908742</I>
+        <J>0.369206997860344</J>
+        <K>0.000791930769458904</K>
+      </XAxis>
+      <ZAxis>
+        <I>-0.00224362043472874</I>
+        <J>0.00350258166878016</J>
+        <K>0.999991349007079</K>
+      </ZAxis>
+    </Pose>
+    <Properties>
+      <map>
+        <item name="parent">
+          <key>name</key>
+          <value>parent</value>
+        </item>
+        <item name="parent">
+          <key>parent</key>
+          <value>sku_large_gear_vessel21</value>
+        </item>
+        <item name="parent">
+          <key>slot</key>
+          <value>slot1</value>
+        </item>
+      </map>
+    </Properties>
+  </ModelStatus>
+  <ModelStatus>
+    <Name>sku_part_medium_gear17</Name>
+    <Pose>
+      <Point>
+        <X>0.229421526502176</X>
+        <Y>-1.19661577529888</Y>
+        <Z>0.919845326247212</Z>
+      </Point>
+      <XAxis>
+        <I>0.999023091437598</I>
+        <J>0.0438370774940634</J>
+        <K>0.00558331543468458</K>
+      </XAxis>
+      <ZAxis>
+        <I>-0.00653607318159295</I>
+        <J>0.0216208993564164</J>
+        <K>0.999744875684984</K>
+      </ZAxis>
+    </Pose>
+    <Properties>
+      <map>
+        <item name="parent">
+          <key>name</key>
+          <value>parent</value>
+        </item>
+        <item name="parent">
+          <key>parent</key>
+          <value>sku_medium_gear_vessel16</value>
+        </item>
+        <item name="parent">
+          <key>slot</key>
+          <value>slot1</value>
+        </item>
+      </map>
+    </Properties>
+  </ModelStatus>
+  <ModelStatus>
+    <Name>sku_part_medium_gear18</Name>
+    <Pose>
+      <Point>
+        <X>0.148353444787919</X>
+        <Y>-1.19894560893059</Y>
+        <Z>0.919840344301211</Z>
+      </Point>
+      <XAxis>
+        <I>0.999425892116903</I>
+        <J>0.0338697692133005</J>
+        <K>0.000851410459131061</K>
+      </XAxis>
+      <ZAxis>
+        <I>-0.000893052754106048</I>
+        <J>0.00121437360253508</J>
+        <K>0.999998863876121</K>
+      </ZAxis>
+    </Pose>
+    <Properties>
+      <map>
+        <item name="parent">
+          <key>name</key>
+          <value>parent</value>
+        </item>
+        <item name="parent">
+          <key>parent</key>
+          <value>sku_medium_gear_vessel16</value>
+        </item>
+        <item name="parent">
+          <key>slot</key>
+          <value>slot2</value>
+        </item>
+      </map>
+    </Properties>
+  </ModelStatus>
+  <ModelStatus>
+    <Name>sku_part_medium_gear19</Name>
+    <Pose>
+      <Point>
+        <X>0.151188049025802</X>
+        <Y>-1.27980569167096</Y>
+        <Z>0.919840712278907</Z>
+      </Point>
+      <XAxis>
+        <I>0.999358422945078</I>
+        <J>0.0353970642656691</J>
+        <K>0.00545805185923361</K>
+      </XAxis>
+      <ZAxis>
+        <I>-0.00534157642017246</I>
+        <J>-0.00338427356012744</J>
+        <K>0.999980006927047</K>
+      </ZAxis>
+    </Pose>
+    <Properties>
+      <map>
+        <item name="parent">
+          <key>name</key>
+          <value>parent</value>
+        </item>
+        <item name="parent">
+          <key>parent</key>
+          <value>sku_medium_gear_vessel16</value>
+        </item>
+        <item name="parent">
+          <key>slot</key>
+          <value>slot4</value>
+        </item>
+      </map>
+    </Properties>
+  </ModelStatus>
+  <ModelStatus>
+    <Name>sku_part_medium_gear20</Name>
+    <Pose>
+      <Point>
+        <X>0.231994820154765</X>
+        <Y>-1.27720995801717</Y>
+        <Z>0.919840511332439</Z>
+      </Point>
+      <XAxis>
+        <I>0.999713339233968</I>
+        <J>0.0238609602073444</J>
+        <K>-0.00197330576785326</K>
+      </XAxis>
+      <ZAxis>
+        <I>0.00188021405877001</I>
+        <J>0.00392322930304252</J>
+        <K>0.999990536488685</K>
+      </ZAxis>
+    </Pose>
+    <Properties>
+      <map>
+        <item name="parent">
+          <key>name</key>
+          <value>parent</value>
+        </item>
+        <item name="parent">
+          <key>parent</key>
+          <value>sku_medium_gear_vessel16</value>
+        </item>
+        <item name="parent">
+          <key>slot</key>
+          <value>slot3</value>
+        </item>
+      </map>
+    </Properties>
+  </ModelStatus>
+</CRCLStatus>
+

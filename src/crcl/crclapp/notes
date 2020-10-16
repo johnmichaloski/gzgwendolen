@@ -1,0 +1,54 @@
+TEST SEQUENCE
+RCS> where
+Status Joints   = 0.001, 0.001, 0.001, 0.001, 0.001, 0.001
+FK Robot Pose   =   0.65,   0.00,   0.70,0.707,0.000,0.707,-0.000
+RCS> home
+RCS> home0:0:0:0:0:0:
+
+RCS> where
+RCS> Status Joints   =-0.000,-0.000,-0.000,-0.000,-0.000,-0.000
+FK Robot Pose   =   0.65,  -0.00,   0.70,0.707,-0.000,0.707,0.000
+
+RCS> set gripper 1
+RCS> setGripper=1
+
+RCS> set gripper 0
+RCS> setGripper=0
+set gripper 1
+RCS> setGripper=1
+
+Becuase gripper is now force based it closes until it reaches a
+physical limit as it doesn't detect the other finger only collision
+with a gear.
+RCS> close
+setGripper=0
+RCS>open
+setGripper=1
+
+RCS> canned
+namedJointMove:joints.home0:0:0:0:0:0:
+namedJointMove:joints.nothome0.001:0.001:0.001:0.001:0.001:0.001:
+namedJointMove:joints.random0.01:0.099:0.2:0.41:0.71:0.22:
+namedCommand:macro_autofaster:faster:faster:
+namedCommand:macro_homingreset:goto joints.NotHome:
+RCS>goto NotHome
+
+# goto name joint location (joints.nothome)
+RCS> goto ?
+RCS> MACROS
+macro_auto
+macro_homing
+POSES
+pose.a1
+JOINTS
+joints.home
+joints.nothome
+joints.random
+RCS> goto joints.nothome
+
+RCS> where
+Status Joints   = 0.001, 0.001, 0.001, 0.001, 0.001, 0.001
+FK Robot Pose   =   0.65,   0.00,   0.70,0.707,0.000,0.707,-0.000
+
+
+

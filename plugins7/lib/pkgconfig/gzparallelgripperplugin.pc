@@ -1,0 +1,8 @@
+prefix=/home/michalos/src/gzgwendolyn/plugins7
+
+Name: gzparallelgripperplugin
+Description: Description of gzparallelgripperplugin
+Version: 1.2.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
