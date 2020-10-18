@@ -1,0 +1,11 @@
+gzrosrcs
+/home/michalos/src/gzgwendolen/devel/.private/gzrosrcs/cmake.lock /home/michalos/src/gzgwendolen/devel/./cmake.lock
+/home/michalos/src/gzgwendolen/devel/.private/gzrosrcs/lib/gzrosrcs/gzrosrcs /home/michalos/src/gzgwendolen/devel/lib/gzrosrcs/gzrosrcs
+/home/michalos/src/gzgwendolen/devel/.private/gzrosrcs/lib/gzrosrcs/config/motoman_sia20d.ini /home/michalos/src/gzgwendolen/devel/lib/gzrosrcs/config/motoman_sia20d.ini
+/home/michalos/src/gzgwendolen/devel/.private/gzrosrcs/lib/gzrosrcs/config/Config.ini /home/michalos/src/gzgwendolen/devel/lib/gzrosrcs/config/Config.ini
+/home/michalos/src/gzgwendolen/devel/.private/gzrosrcs/lib/gzrosrcs/config/FanucLRMate200iD.ini /home/michalos/src/gzgwendolen/devel/lib/gzrosrcs/config/FanucLRMate200iD.ini
+/home/michalos/src/gzgwendolen/devel/.private/gzrosrcs/lib/gzrosrcs/config/MotomanSia20d.urdf /home/michalos/src/gzgwendolen/devel/lib/gzrosrcs/config/MotomanSia20d.urdf
+/home/michalos/src/gzgwendolen/devel/.private/gzrosrcs/lib/gzrosrcs/config/FanucLRMate200iD.urdf /home/michalos/src/gzgwendolen/devel/lib/gzrosrcs/config/FanucLRMate200iD.urdf
+/home/michalos/src/gzgwendolen/devel/.private/gzrosrcs/lib/pkgconfig/gzrosrcs.pc /home/michalos/src/gzgwendolen/devel/lib/pkgconfig/gzrosrcs.pc
+/home/michalos/src/gzgwendolen/devel/.private/gzrosrcs/share/gzrosrcs/cmake/gzrosrcsConfig-version.cmake /home/michalos/src/gzgwendolen/devel/share/gzrosrcs/cmake/gzrosrcsConfig-version.cmake
+/home/michalos/src/gzgwendolen/devel/.private/gzrosrcs/share/gzrosrcs/cmake/gzrosrcsConfig.cmake /home/michalos/src/gzgwendolen/devel/share/gzrosrcs/cmake/gzrosrcsConfig.cmake

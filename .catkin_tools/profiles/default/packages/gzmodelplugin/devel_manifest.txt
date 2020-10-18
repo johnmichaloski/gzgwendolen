@@ -1,0 +1,6 @@
+gzplugins/gzmodelplugin
+/home/michalos/src/gzgwendolen/devel/.private/gzmodelplugin/cmake.lock /home/michalos/src/gzgwendolen/devel/./cmake.lock
+/home/michalos/src/gzgwendolen/devel/.private/gzmodelplugin/lib/libgzmodelplugin.so /home/michalos/src/gzgwendolen/devel/lib/libgzmodelplugin.so
+/home/michalos/src/gzgwendolen/devel/.private/gzmodelplugin/lib/pkgconfig/gzmodelplugin.pc /home/michalos/src/gzgwendolen/devel/lib/pkgconfig/gzmodelplugin.pc
+/home/michalos/src/gzgwendolen/devel/.private/gzmodelplugin/share/gzmodelplugin/cmake/gzmodelpluginConfig-version.cmake /home/michalos/src/gzgwendolen/devel/share/gzmodelplugin/cmake/gzmodelpluginConfig-version.cmake
+/home/michalos/src/gzgwendolen/devel/.private/gzmodelplugin/share/gzmodelplugin/cmake/gzmodelpluginConfig.cmake /home/michalos/src/gzgwendolen/devel/share/gzmodelplugin/cmake/gzmodelpluginConfig.cmake

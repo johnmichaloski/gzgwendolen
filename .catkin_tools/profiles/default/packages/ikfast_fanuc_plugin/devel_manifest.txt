@@ -1,0 +1,6 @@
+aprs_plugins/ikfast_fanuc_plugin
+/home/michalos/src/gzgwendolen/devel/.private/ikfast_fanuc_plugin/cmake.lock /home/michalos/src/gzgwendolen/devel/./cmake.lock
+/home/michalos/src/gzgwendolen/devel/.private/ikfast_fanuc_plugin/lib/libikfast_fanuc_plugin.so /home/michalos/src/gzgwendolen/devel/lib/libikfast_fanuc_plugin.so
+/home/michalos/src/gzgwendolen/devel/.private/ikfast_fanuc_plugin/lib/pkgconfig/ikfast_fanuc_plugin.pc /home/michalos/src/gzgwendolen/devel/lib/pkgconfig/ikfast_fanuc_plugin.pc
+/home/michalos/src/gzgwendolen/devel/.private/ikfast_fanuc_plugin/share/ikfast_fanuc_plugin/cmake/ikfast_fanuc_pluginConfig.cmake /home/michalos/src/gzgwendolen/devel/share/ikfast_fanuc_plugin/cmake/ikfast_fanuc_pluginConfig.cmake
+/home/michalos/src/gzgwendolen/devel/.private/ikfast_fanuc_plugin/share/ikfast_fanuc_plugin/cmake/ikfast_fanuc_pluginConfig-version.cmake /home/michalos/src/gzgwendolen/devel/share/ikfast_fanuc_plugin/cmake/ikfast_fanuc_pluginConfig-version.cmake

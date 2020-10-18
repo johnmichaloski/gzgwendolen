@@ -1,12 +1,14 @@
 
-# GZAPRSROS
 
-----
-
+
 
 
-This gives a brief overview of how to install, build and run the gz(Gazebe) aprs (agility performane robot system) ros(robot operating system) code. It is open source with no copyright as it is government work.
 
+This repository contains C++ code that provides Gazebo plugins and models, CRCL XML parsing, robot planning control commanded by ROS custom messages based on CRCL,  for testing kitting planning based Gwendolen in simulation.
+
+
+
+
 
 
 
@@ -14,253 +16,203 @@ This gives a brief overview of how to install, build and run the gz(Gazebe) aprs
 # <a name="Requirements"></a>Requirements
 
 
+
 
 
-Ubuntu and Platforms Tested:
 
+- Ubuntu 16.04 Trusty
 
 
-(1)  Ubuntu 16.04.6 LTS
 
-	> lsb_release -a
-	No LSB modules are available.
-	Distributor ID:	Ubuntu
-	Description:	Ubuntu 16.04.6 LTS
-	Release:	16.04
-	Codename:	xenial
-	> uname -a
-	Linux 4.4.0-165-generic #193-Ubuntu SMP Tue Sep 17 17:42:52 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux
+- Gazebo 7 (to allow gazebo_ros_api packages)
 
 
-And Linux installs for:
 
-- Gazebo 9
+- ROS  1 Kinetic
 
-- Ros I Kinetic
 
-- gnu c++
 
+- CodeSynthesis, Xerces XML tools
 
 
 
+- Java JDK 1.8 (Oracle)
 
 
 
-and if compiling with QT Qt5.9.1 (as Qt 5.5 is VERY BUGGY on Ubuntu 16.04)
 
+# <a name="Installation"></a>Installation
 
 
-From: https://linuxhint.com/install-qt-5-9-1-qt-creator-4-3-1-ubuntu/
+Clone the gzgwendolen repository and change to its main subfolder. Open a text window, and run the command:
 
-	wget http://download.qt.io/official_releases/qt/5.9/5.9.1/qt-opensource-linux-x64-5.9.1.run
-	chmod +x qt-opensource-linux-x64-5.9.1.run
-	./qt-opensource-linux-x64-5.9.1.run
 
 
 
+	> ./rosbuild.bash 
 
+This bash script contains a will check for required installations and if not found, install the packages, and then use 'catkin build' on all the packages. You should see a popup of build succeeded.
 
 
 
 
-# <a name="Gazebo_APRS_ROS_Build"></a>Gazebo APRS ROS Build
+# <a name="Running"></a>Running
 
 
 
+	> cd bin 
+	>./E2E.bash  
 
-Navigate to the NIST github site, and clone the gzaprsros repository:
+
 
-	> git clone https://github.com/usnistgov/gzaprsros.git
 
 
-You should see the following files and folders:
+Starting E2E script brings up a multi-tab gnome-terminal with ROS, Gazebo, Kin/Traj Shim, CrclApp, and debugging tabs: telnet and for rostopic. The following provides details on some of the primary diagnostic capabilities as the software can be brittle.
 
-<TABLE>
-<TR>
-<TD>File/Folder<BR></TD>
-<TD>Description<BR></TD>
-</TR>
-<TR>
-<TD>Install.txt<BR></TD>
-<TD>Brief description of installation<BR></TD>
-</TR>
-<TR>
-<TD>InstallScripts<BR></TD>
-<TD>Folder containing install scripts for gazebo, ros, etc.<BR></TD>
-</TR>
-<TR>
-<TD>Readme.md<BR></TD>
-<TD>Readme you are reading.<BR></TD>
-</TR>
-<TR>
-<TD>Worlds<BR></TD>
-<TD>World folder containing iterations on the APRS laboratory setup<BR></TD>
-</TR>
-<TR>
-<TD>bin9<BR></TD>
-<TD>Folder containing canned bash scripts to run agility demos<BR></TD>
-</TR>
-<TR>
-<TD>doc<BR></TD>
-<TD>Folder containing documentation<BR></TD>
-</TR>
-<TR>
-<TD>gzaprsros.docx<BR></TD>
-<TD>Word document from which Readme.md was generated<BR></TD>
-</TR>
-<TR>
-<TD>gzdatabase<BR></TD>
-<TD>Gazebo folder containing models and media definitions<BR></TD>
-</TR>
-<TR>
-<TD>images<BR></TD>
-<TD>Image folder for the readme<BR></TD>
-</TR>
-<TR>
-<TD>isvalid.bash<BR></TD>
-<TD>Bash script to determine and/or install missing Ubuntu packages.<BR></TD>
-</TR>
-<TR>
-<TD>qtbuild.bash<BR></TD>
-<TD>Bash script that uses Qt to build gzaprsros.<BR></TD>
-</TR>
-<TR>
-<TD>rosbuild.bash<BR></TD>
-<TD>Bash script that uses ROS catkin_make to build gzaprsros.<BR></TD>
-</TR>
-<TR>
-<TD>src<BR></TD>
-<TD>Src folder containing ROS layout of gzaprsros packages<BR></TD>
-</TR>
-</TABLE>
 
 
+At first one sees the gnome terminal pop up with Gazebo splash screen:
 
 
 
 
-To build gzaprsros run the bash script:
+![Figure1](./images/GzGwendolen_image1.gif)
 
-	> ./rosbuild.bash
 
 
-Note if all missing packages are automatically installed, except ROS kinetic. If you have a different version of ROS (lunar) then it won't build at this time.
+Note, that there is no way to coordinate waiting until ROS/Gazebo are fully enabled, so traj/kin shim and crclapp both use Sleep to wait a fixed amount until spawning the application. HOPEFULLY THIS IS SUFFICIENT SLEEPING TIME. Even though the apps wait and retry to connect to ROS and Gazebo, issues happen.  Since we are running on a underperforming PC we will assume the sleep amounts are sufficient. Next, we will show each tab in the gnome-terminal.
 
 
 
-A warning is printed at the top build that you might miss that informs you that the bash script found a duplicate Gazebo installation besides Gazebo9. THIS CAN BE A PROBLEM AND EVERYTHING WILL COMPILE BUT YOU WILL GET A SEGMENTATION FAULT IN GZSERVER.
+The first gnome tab is roscore which brings up ROS. 
 
 
 
-FYI, there is a circular dependency of headers so one of the packages is run in isolation first, then all the packages are compile with cakint_build.
 
-# <a name="RUNNING"></a>RUNNING
+![Figure2](./images/GzGwendolen_image2.gif)
 
 
 
+The parameters need to be removed and are legacy camera adjustments. However, you will note that the Gazebo screen shot contains two overhead cameras.
 
-APRS Gazebo Execution - TWO OPTIONS mutli-terminal options: (a) (b) and (c)
 
 
+Next, is the Gazebo 7 simulation screen, which TAKES A LONG TIME TO FULLY LOAD.
 
-(a) no gazebo-ros installation. Also attempts to kill any stray gazebo and ros orphan processes (gzserver, gzclient, rosmaster).
 
 
 
-   
+![Figure3](./images/GzGwendolen_image3.gif)
 
-	a> bin9/agilitydemo.bash
 
 
+A bunch of plugin diagnostic information is displayed for both the Fanuc and Motoman robots. Seeing the diagnostic information is a good then. Often, Gazebo will abort for various reasons. 
 
 
 
+Next is the Kin/Traj shim (replacing ROS moveit) that accepts custom ROS messages converted from CRCL (hence the need for ROS core). The module has several dependencies: ROS Kinematic, Gazebo 7, gotraj DLL, assimpl, boost dl, Google protobuf, and Gnu readline.  Most of these dependencies should already have been installed when building the E2E demonstration. The boost DLL plugin can be especially problematic, however, the goal was plugins for robot kinematics since numerous schemes exist with varying good qualities but no clear winner. For the Fanuc, the ikfast kinematic solution from ROS was adapted. For the Motoman, the gomotion serial kinematic solution was used. 
 
-(b) gazebo-ros packages using "ROS launch" for safety system and modbus interaction. Sets up Gazebo and DLL library lookup environment variables before invoking sequence of operations. Also attempts to kill any stray gazebo and ros orphan processes (gzserver, gzclient, rosmaster).
 
-	b> bin9/rosagilitydemo.bash
 
 
+![Figure4](./images/GzGwendolen_image4.gif)
 
 
 
+The console can handle numerous diagnostics but is kept as a legacy debugging tool
 
-(c) traditional "ROS launch" but 
 
-	c> cd src
-	c> source devel/setup.bash
-	c> roslaunch gzrcs gzrcs_demo.launch 
 
+Next, the crclapp handles the CRCL input/output from clients as well as providing ROS message to the Kin/Traj shim.  
 
 
 
 
+![Figure5](./images/GzGwendolen_image5.gif)
 
-but you must make sure gzserver, ros, etc are not orphans and left running. No pkill in roslaunch. 
 
 
+The crclapp tab displays its configuration. (This configuration is defined in config.ini in the config folder under the crclapp in the ROS install hierarchy.) crclapp handles CRCL communication and ROS topic communication. It now supports multiple CRCL clients so that telnet can be used as a diagnostic tool to see command/status communication from a supervisory CRCL client (in this case the planner). Likewise the ROS topic communication can be monitored using 'rostopic echo' while communication is occurring. This is helpful in establishing that the communication channels are indeed working. 
 
-runs gazebo as a ROS subsystem to allow rqt, etc. to communicate with Gazebo using ROS communication or services.
 
-# <a name="TESTING"></a>TESTING
 
+To assist the user, both a telnet of the CRCL communication channel and a rostopic echo of the ROS communication are provided as tabs in the  gnome-terminal.
 
 
 
-We will assume option (a) has been chosen, and you should see this screen:
+A telnet is established to monitor CRCL communication (hard coded to 127.0.0.1 64444) is the next gnome-terminal tab.
 
 
-![Figure1](./images/gzaprsros_image1.gif)
 
 
+![Figure6](./images/GzGwendolen_image6.gif)
 
-After running go into the aprs gz Motoman bash command line terminal and type 
 
-	> auto
 
+Next is the ROS enabled gnome tab, which allows for the 'rostopic echo fanuc_crcl_status' or 'rostopic echo fanuc_crcl_command' as shown below.
 
-Likewise go into theaprs gz Fanuc  Fanuc bash command line terminal and type
 
-	> auto
 
 
-You should see both robot moving gears from trays to kits.
+![Figure7](./images/GzGwendolen_image7.gif)
 
 
-![Figure2](./images/gzaprsros_image2.gif)
 
-# <a name="DEBUGGING"></a>DEBUGGING 
+Finally, if you are patient, you should see the Gazebo simulation screen of the Agility Kitting setup with 2 robots, 2 cameras, desk, computers and walls. For expediency, some features of the agility were omitted so that Gazebo would load the simulation in a less agonizing amount of time.
 
 
 
 
-You can use the QT IDE to do testing debug of the gzrcs application. To do so, first invoke: 
+![Figure8](./images/GzGwendolen_image8.gif)
 
-	a> bin9/agilitylab.bash
 
 
-which starts the rosmaster, and brings up the Gazebo with the world configures as in ./World aprs-lab.world.
+
 
 
 
-Then, start Qt and navigate to the gzrcs.pro file in src/gzrcs. Build the system. And then "debug" the application. Depending on how the Debug command line parameter is set, either the Fanuc (-r fanuc_) or the Motoman (-r motoman_) should be the robot under control. It should read the Config.ini file, connect to the ROS master (running via the agilitylab.bash) and the Gazebo via plugins. You can set breakpoints and control the robot via the command line interface in the pop up console.
+Using the crclapp tab you can further test whether the E2E script worked.
 
 
 
+First, if you hit carriage return to get a RCS> prompt, enter "instances" to see what objects are being reports by the CRCL status with the new model extension.
 
 
 
 
+![Figure9](./images/GzGwendolen_image9.gif)
 
 
 
+This output corresponds to the gears and trays in the Fanuc robots workspace (there are other gears and trays but are part of the Motoman workspace which is configured).
 
 
 
+Next, inferences based on the instance relationships can be shown by hitting carriage return and entering "inferences". This command reports the all the trays (kits and supply vessels) slot occupancy. In addition, all gears are given there location (in what tray and slot). This capability is part of the crclapp inference engine. Output upon startup should show:
 
 
 
 
+![Figure10](./images/GzGwendolen_image10.gif)
 
 
+
+
+
+
+
+Next to test end-to-end communication, the 'auto' command in the crclapp should run the Fanuc robot through a complete kitting operation, as shown below.
+
+
+
+
+![Figure11](./images/GzGwendolen_image11.gif)
+
+
+
+Only a portion of the Gazebo window is captured, but the idea of picking and placing gears from supply vessel into open kitting slots should correspond to what you see in invoking 'auto'. 
+
+
+
+
 

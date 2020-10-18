@@ -1,0 +1,6 @@
+aprs_plugins/gokin_plugin
+/home/michalos/src/gzgwendolen/devel/.private/gokin_plugin/cmake.lock /home/michalos/src/gzgwendolen/devel/./cmake.lock
+/home/michalos/src/gzgwendolen/devel/.private/gokin_plugin/lib/libgokin_plugin.so /home/michalos/src/gzgwendolen/devel/lib/libgokin_plugin.so
+/home/michalos/src/gzgwendolen/devel/.private/gokin_plugin/lib/pkgconfig/gokin_plugin.pc /home/michalos/src/gzgwendolen/devel/lib/pkgconfig/gokin_plugin.pc
+/home/michalos/src/gzgwendolen/devel/.private/gokin_plugin/share/gokin_plugin/cmake/gokin_pluginConfig-version.cmake /home/michalos/src/gzgwendolen/devel/share/gokin_plugin/cmake/gokin_pluginConfig-version.cmake
+/home/michalos/src/gzgwendolen/devel/.private/gokin_plugin/share/gokin_plugin/cmake/gokin_pluginConfig.cmake /home/michalos/src/gzgwendolen/devel/share/gokin_plugin/cmake/gokin_pluginConfig.cmake
