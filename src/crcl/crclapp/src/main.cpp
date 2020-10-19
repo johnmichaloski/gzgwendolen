@@ -17,6 +17,8 @@
 #include "crclapp/NistCrcl.h"
 #include "crclapp/CrclWm.h"
 #include "crclapp/Demo.h"
+#include "crclapp/CrclServer.h"
+#include "crclapp/NistCrcl.h"
 
 #ifndef MAJOR
 #define MAJOR  1
@@ -64,7 +66,14 @@ int main(int argc, char** argv)
 {
     std::string robot;
     Nist::Config robotconfig;
+
+    // DEBUG FLAGS
     Globals.bDebug=true;
+    // CRCl Communication handler - bundles xml into messages
+    CBufferHandler::_bTrace = false;
+    crcl::crclServer::bDebugCrclStatusMsg=false;
+    crcl::crclServer::bDebugCrclCommandMsg=false;
+
 
     try
     {

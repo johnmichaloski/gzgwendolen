@@ -417,8 +417,6 @@ public:
     std::string sRosMasterUrl;
     std::string sRosPackageName;
 
-    std::string logfolder;
-
     // Debug Flags for more debugging information:
     int DEBUG_Model_Status;
     int DEBUG_Model_Inferences;

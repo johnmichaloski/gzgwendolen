@@ -574,16 +574,16 @@ int CComandLineInterface::interpretLine(std::string line)
         }
         else
         {
-            if(bCrcl=(msg.compare( 0, strlen("crcl"), "crcl") == 0))
+            if((bCrcl=(msg.compare( 0, strlen("crcl"), "crcl")) == 0))
                 msg=Globals.trim(msg.erase(0,std::string("crcl").size()));
-            else if(bRos=(msg.compare( 0, strlen("ros"), "ros") == 0))
+            else if((bRos=(msg.compare( 0, strlen("ros"), "ros")) == 0))
                 msg=Globals.trim(msg.erase(0,std::string("ros").size()));
-            else if(bModel=(msg.compare( 0, strlen("model"), "model") == 0))
+            else if((bModel=(msg.compare( 0, strlen("model"), "model")) == 0))
                 msg=Globals.trim(msg.erase(0,std::string("model").size()));
 
-            if(bCmd=(msg.compare( 0, strlen("cmd"), "cmd") == 0))
+            if((bCmd=(msg.compare( 0, strlen("cmd"), "cmd")) == 0))
                 msg=Globals.trim(msg.erase(0,std::string("cmd").size()));
-            else if(bStatus=(msg.compare( 0, strlen("status"), "status") == 0))
+            else if((bStatus=(msg.compare( 0, strlen("status"), "status")) == 0))
                 msg=Globals.trim(msg.erase(0,std::string("status").size()));
 
             if(bCrcl && bCmd)
@@ -632,21 +632,21 @@ int CComandLineInterface::interpretLine(std::string line)
         }
         else
         {
-            if(bCrcl=(msg.compare( 0, strlen("crcl"), "crcl") == 0))
+            if((bCrcl=(msg.compare( 0, strlen("crcl"), "crcl")) == 0))
                 msg=Globals.trim(msg.erase(0,std::string("crcl").size()));
-            else if(bRos=(msg.compare( 0, strlen("ros"), "ros") == 0))
+            else if((bRos=(msg.compare( 0, strlen("ros"), "ros")) == 0))
                 msg=Globals.trim(msg.erase(0,std::string("ros").size()));
-            else if(bModel=(msg.compare( 0, strlen("model"), "model") == 0))
+            else if((bModel=(msg.compare( 0, strlen("model"), "model")) == 0))
                 msg=Globals.trim(msg.erase(0,std::string("model").size()));
 
-            if(bCmd=(msg.compare( 0, strlen("cmd"), "cmd") == 0))
+            if((bCmd=(msg.compare( 0, strlen("cmd"), "cmd")) == 0))
                 msg=Globals.trim(msg.erase(0,std::string("cmd").size()));
-            else if(bStatus=(msg.compare( 0, strlen("status"), "status") == 0))
+            else if((bStatus=(msg.compare( 0, strlen("status"), "status")) == 0))
                 msg=Globals.trim(msg.erase(0,std::string("status").size()));
 
-            if(bOn=(msg.compare( 0, strlen("on"), "on") == 0))
+            if((bOn=(msg.compare( 0, strlen("on"), "on")) == 0))
                 msg=Globals.trim(msg.erase(0,std::string("on").size()));
-            else if(bOff=(msg.compare( 0, strlen("off"), "off") == 0))
+            else if((bOff=(msg.compare( 0, strlen("off"), "off")) == 0))
                 msg=Globals.trim(msg.erase(0,std::string("off").size()));
 
             if(bCrcl && bCmd)

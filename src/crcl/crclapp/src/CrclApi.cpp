@@ -164,8 +164,6 @@ void CCrclApi::doDwell(double dwelltime) {
 ////////////////////////////////////////////////////////////////////////////////
 void CCrclApi::moveTo(tf::Pose pose)
 {
-    if(Globals.bDebug)
-        std::cout << "moveTo=" << dumpPoseSimple(pose)  << std::endl;
 
     crcl_rosmsgs::CrclCommandMsg cmd;
     CCanonCmd::setRosMsgTimestamp(cmd.header);
@@ -175,7 +173,9 @@ void CCrclApi::moveTo(tf::Pose pose)
     cmd.finalpose = Convert<tf::Pose, geometry_msgs::Pose> (pose);
     cmd.eepercent=-1.0; // keep as is
     CCrcl2RosMsg::crclcmdsq->addMsgQueue(cmd);
-    //_undo.push_front(cmd);
+    if(Globals.bDebug)
+        std::cout << "moveTo=" << dumpPoseSimple(pose)  << std::endl;
+
 }
 
 

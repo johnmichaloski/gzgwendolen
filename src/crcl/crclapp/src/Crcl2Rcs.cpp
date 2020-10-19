@@ -215,6 +215,8 @@ int CCrcl2RosMsg::action()
                 rosmsg.jointnum=cc.jointnum;
                 rosmsg.joints = cc.joints; // this passes pos, vel, accel/force/torque
                 rosmsg.bCoordinated = cc.bCoordinated;
+                if(Globals.bDebug)
+                    std::cout << "crcl moveTo=" << dumpStdVector(rosmsg.joints.position)  << std::endl;
             }
             else if (cc.crclcommand == CanonCmdType::CANON_MOVE_TO)
             {
@@ -226,6 +228,10 @@ int CCrcl2RosMsg::action()
                 rosmsg.finalpose.orientation.y = cc.finalpose.orientation.y;
                 rosmsg.finalpose.orientation.z = cc.finalpose.orientation.z;
                 rosmsg.finalpose.orientation.w = cc.finalpose.orientation.w;
+                if(Globals.bDebug)
+                    std::cout << "crcl moveTo="
+                              << dumpPoseSimple(RCS::Convert<geometry_msgs::Pose, tf::Pose>(rosmsg.finalpose) )
+                              << std::endl;
 
                 // Fixme: rates are ignored by RCS crcl interpreter
                 if(cc.Rates().CurrentTransSpeed() >0.0)
@@ -275,11 +281,16 @@ int CCrcl2RosMsg::action()
             {
                 rosmsg.crclcommand = CanonCmdType::CANON_DWELL;
                 rosmsg.dwell_seconds = cc.dwell_seconds;
+                if(Globals.bDebug)
+                    std::cout << "crcl dwell=" <<  rosmsg.dwell_seconds << std::endl;
+
             }
             else if (cc.crclcommand == CanonCmdType::CANON_SET_GRIPPER)
             {
                 rosmsg.crclcommand = CanonCmdType::CANON_SET_GRIPPER;
                 rosmsg.eepercent = cc.eepercent;
+                if(Globals.bDebug)
+                    std::cout << "crcl setGripper=" <<  cc.eepercent << std::endl;
             }
             else if (cc.crclcommand == CanonCmdType::CANON_PAVEL_GRIPPER)
             {
@@ -326,11 +337,11 @@ void CCrcl2RosMsg::sendCmdRosMessage(crcl_rosmsgs::CrclCommandMsg &rosmsg)
 {
     // publish ros message if found corresponding crcl command
     if (crcl::crclServer::bDebugCrclCommandMsg) {
+        ROS_DEBUG("Send ROS command: [%d] ", rosmsg.crclcommand);
         ROS_DEBUG("ROS command: %s", CCanonCmd().Set(rosmsg).toString().c_str());
     }
 
     if (rosmsg.crclcommand != CanonCmdType::CANON_NOOP) {
-        ROS_DEBUG("Send ROS command: [%d] ", rosmsg.crclcommand);
         crclcmdsq->addMsgQueue(rosmsg);
     }
 }

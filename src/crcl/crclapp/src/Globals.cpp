@@ -207,7 +207,7 @@ void CGlobals::sleep(unsigned int ms) {
 std::vector<std::string> CGlobals::split(const std::string &text, char sep, bool bKeepEmpty) {
     std::vector<std::string> tokens;
     std::size_t start = 0, end = 0;
-    bKeepEmpty; // unused for now;
+    //bKeepEmpty; // unused for now;
     std::string token;
     while ((end = text.find(sep, start)) != std::string::npos) {
         token = text.substr(start, end - start);
@@ -226,10 +226,6 @@ void CGlobals::logfilesSetup()
 {
     std::string robotname = Globals.appProperties["robot"];
     robotname = RightTrim(robotname,"_");
-    logfolder = getexefolder()+"Log_"+ robotname+"-"+getTimeStamp(LOGFILE)+"/";
-    File lf(logfolder);
-    lf.mkpath(logfolder.c_str(), 0777);
-//    GLogger.loggerFolder()=logfolder();
 }
 
 ////////////////////////////////////////////////////////////////////////////////

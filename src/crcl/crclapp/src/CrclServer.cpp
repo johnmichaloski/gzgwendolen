@@ -80,13 +80,10 @@ void CBufferHandler::SaveMessage(std::string xmlmessage) {
                         xmlmessage.c_str());
     }
 
-//    if(CCrclSession::bDebugCrclXML  && xmlmessage.find("GetStatusType") == std::string::npos)
-//    {
-//        printf("Raw:%s\n",xmlmessage.c_str());
-//    }
-
     CCrclSession::InMessages().addMsgQueue(boost::make_tuple(xmlmessage, pSession));
-    pSession->crcl2ros->wake();
+
+    // quirky, can cause core dump in mutex
+    //pSession->crcl2ros->wake();
 
 }
 

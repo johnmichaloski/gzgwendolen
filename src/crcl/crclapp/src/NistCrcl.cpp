@@ -164,8 +164,6 @@ crclServer::crclServer(std::string crclIp,
     this->base_link=base_link;
     this->tip_link=tip_link;
 
-    // CRCl Communication handler - bundles xml into messages
-    CBufferHandler::_bTrace = true;
 
     crcl2ros=std::shared_ptr<CCrcl2RosMsg> (new CCrcl2RosMsg(urdf_xml, base_link, tip_link));
     crcl2ros->setCmdQueue(NULL);
@@ -194,9 +192,6 @@ void crclServer::setCmdQueue(RCS::CrclMessageQueue *crclcmdsq)
 void crclServer::start ( )
 {
     std::string inifile =getexefolder()+   + "config/Config.ini";
-
-
-   // CBufferHandler::_bTrace = false;
 
     // Initialize xercesc used by code synthesis to parse CRCL XML
     xercesc::XMLPlatformUtils::Initialize();
@@ -236,7 +231,8 @@ void crclServer::start ( )
     CCrclSession::bDebugCrclXML = (bool) cfg.getSymbolValue<int>("CRCL.DebugXML", "0");
     crclServer::bFlywheel=(bool) cfg.getSymbolValue<double>("CRCL.flywheel", "0");
     crclServer::bProcessAllCrclMessages=(bool) cfg.getSymbolValue<double>("CRCL.processAllCrclMessages", "0");
-    crclServer::sRobot= cfg.getSymbolValue<std::string>("system.robots","robie");
+//    crclServer::sRobot= cfg.getSymbolValue<std::string>("system.robots","robie");
+    crclServer::sRobot= rcs_robot.robotName;
 
     ROS_DEBUG( " crclServer started %s", getTimeStamp(GMT_UV_SEC).c_str());
     ROS_DEBUG( " crclServer bDebugCrclStatusMsg= %d", crclServer::bDebugCrclStatusMsg);
@@ -246,6 +242,7 @@ void crclServer::start ( )
     ROS_DEBUG( " crclServer bFlywheel= %d", crclServer::bFlywheel);
     ROS_DEBUG( " crclServer bProcessAllCrclMessages= %d", crclServer::bProcessAllCrclMessages);
     ROS_DEBUG( " crclServer sRobot= %s", crclServer::sRobot.c_str());
+    ROS_DEBUG( " crclServer robotprefix= %s", rcs_robot.robotPrefix().c_str());
 
 //    // Start asio crcl reader
     ROS_DEBUG( "Start crcl socket reader");

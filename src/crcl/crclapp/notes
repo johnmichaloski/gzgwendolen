@@ -1,3 +1,14 @@
+
+
+
+[DEBUG] [1603131694.193875206]:  crclServer sRobot= motoman_
+
+
+
+
+
+
+
 TEST SEQUENCE
 RCS> where
 Status Joints   = 0.001, 0.001, 0.001, 0.001, 0.001, 0.001

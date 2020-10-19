@@ -133,13 +133,17 @@ public:
         std::chrono::nanoseconds nanosleep((long long) nanosec);
         std::this_thread::sleep_for(nanosleep);
     }
-    std::mutex mymutex;
+    std::mutex & mymutex()
+    {
+        static std::mutex mytimermutex;
+        return mytimermutex;
+    }
     std::condition_variable mycond;
     bool flag;
     bool esleepWBreak(double seconds_to_sleep)
     {
         flag=false;
-        std::unique_lock<std::mutex> lock(mymutex);
+        std::unique_lock<std::mutex> lock(mymutex());
         // convert seconds to nanoseconds
         double  nanosec = seconds_to_sleep * 1E09;
         std::chrono::nanoseconds nanosleep((long long) nanosec);
@@ -159,7 +163,7 @@ public:
 
     void wake()
     {
-        std::lock_guard<std::mutex> lock(mymutex);
+        std::lock_guard<std::mutex> lock(mymutex());
         flag=true;
         mycond.notify_one();
     }
