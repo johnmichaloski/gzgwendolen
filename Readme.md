@@ -214,5 +214,100 @@ Only a portion of the Gazebo window is captured, but the idea of picking and pla
 
 
 
+Once you encounter the  "No Free Gear in tray to move" diagnostic message as shown below:
+
+
+
+
+![Figure12](./images/GzGwendolen_image12.gif)
+
+
+
+You can reset the gears back to their original positions, using the reset command.
+
+
+
+
+![Figure13](./images/GzGwendolen_image13.gif)
+
+
+
+Gears move back to their original setup.
+
+
+
+
+![Figure14](./images/GzGwendolen_image14.gif)
+
+
+
+Note, currently the "auto" command is not as robust after reset, but this is being corrected.
+
+
+
+## <a name="Configuration"></a>Configuration
+
+
+Much of the CRCL configuration is done using an ini file. The name of the file is "config.ini" and is located under the crclapp in the config folder. It contains setup configuration for CRCL communication (expected units of operation – meters and radians) as well as flags for outputting diagnostic information to the crclapp gnome-terminal tab.
+
+
+
+
+
+
+
+
+![Figure15](./images/GzGwendolen_image15.gif)
+
+
+
+
+
+
+
+To modify the CRCL communication and crclapp CLI CRCL command echo, you will need to modify the robot ini section:
+
+
+
+
+![Figure16](./images/GzGwendolen_image16.gif)
+
+
+
+Where the IP and Port establish the CRCL host and socket, while autostatus enable/disables automatic CRCL status reporting.
+
+
+
+## <a name="Implementation_Notes"></a>Implementation Notes
+
+
+This is a brief summary of the components in the end-2-end Java Gwendolen planning to Gazebo kitting simulation. Shown below are 3 major components (Gazebo, Traj/Kin Shim called gzrosrcs containing gomotion trajectory generation, plugin kinematic solution, and ROS messaging), and the crclapp which handles CRCL and converts the various representations into ROS. Each of these modules is an application with numerous dynamic library (.so extension in Linux) dependencies, which can cause trouble. 
+
+
+
+
+
+
+
+
+
+
+
+
+![Figure17](./images/GzGwendolen_image17.gif)
+
+
+
+
+
+
+
+## <a name="Troubleshooting_Notes"></a>Troubleshooting Notes
+
+
+Eventually this section will list all the various problems that can happen. As is, hopefully an abort message in the gnome-terminal tab will be enough explanation.
+
+
+
 
 

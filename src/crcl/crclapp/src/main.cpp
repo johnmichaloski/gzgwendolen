@@ -73,7 +73,7 @@ int main(int argc, char** argv)
     CBufferHandler::_bTrace = false;
     crcl::crclServer::bDebugCrclStatusMsg=false;
     crcl::crclServer::bDebugCrclCommandMsg=false;
-
+    Globals.bAutoCrclStatus=1;
 
     try
     {
@@ -116,7 +116,6 @@ int main(int argc, char** argv)
             throw std::string("Empty -r \"robot\"  command line argument\n");
         }
         Globals.sRosPackageName=robot+Globals.sRosPackageName;
-        Globals.bAutoCrclStatus=1;
 
         // Robot configuration
         rcs_robot.configure(robot, inifile);

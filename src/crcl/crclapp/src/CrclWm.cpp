@@ -93,6 +93,8 @@ void rcs_robot_type::configure(std::string robot, std::string inifile)
         std::string crclIp=robotconfig.getSymbolValue<std::string>(robot + ".crcl.Ip", "127.0.0.1");
         long crclPort=robotconfig.getSymbolValue<double>(robot + ".crcl.Port", "64444");
 
+        Globals.bDebug=robotconfig.getSymbolValue<int>("crcl.Debug","1");
+        Globals.bAutoCrclStatus=robotconfig.getSymbolValue<int>(robot + ".crcl.AutoStatus","1");
 
         // ROBOT configuration
         std::string robotName = robotconfig.getSymbolValue<std::string>(robot + ".robot.longname", "ERROR");

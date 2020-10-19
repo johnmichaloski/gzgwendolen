@@ -1,6 +1,0 @@
-gzplugins/gzjointcmdplugin
-/home/michalos/src/gzgwendolen/devel/.private/gzjointcmdplugin/cmake.lock /home/michalos/src/gzgwendolen/devel/./cmake.lock
-/home/michalos/src/gzgwendolen/devel/.private/gzjointcmdplugin/lib/libgzjointcmdplugin.so /home/michalos/src/gzgwendolen/devel/lib/libgzjointcmdplugin.so
-/home/michalos/src/gzgwendolen/devel/.private/gzjointcmdplugin/lib/pkgconfig/gzjointcmdplugin.pc /home/michalos/src/gzgwendolen/devel/lib/pkgconfig/gzjointcmdplugin.pc
-/home/michalos/src/gzgwendolen/devel/.private/gzjointcmdplugin/share/gzjointcmdplugin/cmake/gzjointcmdpluginConfig.cmake /home/michalos/src/gzgwendolen/devel/share/gzjointcmdplugin/cmake/gzjointcmdpluginConfig.cmake
-/home/michalos/src/gzgwendolen/devel/.private/gzjointcmdplugin/share/gzjointcmdplugin/cmake/gzjointcmdpluginConfig-version.cmake /home/michalos/src/gzgwendolen/devel/share/gzjointcmdplugin/cmake/gzjointcmdpluginConfig-version.cmake

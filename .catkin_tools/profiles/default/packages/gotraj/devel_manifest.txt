@@ -1,6 +1,0 @@
-gotraj
-/home/michalos/src/gzgwendolen/devel/.private/gotraj/cmake.lock /home/michalos/src/gzgwendolen/devel/./cmake.lock
-/home/michalos/src/gzgwendolen/devel/.private/gotraj/lib/libgotraj.so /home/michalos/src/gzgwendolen/devel/lib/libgotraj.so
-/home/michalos/src/gzgwendolen/devel/.private/gotraj/lib/pkgconfig/gotraj.pc /home/michalos/src/gzgwendolen/devel/lib/pkgconfig/gotraj.pc
-/home/michalos/src/gzgwendolen/devel/.private/gotraj/share/gotraj/cmake/gotrajConfig-version.cmake /home/michalos/src/gzgwendolen/devel/share/gotraj/cmake/gotrajConfig-version.cmake
-/home/michalos/src/gzgwendolen/devel/.private/gotraj/share/gotraj/cmake/gotrajConfig.cmake /home/michalos/src/gzgwendolen/devel/share/gotraj/cmake/gotrajConfig.cmake

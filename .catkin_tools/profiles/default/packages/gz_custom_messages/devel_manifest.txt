@@ -1,6 +1,0 @@
-gz_custom_messages
-/home/michalos/src/gzgwendolen/devel/.private/gz_custom_messages/cmake.lock /home/michalos/src/gzgwendolen/devel/./cmake.lock
-/home/michalos/src/gzgwendolen/devel/.private/gz_custom_messages/lib/libgz_custom_messages_proto.so /home/michalos/src/gzgwendolen/devel/lib/libgz_custom_messages_proto.so
-/home/michalos/src/gzgwendolen/devel/.private/gz_custom_messages/lib/pkgconfig/gz_custom_messages.pc /home/michalos/src/gzgwendolen/devel/lib/pkgconfig/gz_custom_messages.pc
-/home/michalos/src/gzgwendolen/devel/.private/gz_custom_messages/share/gz_custom_messages/cmake/gz_custom_messagesConfig.cmake /home/michalos/src/gzgwendolen/devel/share/gz_custom_messages/cmake/gz_custom_messagesConfig.cmake
-/home/michalos/src/gzgwendolen/devel/.private/gz_custom_messages/share/gz_custom_messages/cmake/gz_custom_messagesConfig-version.cmake /home/michalos/src/gzgwendolen/devel/share/gz_custom_messages/cmake/gz_custom_messagesConfig-version.cmake

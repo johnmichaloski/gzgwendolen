@@ -1,6 +1,0 @@
-gzplugins/gzparallelgripperplugin
-/home/michalos/src/gzgwendolen/devel/.private/gzparallelgripperplugin/cmake.lock /home/michalos/src/gzgwendolen/devel/./cmake.lock
-/home/michalos/src/gzgwendolen/devel/.private/gzparallelgripperplugin/lib/libgzparallelgripperplugin.so /home/michalos/src/gzgwendolen/devel/lib/libgzparallelgripperplugin.so
-/home/michalos/src/gzgwendolen/devel/.private/gzparallelgripperplugin/lib/pkgconfig/gzparallelgripperplugin.pc /home/michalos/src/gzgwendolen/devel/lib/pkgconfig/gzparallelgripperplugin.pc
-/home/michalos/src/gzgwendolen/devel/.private/gzparallelgripperplugin/share/gzparallelgripperplugin/cmake/gzparallelgripperpluginConfig-version.cmake /home/michalos/src/gzgwendolen/devel/share/gzparallelgripperplugin/cmake/gzparallelgripperpluginConfig-version.cmake
-/home/michalos/src/gzgwendolen/devel/.private/gzparallelgripperplugin/share/gzparallelgripperplugin/cmake/gzparallelgripperpluginConfig.cmake /home/michalos/src/gzgwendolen/devel/share/gzparallelgripperplugin/cmake/gzparallelgripperpluginConfig.cmake
