@@ -21,6 +21,7 @@ using namespace RCS;
 int CCrclApi::_crclcommandnum = 1;
 IRate CCrclApi::rates;
 
+//#define DIRECT_ROS_MSG
 
 ////////////////////////////////////////////////////////////////////////////////
 void CCrclApi::setDwell(double d)
@@ -72,8 +73,7 @@ void CCrclApi::setVelocity(double speed)
 ////////////////////////////////////////////////////////////////////////////////
 void CCrclApi::setGripper(double ee)
 {
-    if(Globals.bDebug)
-        std::cout << "setGripper=" <<  ee << std::endl;
+#ifdef DIRECT_ROS_MSG
     // FIXME: set gripper to 0..1
     crcl_rosmsgs::CrclCommandMsg cmd;
     CCanonCmd::setRosMsgTimestamp(cmd.header);
@@ -81,23 +81,14 @@ void CCrclApi::setGripper(double ee)
     cmd.crclcommandnum = _crclcommandnum++;
     cmd.eepercent = ee;
     CCrcl2RosMsg::crclcmdsq->addMsgQueue(cmd);
-
-    cmd.eepercent = 1.0 - ee;
-//    _undo.push_front(cmd);
-}
-
-////////////////////////////////////////////////////////////////////////////////
-void CCrclApi::setAbsPosGripper(double abspos)
-{
-    crcl_rosmsgs::CrclCommandMsg cmd;
-    CCanonCmd::setRosMsgTimestamp(cmd.header);
-    cmd.crclcommand = CanonCmdType::CANON_SET_EE_PARAMETERS;
+#else
+    RCS::CCanonCmd cmd;
+    cmd.crclcommand = CanonCmdType::CANON_SET_GRIPPER;
     cmd.crclcommandnum = _crclcommandnum++;
-    cmd.parameter_names = { "action"};
-    cmd.parameter_values = { "position"};;
-    CCrcl2RosMsg::crclcmdsq->addMsgQueue(cmd);
-    setGripper(abspos);
-
+    cmd.eepercent = ee;
+    RCS::cmds.addMsgQueue(cmd);
+#endif
+    cmd.eepercent = 1.0 - ee;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -112,12 +103,13 @@ void CCrclApi::setContactGripper(double ee)
     cmd.crclcommandnum = _crclcommandnum++;
     cmd.eepercent = ee;
     CCrcl2RosMsg::crclcmdsq->addMsgQueue(cmd);
-    //_undo.push_front(cmd);
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void CCrclApi::setVelGripper(double vel, double fmax)
 {
+#ifdef DIRECT_ROS_MSG
     crcl_rosmsgs::CrclCommandMsg cmd;
     CCanonCmd::setRosMsgTimestamp(cmd.header);
     cmd.crclcommand = CanonCmdType::CANON_SET_EE_PARAMETERS;
@@ -125,8 +117,15 @@ void CCrclApi::setVelGripper(double vel, double fmax)
     cmd.parameter_names = { "action", "vel", "fmax"};
     cmd.parameter_values = { "Vel/Fmax", Globals.strConvert(vel), Globals.strConvert(fmax)};;
     CCrcl2RosMsg::crclcmdsq->addMsgQueue(cmd);
-    //_undo.push_front(cmd);
+#else
+    RCS::CCanonCmd cmd;
+    cmd.crclcommand = CanonCmdType::CANON_SET_EE_PARAMETERS;
+    cmd.crclcommandnum = _crclcommandnum++;
+    cmd.parameter_names = { "action", "vel", "fmax"};
+    cmd.parameter_values = { "Vel/Fmax", Globals.strConvert(vel), Globals.strConvert(fmax)};;
 
+    RCS::cmds.addMsgQueue(cmd);
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -148,9 +147,7 @@ void CCrclApi::openGripper()
 
 ////////////////////////////////////////////////////////////////////////////////
 void CCrclApi::doDwell(double dwelltime) {
-
-    if(Globals.bDebug)
-        std::cout << "doDwell=" <<  dwelltime << std::endl;
+#ifdef DIRECT_ROS_MSG
     crcl_rosmsgs::CrclCommandMsg cmd;
     CCanonCmd::setRosMsgTimestamp(cmd.header);
     cmd.crclcommand = CanonCmdType::CANON_DWELL;
@@ -158,13 +155,20 @@ void CCrclApi::doDwell(double dwelltime) {
     cmd.dwell_seconds = dwelltime;
     cmd.eepercent=-1.0; // keep as is
     CCrcl2RosMsg::crclcmdsq->addMsgQueue(cmd);
-    //_undo.push_front(cmd);
+#else
+    RCS::CCanonCmd cmd;
+    cmd.crclcommand = CanonCmdType::CANON_DWELL;
+    cmd.crclcommandnum = _crclcommandnum++;
+    cmd.dwell_seconds = dwelltime;
+    cmd.eepercent=-1.0; // keep as is
+    RCS::cmds.addMsgQueue(cmd);
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void CCrclApi::moveTo(tf::Pose pose)
 {
-
+#ifdef DIRECT_ROS_MSG
     crcl_rosmsgs::CrclCommandMsg cmd;
     CCanonCmd::setRosMsgTimestamp(cmd.header);
     cmd.crclcommandnum = _crclcommandnum++;
@@ -173,9 +177,15 @@ void CCrclApi::moveTo(tf::Pose pose)
     cmd.finalpose = Convert<tf::Pose, geometry_msgs::Pose> (pose);
     cmd.eepercent=-1.0; // keep as is
     CCrcl2RosMsg::crclcmdsq->addMsgQueue(cmd);
-    if(Globals.bDebug)
-        std::cout << "moveTo=" << dumpPoseSimple(pose)  << std::endl;
-
+#else
+    RCS::CCanonCmd cmd;
+    cmd.crclcommandnum = _crclcommandnum++;
+    cmd.crclcommand = CanonCmdType::CANON_MOVE_TO;
+    cmd.profile.push_back(getSpeeds());
+    cmd.finalpose = Convert<tf::Pose, geometry_msgs::Pose> (pose);
+    cmd.eepercent=-1.0; // keep as is
+    RCS::cmds.addMsgQueue(cmd);
+#endif
 }
 
 
@@ -184,9 +194,7 @@ void CCrclApi::moveJoints(std::vector<long unsigned int> jointnum,
                          std::vector<double> positions,
                          double vel)
 {
-    if(Globals.bDebug)
-        std::cout << "moveTo=" << dumpStdVector(positions)  << std::endl;
-
+//#ifdef DIRECT_ROS_MSG
     crcl_rosmsgs::CrclCommandMsg cmd;
     CCanonCmd::setRosMsgTimestamp(cmd.header);
     cmd.crclcommandnum = _crclcommandnum++;
@@ -198,16 +206,33 @@ void CCrclApi::moveJoints(std::vector<long unsigned int> jointnum,
     cmd.eepercent=-1.0; // keep as is
     cmd.bCoordinated = true;
 
+    // THe lower level robot control really needs
+    // the velocity profile set.
     ::crcl_rosmsgs::CrclMaxProfileMsg profile;
     vel = rates.MaxJointVelocity();
     profile.maxvel=vel;
     profile.maxacc=vel*10.;
     profile.maxjerk=vel*100.;
     cmd.profile.push_back(profile)  ;
-
     CCrcl2RosMsg::crclcmdsq->addMsgQueue(cmd);
-    //_undo.push_front(cmd);
+//#else
+#if 0
+    RCS::CCanonCmd cc;
+    cc.crclcommandnum = _crclcommandnum++;
+    cc.crclcommand = CanonCmdType::CANON_MOVE_JOINT;
+    cc.joints = zeroJointState(jointnum.size());
+    cc.joints.position = positions;
+    cc.jointnum=jointnum;
+    cc.joints.name=rcs_robot.jointNames;
+    cc.eepercent=-1.0; // keep as is
+    cc.bCoordinated = true;
 
+    // higher bogusian
+    vel = rates.MaxJointVelocity();
+    cc.Rates().CurrentTransSpeed()=vel;
+
+    RCS::cmds.addMsgQueue(cmd);
+#endif
 }
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -33,6 +33,9 @@ std::shared_ptr<CRosCrclClient> rosCrclClient;
 
 static void cleanup()
 {
+    // Shutdown ROS
+    Ros.close();
+
     // This order shuts things down.
     // Stop demo (i.e. testing) related activies
     if(geardemo.get() != nullptr)
@@ -45,8 +48,6 @@ static void cleanup()
     if(rosCrclClient.get() != nullptr)
         rosCrclClient->stop();
 
-    // Shutdown ROS
-    Ros.close();
 
     // This shuts down the crcl socket (port 64444) server
     if(pCrclServer.get() != nullptr)
@@ -74,6 +75,7 @@ int main(int argc, char** argv)
     crcl::crclServer::bDebugCrclStatusMsg=false;
     crcl::crclServer::bDebugCrclCommandMsg=false;
     Globals.bAutoCrclStatus=1;
+    Globals.bSynchronousCmds=1;
 
     try
     {
@@ -109,6 +111,9 @@ int main(int argc, char** argv)
 
         // ROS configuration
         Globals.sRosMasterUrl = robotconfig.getSymbolValue<std::string>("system.RosMasterUrl","http://localhost:11311");
+        std::string ros_loglevel= robotconfig.getSymbolValue<std::string>("debug.ros_loglevel","Debug");
+
+
         //Globals.sRosPackageName = robotconfig.getSymbolValue<std::string>("system.RosPackageName","crclapp");
         Globals.sRosPackageName ="crclapp";
         if(robot.empty())
@@ -136,6 +141,7 @@ int main(int argc, char** argv)
 
         // Setup up ROS
         Ros.init();
+        Ros.setupLogger(ros_loglevel);
 
         pCrclServer->setCmdQueue(&(rosCrclClient->crclcmds));
         pCrclServer->start();
@@ -159,6 +165,30 @@ int main(int argc, char** argv)
             {
                 CGlobals::bRunning=false;
                 break;
+            }
+            if(clistate==rcs_state::STEP)
+            {
+                // cycle through one pick/place cycle.
+                bool bFail;
+                int nStateMax=0;
+                // issue commands until state goes back to zero
+                do {
+                    bFail=geardemo->issueCommands(demostate);
+                    nStateMax=std::max(demostate,nStateMax );
+                    Globals.sleep(100);
+                }
+                while( !geardemo->isDone(demostate)  && bFail >= 0 );
+
+                // Now wait till all commands done
+                std::cout << "STEP" << std::flush;
+                bool bflag;
+                do
+                {
+                    std::cout << "." << std::flush;
+                    sleep(1)   ;
+                    bflag=geardemo->isWorking();
+                } while (! bflag );
+                std::cout << "DONE\n";
             }
             if(clistate==rcs_state::PAUSED)
                 CGlobals::bPaused=true;
@@ -187,7 +217,8 @@ int main(int argc, char** argv)
             // If canned demo AND finished last commands
             if(!CGlobals::bPaused && Globals.bCannedDemo() && ! rcs_robot.isBusy())
             {
-                if(geardemo->issueRobotCommands(demostate)<0)
+               if(geardemo->issueCommands(demostate)<0)
+               //  if(geardemo->issueRobotCommands(demostate)<0)
                 {
                     if(Globals.bRepeatCannedDemo)
                     {

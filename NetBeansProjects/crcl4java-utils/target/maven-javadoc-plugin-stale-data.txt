@@ -1,0 +1,55 @@
+/usr/lib/jvm/java-8-oracle/jre/../bin/javadoc
+@options
+@packages
+-classpath
+'/home/michalos/.m2/repository/javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.jar:/home/michalos/.m2/repository/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar:/home/michalos/.m2/repository/com/sun/xml/bind/jaxb-impl/2.3.1/jaxb-impl-2.3.1.jar:/home/michalos/.m2/repository/com/sun/xml/bind/jaxb-core/2.3.0.1/jaxb-core-2.3.0.1.jar:/home/michalos/.m2/repository/com/github/wshackle/crcl4java-base/1.9.1-SNAPSHOT/crcl4java-base-1.9.1-SNAPSHOT.jar:/home/michalos/.m2/repository/org/apache/maven/plugins/maven-resources-plugin/2.5/maven-resources-plugin-2.5.jar:/home/michalos/.m2/repository/com/github/wshackle/rcslib/2017.07.19/rcslib-2017.07.19.jar:/home/michalos/.m2/repository/org/checkerframework/checker-qual/3.1.1/checker-qual-3.1.1.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'/home/michalos/src/gzgwendolen/NetBeansProjects/crcl4java-utils/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2020. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/home/michalos/src/gzgwendolen/NetBeansProjects/crcl4java-utils/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'crcl4java-utils 1.9.1-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' '/home/michalos/src/gzgwendolen/NetBeansProjects/crcl4java-utils/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'crcl4java-utils 1.9.1-SNAPSHOT API'
+crcl.utils.outer.interfaces
+crcl.utils.stubs
+crcl.utils
+crcl.utils.kinematics
+crcl.utils.server
+/home/michalos/.m2/repository/javax/xml/bind/jaxb-api/2.3.1/jaxb-api-2.3.1.jar = 1594149107000
+/home/michalos/.m2/repository/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar = 1594149107000
+/home/michalos/.m2/repository/com/sun/xml/bind/jaxb-impl/2.3.1/jaxb-impl-2.3.1.jar = 1594149108000
+/home/michalos/.m2/repository/com/sun/xml/bind/jaxb-core/2.3.0.1/jaxb-core-2.3.0.1.jar = 1594149108000
+/home/michalos/.m2/repository/com/github/wshackle/crcl4java-base/1.9.1-SNAPSHOT/crcl4java-base-1.9.1-SNAPSHOT.jar = 1603462871000
+/home/michalos/.m2/repository/org/apache/maven/plugins/maven-resources-plugin/2.5/maven-resources-plugin-2.5.jar = 1300729472000
+/home/michalos/.m2/repository/com/github/wshackle/rcslib/2017.07.19/rcslib-2017.07.19.jar = 1594149000000
+/home/michalos/.m2/repository/org/checkerframework/checker-qual/3.1.1/checker-qual-3.1.1.jar = 1594149108000
+/home/michalos/src/gzgwendolen/NetBeansProjects/crcl4java-utils/src/main/java = 1598556424000
+/home/michalos/src/gzgwendolen/NetBeansProjects/crcl4java-utils/target/site/apidocs/index.html = 1603478774000
+/home/michalos/src/gzgwendolen/NetBeansProjects/crcl4java-utils/target/site/apidocs/overview-summary.html = 1603478774000
+/home/michalos/src/gzgwendolen/NetBeansProjects/crcl4java-utils/target/site/apidocs/stylesheet.css = 1603478774000
+/home/michalos/src/gzgwendolen/NetBeansProjects/crcl4java-utils/target/site/apidocs/overview-frame.html = 1603478774000
+/home/michalos/src/gzgwendolen/NetBeansProjects/crcl4java-utils/target/site/apidocs/deprecated-list.html = 1603478774000
+/home/michalos/src/gzgwendolen/NetBeansProjects/crcl4java-utils/target/site/apidocs/package-list = 1603478774000
+/home/michalos/src/gzgwendolen/NetBeansProjects/crcl4java-utils/target/site/apidocs/allclasses-frame.html = 1603478774000
+/home/michalos/src/gzgwendolen/NetBeansProjects/crcl4java-utils/target/site/apidocs/script.js = 1603478774000
+/home/michalos/src/gzgwendolen/NetBeansProjects/crcl4java-utils/target/site/apidocs/constant-values.html = 1603478774000
+/home/michalos/src/gzgwendolen/NetBeansProjects/crcl4java-utils/target/site/apidocs/overview-tree.html = 1603478774000
+/home/michalos/src/gzgwendolen/NetBeansProjects/crcl4java-utils/target/site/apidocs/index-all.html = 1603478774000
+/home/michalos/src/gzgwendolen/NetBeansProjects/crcl4java-utils/target/site/apidocs/allclasses-noframe.html = 1603478774000
+/home/michalos/src/gzgwendolen/NetBeansProjects/crcl4java-utils/target/site/apidocs/help-doc.html = 1603478774000
+/home/michalos/src/gzgwendolen/NetBeansProjects/crcl4java-utils/target/site/apidocs/serialized-form.html = 1603478774000

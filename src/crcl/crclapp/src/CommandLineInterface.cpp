@@ -407,6 +407,10 @@ int CComandLineInterface::interpretLine(std::string line)
     {
         return rcs_state::PAUSED;
     }
+    else if (msg.compare("step") == 0)
+    {
+        return rcs_state::STEP;
+    }
     else if (msg.compare("resume") == 0)
     {
         return rcs_state::NORMAL;
@@ -706,11 +710,15 @@ int CComandLineInterface::interpretLine(std::string line)
     }
     else if (msg.compare("reset") == 0)
     {
+        // reset speeds and move "home"
         crclApi->medium();
+        crclApi->moveJoints(rcs_robot.allJointNumbers(), rcs_robot.namedJointMove["joints.home"]);
+        sleep(1);
         //        Globals.setRobotJointSpeeds(1.);
         //        Globals.setGripperJointSpeeds(1.);
         //        Globals.setLinearSpeeds(Globals.base_linearmax()[0]);
         //        Globals.setRotationalSpeeds(Globals.base_rotationmax()[0]);
+        // reset gears back to original locations.
         rosCrclClient->reset();
 
     }
@@ -835,20 +843,6 @@ int CComandLineInterface::interpretLine(std::string line)
     else if (msg.compare("smartclose") == 0)
     {
         crclApi->smartCloseGripper();
-    }
-    else if (msg.compare(0, strlen("set gripper "),"set gripper ") == 0)
-    {
-        msg=msg.erase(0,std::string("set gripper ").size());
-        msg=Globals.trim(msg);
-        double ee = FromStr<double>(msg);
-        // End effector should be a percentage, instead use hard position for testing
-        //        if(ee<0)
-        //            ee=0;
-        //        if(ee>1.)
-        //            ee=1.;
-        // ee is a value 0..1 as a percentage!
-
-        crclApi->setAbsPosGripper(ee);
     }
     else if (msg.compare(0, strlen("force "),"force ") == 0)
     {

@@ -141,6 +141,8 @@ public:
      */
     void close();
 
+    void setupLogger(std::string logger_level);
+
     static  ros::NodeHandlePtr nh; /**< node handle for ros app calls */
 
     static bool isRunning()

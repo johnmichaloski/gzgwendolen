@@ -41,11 +41,6 @@
 #include "crclapp/Crcl.h"
 #include "crclapp/CrclWm.h"
 
-
-
-
-
-
 /**
  * @brief The CCrcl2RosMsg class  handles the command/status interface to ROS.
  * For commands, CCrcl2RosMsg publishes an  CrclCommandMsg
@@ -104,7 +99,8 @@ public:
      */
     void setCmdQueue(RCS::CrclMessageQueue *crclcmdsq)
     {
-        boost::mutex::scoped_lock lock(cncmutex);
+        // should all referencces to crclcmdsq be mutexed?
+        std::lock_guard<std::mutex> guard(CCrcl2RosMsg::_crclmutex);
         this->crclcmdsq=crclcmdsq;
     }
 
@@ -112,9 +108,9 @@ public:
 
 
     ////////////////////////////////////////////
-    static boost::mutex cncmutex; /**< mutex for thread safe access to RobotProgram commands  */
+    static std::mutex cncmutex; /**< mutex for thread safe access to RobotProgram commands  */
 
-    std::mutex _crclmutex;
+    static std::mutex _crclmutex;
 
 
     boost::shared_ptr<Crcl::CrclSubscriberDelegateInterface> crclinterface;
@@ -122,6 +118,7 @@ public:
     std::string baseLink;
     std::string tipLink;
 
+    static long last_cmdnum;
 
 
     // interface to sending command message to RCS via DLL

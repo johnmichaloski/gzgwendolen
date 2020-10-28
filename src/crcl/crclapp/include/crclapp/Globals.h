@@ -413,6 +413,7 @@ public:
     int bFlywheel;
     int bDebug;
     int bAutoCrclStatus;
+    int bSynchronousCmds;
 
     std::string sRosMasterUrl;
     std::string sRosPackageName;

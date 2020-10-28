@@ -45,10 +45,12 @@ struct CShape
 {
 public:
 
-    CShape(std::string _name,
-          std::string _type,
+    CShape(){} // ouch
+
+    CShape(std::string name,
+          std::string type,
           tf::Pose pose,
-          CShape * _parent=NULL);
+          CShape * parent=NULL);
 
     std::string name() const;
     void setName(const std::string &name);
@@ -82,7 +84,8 @@ public:
     }
     bool isVessel() // tray
     {
-        if(_name.find("vessel") != std::string::npos)
+        // kit also has vessel in its name
+        if(_name.find("gear_vessel") != std::string::npos)
             return true;
         return false;
     }
@@ -175,6 +178,8 @@ struct CInstances : std::vector<CShape>
      * @return shape definition
      */
     CShape * getDefinition(std::string type);
+
+    CShape * findSlot(CShape * instance, std::string name);
 
     /**
      * @brief findEmptyContainerSlot given current vector of shape locations

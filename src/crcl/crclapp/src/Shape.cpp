@@ -228,6 +228,24 @@ void CShapes::initDefinitions()
                                        &vessel));
 
 }
+
+CShape * CInstances::findSlot(CShape * tray, std::string slotname)
+{
+    // either kit or vessel - now do slots
+    CShape * slotz = getDefinition(tray->type());
+
+    if(slotz==NULL)
+        return nullptr;
+
+    for(size_t j=0; j < slotz->_contains.size(); j++)
+    {
+        CShape & slot(slotz->_contains[j]);
+        if(slot.name()==slotname)
+            return &slotz->_contains[j];
+    }
+    return nullptr;
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 std::string CInstances::dumpInferences()
 {
@@ -475,7 +493,8 @@ std::string CInstances::dumpLocations()
     std::stringstream ss;
     for(size_t i=0; i< this->size(); i++)
     {
-        ss <<  this->at(i)._name << " at " << RCS::dumpPoseSimple( this->at(i)._location ) << "\n";
+        if(this->at(i).inMyWorld())
+            ss <<  this->at(i)._name << " at " << RCS::dumpPoseSimple( this->at(i)._location ) << "\n";
     }
     return ss.str();
 }

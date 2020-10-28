@@ -384,19 +384,6 @@ bool CController::updateRobot()
 
 
 
-    // Update status based on current joint positions and last joint positions
-    // NOT SURE WANT TO BLANK OUT VEL EFFORT IF NOT REQUIRED
-#if 0
-    for (size_t k = 0; k < lastjoints.position.size(); k++) {
-        if (status.robotjoints.velocity.size() <= k)
-            status.robotjoints.velocity.push_back(0.0);
-        status.robotjoints.velocity[k] = (fabs(status.robotjoints.position[k]) + fabs(lastjoints.position[k])) / 2.0;
-        if (status.robotjoints.effort.size() <= k)
-            status.robotjoints.effort.push_back(0.0);
-        status.robotjoints.effort[k] = (fabs(status.robotjoints.velocity[k]) + fabs(lastjoints.velocity[k])) / 2.0;
-    }
-#endif
-
     // Give pose of robot no gripper or base offsets included
     tf::Pose & lastpose(_laststatus.currentpose);
     lastpose = _status.currentpose;

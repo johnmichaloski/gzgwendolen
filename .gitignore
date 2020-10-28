@@ -14,3 +14,4 @@ docs/
 *.user.*
 *.pro.user.*
 *.so*
+/NetBeansProjects/linalg/javaposemath/nbproject/private/

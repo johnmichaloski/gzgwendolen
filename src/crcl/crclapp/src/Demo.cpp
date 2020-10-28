@@ -12,16 +12,18 @@ See NIST Administration Manual 4.09.07 b and Appendix I.
  */
 //#pragma message "Compiling " __FILE__ 
 #include <memory>
-
+#include <mutex>
 
 #include "crclapp/Demo.h"
 #include "crclapp/Globals.h"
 #include "crclapp/Shape.h"
 #include "crclapp/CrclApi.h"
 #include "crclapp/CrclWm.h"
+#include "crclapp/Crcl2Rcs.h"
 #include "aprs_headers/Config.h"
 
 using namespace RCS;
+using namespace WorldModel;
 
 // polled wait on function with timeout
 
@@ -147,9 +149,9 @@ int CGearDemo::issueRobotCommands(int & state)
     case 0:
     {
         // Find a free gear
-        if ((_instance = WorldModel::instances.findFreeGear(rcs_world.part_list, rcs_robot.currentPose)) == NULL)
+        if ((_gear = WorldModel::instances.findFreeGear(rcs_world.part_list, rcs_robot.currentPose)) == NULL)
         {
-            ROS_DEBUG_ONCE ( "Error: No Free Gear in tray to move");
+            ROS_FATAL_ONCE ( "Error: No Free Gear in tray to move");
             return -1;
         }
         return state++;
@@ -157,16 +159,16 @@ int CGearDemo::issueRobotCommands(int & state)
     case 1:
     {
 
-        gearname = _instance->_name;
+        gearname = _gear->_name;
         // Ok we will move this gear - mark as no longer free standing
-        _instance->_attributes["state"] = "stored";
+        _gear->_attributes["state"] = "stored";
 
-        affpose =  _instance->_location ;
+        affpose =  _gear->_location ;
         affpose = rcs_robot.basePose.inverse() * affpose ;
 
         // The object gripper offset is where on the object it is to be gripped
         // e.g., offset.gripper->largegear = 0.0,0.0, -0.030, 0.0, 0.0.,0.0
-        gripperoffset = rcs_robot.gripperoffset[_instance->_type];
+        gripperoffset = rcs_robot.gripperoffset[_gear->_type];
        // gripperoffset = tf::Pose(tf::QIdentity(),tf::Vector3(0.0,0.0, - _instance->_height * .8));
 
         bend=rcs_robot.QBend;
@@ -206,7 +208,7 @@ int CGearDemo::issueRobotCommands(int & state)
         // Find a gear slot in a kit
         WorldModel::CShape * kit=NULL;
         WorldModel::CShape * slot=NULL;
-        if(!WorldModel::instances.findFreeGearKitSlot(_instance,
+        if(!WorldModel::instances.findFreeGearKitSlot(_gear,
                                                       slotpose,
                                                       rcs_world.part_list))
         {
@@ -255,9 +257,273 @@ int CGearDemo::issueRobotCommands(int & state)
 
 }
 
+CShape * CGearDemo::findFreeGear(WorldModel::CInstances &now_instances, std::string geartype)
+{
+    for(size_t i=0; i< now_instances.size(); i++)
+    {
+        CShape & instance(now_instances[i]);
+
+        // search if one of my robot kits/vessel, if not continue
+        if(std::find(rcs_world.part_list.begin(), rcs_world.part_list.end(), instance._name)==rcs_world.part_list.end())
+            continue;
+
+        if(!instance.isVessel())
+        {
+            continue;
+        }
+
+        // kit - now do slots
+        CShape * slotz = now_instances.getDefinition(instance.type());
+
+        if(slotz==NULL)
+            continue;
+
+        for(size_t j=0; j < slotz->_contains.size(); j++)
+        {
+            CShape & slot(slotz->_contains[j]);
+            std::map<std::string, std::string> &p =  instance._properties[slot.name()];
+            if(p["type"]==geartype && p["state"]!="open")
+            {
+                // look up gear by name
+              return now_instances.findInstance(p["state"]);
+            }
+        }
+
+    }
+    return nullptr;
+}
+bool CGearDemo::findOpenKittingGearSlot(WorldModel::CInstances &now_instances,
+                                        CShape & kit,
+                                        std::map<std::string, std::string> &slotprop)
+{
+    for(size_t i=0; i< now_instances.size(); i++)
+    {
+        CShape & instance(now_instances[i]);
+
+        // search if one of my robot kits/vessel, if not continue
+        if(std::find(rcs_world.part_list.begin(), rcs_world.part_list.end(), instance._name)==rcs_world.part_list.end())
+            continue;
+
+        if(!instance.isKit())
+        {
+            continue;
+        }
+
+        // kit - now do slots
+        CShape * slotz = now_instances.getDefinition(instance.type());
+
+        if(slotz==NULL)
+            continue;
+
+        // at this point instance is a kitting tray
+        for(size_t j=0; j < slotz->_contains.size(); j++)
+        {
+            CShape & slot(slotz->_contains[j]);
+            slotprop =  instance._properties[slot.name()];
+            if(slotprop["state"]=="open")
+            {
+               kit=instances[i];
+               return true;
+            }
+        }
+
+    }
+    return false;
+}
+////////////////////////////////////////////////////////////////////////////////
+int CGearDemo::issueCommands(int & state)
+{
+
+    // Finish queuing commands before handling them....
+    //std::unique_lock<std::mutex> lock(cncmutex);
+
+    // Must declare all variables beforehand
+    RCS::CCanonCmd cmd;
+    tf::Pose pickpose;
+    std::string gearname;
+    tf::Pose affpose;
+    tf::Pose gripperoffset;
+    tf::Quaternion bend;
+    tf::Vector3 offset;
+    tf::Pose slotpose;
+    tf::Pose slotoffset;
+    tf::Pose placepose;
+    if( WorldModel::instances.size()==0)
+    {
+        std::cerr << "Error: No gear instances can be read from gazebo_ro_api topic - restart Gazebo!\n";
+        return -1;
+    }
+
+
+    WorldModel::CInstances now_instances;
+    {
+        std::unique_lock<std::mutex> lock(WorldModel::shapemutex);
+        now_instances=instances;
+    }
+
+    switch(state)
+    {
+    case 0:
+    {
+        // Step: Find an open kitting slot and a free gear
+
+        // Search kits for empty slot. Identify type of gear
+        // find corredponding gear size in supply gtray.
+         ;
+        if(!findOpenKittingGearSlot(now_instances, _kit, _openslotprop))
+        {
+            ROS_FATAL_ONCE ( "Error: No open slots in any kits fopenslotpropound!");
+            return -1;
+        }
+
+         std::string geartype = _openslotprop["type"];
+        // this gear is in this slot should be checked to exist every iteration
+        // of state table
+        if ((_gear = findFreeGear(now_instances , geartype)) == nullptr)
+        {
+            ROS_FATAL_ONCE ( "Error: No matching free gear in supply vessel to move");
+            return -1;
+        }
+        if(Globals.bDebug)
+            std::cout << "Free slot kit="<< _kit.name() << " slot="<< _openslotprop["name"]<<
+                        " Gear=" << _gear->name()  << " at" << RCS::dumpPoseSimple(_gear->centroid()) << "\n";
+        return state++;
+    }
+    case 1:
+    {
+
+        // step: approach gear
+
+        gearname = _gear->_name;
+
+        if(Globals.bDebug)
+            std::cout <<  "World Gear Coord=" << RCS::dumpPoseSimple(_gear->centroid()) << "\n";
+
+
+        affpose =  _gear->_location ;
+        affpose = rcs_robot.basePose.inverse() * affpose ;
+        if(Globals.bDebug)
+        {
+            std::cout <<  "Robot base    Coord=" << RCS::dumpPoseSimple(rcs_robot.basePose) << "\n";
+            std::cout <<  "Robot baseinv Coord=" << RCS::dumpPoseSimple(rcs_robot.basePose.inverse()) << "\n";
+            std::cout <<  "Robot Gear Coord   =" << RCS::dumpPoseSimple(affpose) << "\n";
+        }
+
+        // The object gripper offset is where on the object it is to be gripped
+        // e.g., offset.gripper->largegear = 0.0,0.0, -0.030, 0.0, 0.0.,0.0
+        gripperoffset = rcs_robot.gripperoffset[_gear->_type];
+
+        bend=rcs_robot.QBend;
+
+        // The gripperoffset is the robot gripper offset back to the 0T6 equivalent
+        pickpose =  tf::Pose(bend, affpose.getOrigin()) * gripperoffset ;
+
+        offset = pickpose.getOrigin();
+        if(Globals.bDebug)
+            std::cout <<  "Robot Retract Coord=" << RCS::dumpPoseSimple(pickpose) << "\n";
+
+        // Retract
+        r->moveTo(rcs_robot.Retract * tf::Pose(bend, offset));
+        r->doDwell(r->_mydwell);
+        return state++;
+    }
+    case 2:
+    {
+        // move to grasping posiiton of gear
+        r->moveTo(tf::Pose(bend, offset) );
+        r->doDwell(r->_mydwell);
+        return state++;
+    }
+    case 3:
+    {
+        // step: grasp gear
+        r->closeGripper();
+        r->doDwell(r->_mygraspdwell);
+        return state++;
+    }
+    case 4:
+    {
+        // step: retract robot after grasping gear
+        r->moveTo(rcs_robot.Retract * tf::Pose(bend, offset));
+        r->doDwell(r->_mydwell);
+        return state++;
+    }
+
+    case 5:
+    {
+        // step: move to approach kitting open slot
+        // Use existing found open kit slot
+        // Offset from the centroid of the kit and reorientation
+        // should be part of inferences
+        //now_instances.findSlot(this->_kit, this->_openslot->name());
+
+        // This xyz already has been reoriented by tray rotation.
+        CShape * openslot=instances.findSlot(&_kit, _openslotprop["name"]);
+
+        // compute reorient based on kit rotation
+        tf::Pose slotloc = openslot->_location; // offset of locatino in tray
+#if 1
+        tf::Matrix3x3 m(_kit._location.getRotation());
+        tf::Vector3 vec_slot = _kit._location.getOrigin() +  (m*slotloc.getOrigin());
+        slotpose=tf::Pose(tf::QIdentity(), vec_slot);
+ #endif
+        // adjust model z from world coordinate based to robot coordinate frame
+        slotpose = rcs_robot.basePose.inverse() * slotpose;
+
+        // up in z onloy for now - hard coded
+        slotoffset = rcs_world.slotoffset["vessel"];
+        placepose = tf::Pose(bend, slotpose.getOrigin())* slotoffset; // fixme: what if gear rotated
+
+        offset = placepose.getOrigin(); // xyz position
+
+        // Approach
+        r->moveTo(rcs_robot.Retract* tf::Pose(bend, offset));
+        r->doDwell(r->_mydwell);
+        return state++;
+    }
+    case 6:
+    {
+        // Place the grasped object
+        r->moveTo(tf::Pose(bend, offset));
+        r->doDwell(r->_mydwell);
+        return state++;
+    }
+    case 7:
+    {
+        // open gripper and wait
+        r->openGripper();
+        r->doDwell(r->_mygraspdwell);
+        return state++;
+    }
+    case 8:
+    {
+        // Retract from placed object
+        //r->Retract(0.04);
+        r->moveTo(rcs_robot.Retract * tf::Pose(bend, offset));
+        r->doDwell(r->_mydwell);
+        return state++;
+    }
+    }
+    state=0;
+    return state;
+
+}
 int CGearDemo::isDone(int & state)
 {
-    return (state==9 ) ; // && !r->cnc()->isBusy());
+    return state >=9;
+}
+int CGearDemo::isWorking( )
+{
+
+    // FIXME: read status, for done.
+    //rcs_robot.crclcommandid
+    //rcs_robot.s_crclcommandstatus == "CRCL_Done"
+    std::lock_guard<std::mutex> guard(CCrcl2RosMsg::_crclmutex);
+
+    unsigned int lastCmdId=  CCrcl2RosMsg::last_cmdnum;
+    bool bFlag = ((rcs_robot.crclcommandid==lastCmdId )
+            && boost::iequals(rcs_robot.s_crclcommandstatus , "CRCL_Done"));
+    return bFlag;
 }
 
 

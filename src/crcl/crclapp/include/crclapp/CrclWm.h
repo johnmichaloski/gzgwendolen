@@ -56,6 +56,7 @@ struct rcs_state
     static const int AUTO = 6;
     static const int REVERSE=7;
     static const int REPEAT=7;
+    static const int STEP=8;
 };
 
 
@@ -136,6 +137,9 @@ struct rcs_robot_type
     std::map<std::string, tf::Pose> gripperoffset;       /// gripper offset for each part
 
     std::string _prefix;  /**< robot name prefix */
+    unsigned int crclcommandstatus;
+    std::string s_crclcommandstatus;
+    unsigned int crclcommandid;
 
 };
 

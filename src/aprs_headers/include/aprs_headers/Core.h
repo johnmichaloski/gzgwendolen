@@ -263,7 +263,7 @@ inline bool is_breakpoint_var(std::string varname)
 }
 
 #define VAR(Y, X)    \
-    protected: Y _ ## X; \
+    public: Y _ ## X; \
     public: Y & X( ) { \
     if(is_breakpoint_var(#X)) { assert(0); }\
     return _ ## X; }

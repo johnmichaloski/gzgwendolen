@@ -11,6 +11,7 @@
 
 #include <gazebo_msgs/SetModelState.h>
 #include <ros/console.h>
+#include <boost/algorithm/string.hpp>
 
 #include "aprs_headers/Core.h"
 #include "aprs_headers/IRcs.h"
@@ -225,13 +226,9 @@ void CRosCrclClient::reset()
 
         setmodelstate.request.model_state = modelstate;
 
-        if (client.call(setmodelstate))
+        if (!client.call(setmodelstate))
         {
-            ROS_INFO("BRILLIANT!!!");
-        }
-        else
-        {
-            ROS_ERROR("Failed to call service ");
+            ROS_ERROR("Failed to call gazebo_ros_api setmodelstate.request service");
         }
     }
 
@@ -248,7 +245,27 @@ void CRosCrclClient::reset()
 CRos::CRos()
 {
 }
+////////////////////////////////////////////////////////////////////////////////
 
+void CRos::setupLogger(std::string logger_level)
+{
+    if(boost::iequals(logger_level, "Debug"))
+        ros::console::set_logger_level(ROSCONSOLE_DEFAULT_NAME,
+                                       ros::console::levels::Debug) ;
+    if(boost::iequals(logger_level, "Info"))
+        ros::console::set_logger_level(ROSCONSOLE_DEFAULT_NAME,
+                                       ros::console::levels::Info) ;
+    if(boost::iequals(logger_level, "Warn"))
+        ros::console::set_logger_level(ROSCONSOLE_DEFAULT_NAME,
+                                       ros::console::levels::Warn) ;
+    if(boost::iequals(logger_level, "Error"))
+        ros::console::set_logger_level(ROSCONSOLE_DEFAULT_NAME,
+                                       ros::console::levels::Error) ;
+    if(boost::iequals(logger_level, "Fatal"))
+        ros::console::set_logger_level(ROSCONSOLE_DEFAULT_NAME,
+                                       ros::console::levels::Fatal) ;
+     ros::console::notifyLoggerLevelsChanged();
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 void CRos::init()

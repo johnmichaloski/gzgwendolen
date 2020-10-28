@@ -172,14 +172,6 @@ public:
     void closeGripper();
 
 
-    /**
-     * @brief setAbsPosGripper sets the gripper mode to absolute positioning, and then
-     * sends a set gripper command with the knowledge that the commmand is NOT precentage gripper closure, but absolute position.
-     * Uses multiplier for opposing prismatic joints to distingh direction of final position (i.e., positive or negative).
-     * @param abspos position to move gripper to.
-     */
-    void setAbsPosGripper(double abspos);
-
     /*!
      * \brief Robot places up an object at pose with given objname.
      * Retracts to given retraction offset from place pose.
@@ -224,12 +216,7 @@ public:
     double _mygraspdwell; /**<  global dwell time after grasp and after release */
     double _mydwell; /**<  global dwell time between motions in seconds */
 
-    std::deque<crcl_rosmsgs::CrclCommandMsg> & undoQ() { return _undo; }
-protected:
-//    std::shared_ptr<RCS::CController>_nc; /**<  cnc to queue motion commands */
-    static int _crclcommandnum; /**<  crcl command number for the robots -i.e., this one */
-
-    std::deque<crcl_rosmsgs::CrclCommandMsg> _undo;
+    static int _crclcommandnum; /**<  crcl command number for the robot -i.e., this one */
 
 };
 

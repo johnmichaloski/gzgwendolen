@@ -17,18 +17,22 @@
 #include <aprs_headers/Debug.h>
 #include <crclapp/NistCrcl.h>
 
+// replace with globals
+#include <crclapp/CrclApi.h>
+
 using namespace urdf;
 using namespace RCS;
 namespace RCS {
     CMessageQueue<RCS::CCanonCmd> cmds;
     CCanonWorldModel wm; // for motion control planning wm
 }
-boost::mutex CCrcl2RosMsg::cncmutex;
+std::mutex CCrcl2RosMsg::cncmutex;
+std::mutex CCrcl2RosMsg::_crclmutex;
 
 size_t num_joints;
 size_t num_links;
 RCS::CrclMessageQueue *CCrcl2RosMsg::crclcmdsq;
-
+long CCrcl2RosMsg::last_cmdnum=0;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -49,6 +53,8 @@ void CCrcl2RosMsg::statusUpdate(const crcl_rosmsgs::CrclStatusMsg::ConstPtr& sta
      try {
         rcs_robot._status=statusmsg;
         crclinterface->crclsettings.StatusID() = (unsigned long long) statusmsg->crclcommandnum;
+        rcs_robot.crclcommandid= statusmsg->crclcommandnum;
+        rcs_robot.crclcommandstatus= statusmsg->crclcommandstatus;
         static char * value[] =
         {
             "CRCL_Done",
@@ -57,8 +63,13 @@ void CCrcl2RosMsg::statusUpdate(const crcl_rosmsgs::CrclStatusMsg::ConstPtr& sta
             "CRCL_Ready"
         };
         //        crclinterface->crclwm.CommandStatus() = ::CommandStateEnumType(CanonStatusType::value(statusmsg->crclcommandstatus));
-        if(statusmsg->crclcommandstatus < 4)
+         if(statusmsg->crclcommandstatus < 4)
+        {
             crclinterface->crclsettings.Update( ::CommandStateEnumType( value[statusmsg->crclcommandstatus]));
+            rcs_robot.s_crclcommandstatus= value[statusmsg->crclcommandstatus];
+        }
+         ROS_DEBUG_STREAM_NAMED("roscrclstatus_only", "ros status cmdid="<<rcs_robot.crclcommandid );
+         ROS_DEBUG_STREAM_NAMED("roscrclstatus_only", "ros status cmd status="<<rcs_robot.crclcommandstatus);
 
         // FIXME: this has to be in the agreed upon CRCL units
         tf::Pose pose = Convert< geometry_msgs::Pose, tf::Pose>(statusmsg->statuspose);
@@ -95,7 +106,6 @@ void CCrcl2RosMsg::setup()
     // Controller instantiatio of shared objects - NOT dependent on ROS
     crclinterface = boost::shared_ptr<Crcl::CrclSubscriberDelegateInterface>(
             new Crcl::CrclSubscriberDelegateInterface());
-    //crclinterface->SetAngleUnits("DEGREE");
 
     // Couple code attempts at reading from robot_description parameter - see above
     crclinterface->crclsettings.jointnames.clear();
@@ -196,7 +206,7 @@ int CCrcl2RosMsg::action()
 
             rosmsg.crclcommand = CanonCmdType::CANON_NOOP; //nocommand;
             //rosmsg.crclcommandnum = cc.CommandID();
-            rosmsg.crclcommandnum = (long unsigned int) cc.CrclCommandID();
+            rosmsg.crclcommandnum = (double) cc._CommandID; //cc.CrclCommandID();
             CCanonCmd::setRosMsgTimestamp(rosmsg.header);
             // ROS equivalent
             //rosmsg.header.stamp=ros::Time::now();
@@ -204,6 +214,8 @@ int CCrcl2RosMsg::action()
             if(cc.crclcommand == CanonCmdType::CANON_INIT_CANON)
             {
                 rosmsg.crclcommand=CanonCmdType::CANON_INIT_CANON; // initCanon;
+                if(Globals.bDebug)
+                    std::cout << "crcl initcanon[" << rosmsg.crclcommandnum <<"]" << std::endl;
             }
             else if(cc.crclcommand == CanonCmdType::CANON_END_CANON)
             {
@@ -216,8 +228,8 @@ int CCrcl2RosMsg::action()
                 rosmsg.joints = cc.joints; // this passes pos, vel, accel/force/torque
                 rosmsg.bCoordinated = cc.bCoordinated;
                 if(Globals.bDebug)
-                    std::cout << "crcl moveTo=" << dumpStdVector(rosmsg.joints.position)  << std::endl;
-            }
+                    std::cout << "crcl moveJoints[" << rosmsg.crclcommandnum <<"]" << dumpStdVector(rosmsg.joints.position)  << std::endl;
+             }
             else if (cc.crclcommand == CanonCmdType::CANON_MOVE_TO)
             {
                 rosmsg.crclcommand = CanonCmdType::CANON_MOVE_TO; //moveto;
@@ -229,7 +241,7 @@ int CCrcl2RosMsg::action()
                 rosmsg.finalpose.orientation.z = cc.finalpose.orientation.z;
                 rosmsg.finalpose.orientation.w = cc.finalpose.orientation.w;
                 if(Globals.bDebug)
-                    std::cout << "crcl moveTo="
+                    std::cout << "crcl moveTo[" << rosmsg.crclcommandnum <<"]"
                               << dumpPoseSimple(RCS::Convert<geometry_msgs::Pose, tf::Pose>(rosmsg.finalpose) )
                               << std::endl;
 
@@ -239,6 +251,14 @@ int CCrcl2RosMsg::action()
                     // clear rate vector
                     rosmsg.profile.clear();
 
+#if 1
+                    ::crcl_rosmsgs::CrclMaxProfileMsg profile;
+                    double vel = CCrclApi::rates.MaxJointVelocity();
+                    profile.maxvel=vel;
+                    profile.maxacc=vel*10.;
+                    profile.maxjerk=vel*100.;
+                    rosmsg.profile.push_back(profile)  ;
+#else
                     // save current translation rate definition in move
                     // ignores specified acceleration for now
                     ::crcl_rosmsgs::CrclMaxProfileMsg trans_profile;
@@ -254,6 +274,7 @@ int CCrcl2RosMsg::action()
                     rot_profile.maxacc=10.*cc.Rates().CurrentRotSpeed();
                     rot_profile.maxjerk= 100.*cc.Rates().CurrentRotSpeed();
                     rosmsg.profile.push_back(rot_profile);
+#endif
                 }
             }
             else if (cc.crclcommand == CanonCmdType::CANON_STOP_MOTION)
@@ -282,7 +303,7 @@ int CCrcl2RosMsg::action()
                 rosmsg.crclcommand = CanonCmdType::CANON_DWELL;
                 rosmsg.dwell_seconds = cc.dwell_seconds;
                 if(Globals.bDebug)
-                    std::cout << "crcl dwell=" <<  rosmsg.dwell_seconds << std::endl;
+                    std::cout << "crcl [" << rosmsg.crclcommandnum <<"] dwell=" <<  rosmsg.dwell_seconds << std::endl;
 
             }
             else if (cc.crclcommand == CanonCmdType::CANON_SET_GRIPPER)
@@ -290,7 +311,7 @@ int CCrcl2RosMsg::action()
                 rosmsg.crclcommand = CanonCmdType::CANON_SET_GRIPPER;
                 rosmsg.eepercent = cc.eepercent;
                 if(Globals.bDebug)
-                    std::cout << "crcl setGripper=" <<  cc.eepercent << std::endl;
+                    std::cout << "crcl setGripper[" << rosmsg.crclcommandnum << "]" <<  cc.eepercent << std::endl;
             }
             else if (cc.crclcommand == CanonCmdType::CANON_PAVEL_GRIPPER)
             {
@@ -313,6 +334,21 @@ int CCrcl2RosMsg::action()
             // publish ros message if found corresponding crcl command
             if (rosmsg.crclcommand != CanonCmdType::CANON_NOOP) {
                 sendCmdRosMessage(rosmsg);
+                CCrcl2RosMsg::last_cmdnum=rosmsg.crclcommandnum;
+                if(Globals.bSynchronousCmds)
+                {
+                    unsigned int cmdid = rosmsg.crclcommandnum;
+                    do{
+                        Globals.sleep(10);
+                        std::this_thread::yield();
+                        ROS_DEBUG_STREAM_NAMED("roscrclstatus_only",  "status cmdid=" << rcs_robot.crclcommandid);
+                        ROS_DEBUG_STREAM_NAMED("roscrclstatus_only",  "status cmd status=" << rcs_robot.crclcommandstatus);
+                    }
+                    while (rcs_robot.crclcommandid!=cmdid
+                             && rcs_robot.crclcommandstatus!=0);
+//                    if(Globals.bDebug)
+//                        std::cout << "Done: " << RCS::sCmd(rosmsg.crclcommand) << "[ "<< cmdid << "]\n";
+                }
             }
 
 

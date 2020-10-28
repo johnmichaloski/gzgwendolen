@@ -1,0 +1,778 @@
+
+//                    pickpose=multiply(new PmPose(affpose.tran, bend),
+//                            new PmPose(gripperoffset.tran, gripperoffset.rot)
+//                            );                 
+                    //gearRobotCrd = multiply(rcs_robot.BasePoseInv, gearWorldCrd);
+
+
+sku_kit_m2l1_vessel14 at    0.40   -1.05    0.92    0.00    0.00   -0.72    0.69 
+sku_kit_m2l1_vessel15 at    0.18   -1.05    0.92    0.00    0.00   -0.72    0.69 
+sku_medium_gear_vessel16 at    0.19   -1.24    0.92    0.00    0.00    0.02    1.00 
+sku_part_medium_gear17 at    0.23   -1.20    0.92   -0.01   -0.00    0.02    1.00 
+sku_part_medium_gear18 at    0.15   -1.20    0.92   -0.00   -0.00    0.02    1.00 
+sku_part_medium_gear19 at    0.15   -1.28    0.92    0.00   -0.00    0.02    1.00 
+sku_part_medium_gear20 at    0.23   -1.28    0.92   -0.00    0.00    0.01    1.00 
+sku_large_gear_vessel21 at    0.39   -1.26    0.92    0.00    0.00    0.72    0.69 
+sku_part_large_gear22 at    0.39   -1.21    0.92    0.00   -0.00    0.02    1.00 
+sku_part_large_gear23 at    0.39   -1.32    0.92   -0.00   -0.00    0.19    0.98 
+
+
+
+C++ from crclapp : fanuc object ONLY
+
+sku_kit_m2l1_vessel14 at    0.40,  -1.05,   0.92,0.000,0.000,-0.720,0.694
+sku_kit_m2l1_vessel15 at    0.18,  -1.05,   0.92,0.000,0.000,-0.720,0.694
+sku_medium_gear_vessel16 at    0.19,  -1.24,   0.92,0.000,0.000,0.017,1.000
+sku_part_medium_gear17 at    0.23,  -1.20,   0.92,-0.011,-0.003,0.022,1.000
+sku_part_medium_gear18 at    0.15,  -1.20,   0.92,-0.001,-0.001,0.017,1.000
+sku_part_medium_gear19 at    0.15,  -1.28,   0.92,0.001,-0.003,0.018,1.000
+sku_part_medium_gear20 at    0.23,  -1.28,   0.92,-0.002,0.001,0.012,1.000
+sku_large_gear_vessel21 at    0.39,  -1.26,   0.92,0.000,0.000,0.721,0.693
+sku_part_large_gear22 at    0.39,  -1.21,   0.92,0.002,-0.002,0.016,1.000
+sku_part_large_gear23 at    0.39,  -1.32,   0.92,-0.002,-0.001,0.188,0.982
+
+
+
+
+
+C++
+RCS> inferences
+RCS> sku_kit_m2l1_vessel14 at    0.40,  -1.05,   0.92,0.000,0.000,-0.720,0.694
+        slot1 sku_part_medium_gear open ( 0.45559 -1.00712  0.91599)
+        slot2 sku_part_medium_gear open ( 0.45263 -1.08706  0.91599)
+        slot3 sku_part_large_gear open ( 0.35917 -1.04358  0.91599)
+sku_kit_m2l1_vessel15 at    0.18,  -1.05,   0.92,0.000,0.000,-0.720,0.694
+        slot1 sku_part_medium_gear open ( 0.23969 -1.01508  0.91599)
+        slot2 sku_part_medium_gear open ( 0.23674 -1.09502  0.91599)
+        slot3 sku_part_large_gear open ( 0.14328 -1.05154  0.91599)
+sku_medium_gear_vessel16 at    0.19,  -1.24,   0.92,0.000,0.000,0.017,1.000
+        slot1 sku_part_medium_gear sku_part_medium_gear17 ( 0.22842 -1.19713  0.92317)
+        slot2 sku_part_medium_gear sku_part_medium_gear18 ( 0.14927 -1.19981  0.92317)
+        slot3 sku_part_medium_gear sku_part_medium_gear20 ( 0.23110 -1.27629  0.92317)
+        slot4 sku_part_medium_gear sku_part_medium_gear19 ( 0.15195 -1.27897  0.92317)
+sku_part_medium_gear17 at    0.23,  -1.20,   0.92,-0.011,-0.003,0.022,1.000
+        In: sku_medium_gear_vessel16(slot1)
+sku_part_medium_gear18 at    0.15,  -1.20,   0.92,-0.001,-0.001,0.017,1.000
+        In: sku_medium_gear_vessel16(slot2)
+sku_part_medium_gear19 at    0.15,  -1.28,   0.92,0.001,-0.003,0.018,1.000
+        In: sku_medium_gear_vessel16(slot4)
+sku_part_medium_gear20 at    0.23,  -1.28,   0.92,-0.002,0.001,0.012,1.000
+        In: sku_medium_gear_vessel16(slot3)
+sku_large_gear_vessel21 at    0.39,  -1.26,   0.92,0.000,0.000,0.721,0.693
+        slot1 sku_part_large_gear sku_part_large_gear23 ( 0.39442 -1.31785  0.91521)
+        slot2 sku_part_large_gear sku_part_large_gear22 ( 0.38994 -1.20795  0.91521)
+sku_part_large_gear22 at    0.39,  -1.21,   0.92,0.002,-0.002,0.016,1.000
+        In: sku_large_gear_vessel21(slot2)
+sku_part_large_gear23 at    0.39,  -1.32,   0.92,-0.002,-0.001,0.188,0.982
+        In: sku_large_gear_vessel21(slot1)
+
+Java:
+kitloc 0.4000, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+slotloc-0.0400,  0.0550,  0.0000  0.0000,  0.0000,  0.0000,  1.0000, 
+slotpose 0.1290,  1.1950, -0.9342  0.0000,  0.0000,  0.0000,  1.0000, 
+slotoffset 0.0000,  0.0000, -0.0350  0.0000,  0.0000,  0.0000,  1.0000,
+
+sku_kit_m2l1_vessel14 at    0.40   -1.05    0.92    0.00    0.00   -0.72    0.69 
+	slot1 sku_part_medium_gear open ( { x=+0.456, y=-1.01, z=+0.920 } )
+	slot2 sku_part_medium_gear open ( { x=+0.453, y=-1.09, z=+0.920 } )
+	slot3 sku_part_large_gear open ( { x=+0.360, y=-1.05, z=+0.920 } )
+sku_kit_m2l1_vessel15 at    0.18   -1.05    0.92    0.00    0.00   -0.72    0.69 
+	slot1 sku_part_medium_gear open ( { x=+0.236, y=-1.01, z=+0.920 } )
+	slot2 sku_part_medium_gear open ( { x=+0.233, y=-1.09, z=+0.920 } )
+	slot3 sku_part_large_gear open ( { x=+0.140, y=-1.05, z=+0.920 } )
+sku_medium_gear_vessel16 at    0.19   -1.24    0.92    0.00    0.00    0.02    1.00 
+	slot1 sku_part_medium_gear sku_part_medium_gear17 ( { x=+0.228, y=-1.20, z=+0.920 } )
+	slot2 sku_part_medium_gear sku_part_medium_gear18 ( { x=+0.149, y=-1.20, z=+0.920 } )
+	slot3 sku_part_medium_gear sku_part_medium_gear20 ( { x=+0.231, y=-1.28, z=+0.920 } )
+	slot4 sku_part_medium_gear sku_part_medium_gear19 ( { x=+0.152, y=-1.28, z=+0.920 } )
+sku_part_medium_gear17 at    0.23   -1.20    0.92   -0.01   -0.00    0.02    1.00 
+	In: sku_medium_gear_vessel16(slot1)
+sku_part_medium_gear18 at    0.15   -1.20    0.92   -0.00   -0.00    0.02    1.00 
+	In: sku_medium_gear_vessel16(slot2)
+sku_part_medium_gear19 at    0.15   -1.28    0.92    0.00   -0.00    0.02    1.00 
+	In: sku_medium_gear_vessel16(slot4)
+sku_part_medium_gear20 at    0.23   -1.28    0.92   -0.00    0.00    0.01    1.00 
+	In: sku_medium_gear_vessel16(slot3)
+sku_large_gear_vessel21 at    0.39   -1.26    0.92    0.00    0.00    0.72    0.69 
+	slot1 sku_part_large_gear sku_part_large_gear23 ( { x=+0.392, y=-1.31, z=+0.920 } )
+	slot2 sku_part_large_gear sku_part_large_gear22 ( { x=+0.388, y=-1.21, z=+0.920 } )
+sku_part_large_gear22 at    0.39   -1.21    0.92    0.00   -0.00    0.02    1.00 
+	In: sku_large_gear_vessel21(slot2)
+sku_part_large_gear23 at    0.39   -1.32    0.92   -0.00   -0.00    0.19    0.98 
+	In: sku_large_gear_vessel21(slot1)
+
+After one gear move:
+	slot1 sku_part_medium_gear open ( { x=+0.456, y=-1.01, z=+0.920 } )
+	slot2 sku_part_medium_gear open ( { x=+0.453, y=-1.09, z=+0.920 } )
+	slot3 sku_part_large_gear open ( { x=+0.360, y=-1.05, z=+0.920 } )
+sku_kit_m2l1_vessel15 at    0.18   -1.05    0.92    0.00    0.00   -0.72    0.69 
+	slot1 sku_part_medium_gear open ( { x=+0.236, y=-1.01, z=+0.920 } )
+	slot2 sku_part_medium_gear open ( { x=+0.233, y=-1.09, z=+0.920 } )
+	slot3 sku_part_large_gear open ( { x=+0.140, y=-1.05, z=+0.920 } )
+sku_medium_gear_vessel16 at    0.19   -1.24    0.92    0.00    0.00    0.02    1.00 
+	slot1 sku_part_medium_gear open ( { x=+0.228, y=-1.20, z=+0.920 } )
+	slot2 sku_part_medium_gear sku_part_medium_gear18 ( { x=+0.149, y=-1.20, z=+0.920 } )
+	slot3 sku_part_medium_gear sku_part_medium_gear20 ( { x=+0.231, y=-1.28, z=+0.920 } )
+	slot4 sku_part_medium_gear sku_part_medium_gear19 ( { x=+0.152, y=-1.28, z=+0.920 } )
+sku_part_medium_gear17 at   -0.17    1.14   -0.01   -0.01   -0.00    0.02    1.00 
+	In: sku_medium_gear_vessel16(slot1)
+sku_part_medium_gear18 at    0.15   -1.20    0.92   -0.00   -0.00    0.02    1.00 
+	In: sku_medium_gear_vessel16(slot2)
+sku_part_medium_gear19 at    0.15   -1.28    0.92    0.00   -0.00    0.02    1.00 
+	In: sku_medium_gear_vessel16(slot4)
+sku_part_medium_gear20 at    0.23   -1.28    0.92   -0.00    0.00    0.01    1.00 
+	In: sku_medium_gear_vessel16(slot3)
+sku_large_gear_vessel21 at    0.39   -1.26    0.92    0.00    0.00    0.72    0.69 
+	slot1 sku_part_large_gear sku_part_large_gear23 ( { x=+0.392, y=-1.31, z=+0.920 } )
+	slot2 sku_part_large_gear sku_part_large_gear22 ( { x=+0.388, y=-1.21, z=+0.920 } )
+sku_part_large_gear22 at    0.39   -1.21    0.92    0.00   -0.00    0.02    1.00 
+	In: sku_large_gear_vessel21(slot2)
+sku_part_large_gear23 at    0.39   -1.32    0.92   -0.00   -0.00    0.19    0.98 
+	In: sku_large_gear_vessel21(slot1)
+
+debug:
+issueCrclCommand class crcl.base.MoveToType0.061:-0.14000000000000012:0.04080900000000005:
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType0.061:-0.14000000000000012:8.090000000000458E-4:
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.SetEndEffectorType close
+issueCrclCommand class crcl.base.DwellType:2.0
+issueCrclCommand class crcl.base.MoveToType0.061:-0.14000000000000012:0.04080900000000005:
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType-0.169:1.14:-0.8591909999999999:
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType-0.169:1.14:-0.899191:
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.SetEndEffectorType open  -0.17    1.14   -0.01   -0.00    0.00    0.01    1.00 sku_kit_m2l1_vessel14 at    0.40   -1.05    0.92    0.00    0.00   -0.72    0.69 
+	slot1 sku_part_medium_gear open ( { x=+0.456, y=-1.01, z=+0.920 } )
+	slot2 sku_part_medium_gear open ( { x=+0.453, y=-1.09, z=+0.920 } )
+	slot3 sku_part_large_gear open ( { x=+0.360, y=-1.05, z=+0.920 } )
+sku_kit_m2l1_vessel15 at    0.18   -1.05    0.92    0.00    0.00   -0.72    0.69 
+	slot1 sku_part_medium_gear open ( { x=+0.236, y=-1.01, z=+0.920 } )
+	slot2 sku_part_medium_gear open ( { x=+0.233, y=-1.09, z=+0.920 } )
+	slot3 sku_part_large_gear open ( { x=+0.140, y=-1.05, z=+0.920 } )
+sku_medium_gear_vessel16 at    0.19   -1.24    0.92    0.00    0.00    0.02    1.00 
+	slot1 sku_part_medium_gear open ( { x=+0.228, y=-1.20, z=+0.920 } )
+	slot2 sku_part_medium_gear open ( { x=+0.149, y=-1.20, z=+0.920 } )
+	slot3 sku_part_medium_gear open ( { x=+0.231, y=-1.28, z=+0.920 } )
+	slot4 sku_part_medium_gear sku_part_medium_gear19 ( { x=+0.152, y=-1.28, z=+0.920 } )
+sku_part_medium_gear17 at    0.23   -1.20    0.92   -0.01   -0.00    0.02    1.00 
+	In: sku_medium_gear_vessel16(slot1)
+sku_part_medium_gear18 at    0.15   -1.20    0.92   -0.00   -0.00    0.02    1.00 
+	In: sku_medium_gear_vessel16(slot2)
+sku_part_medium_gear19 at    0.15   -1.28    0.92    0.00   -0.00    0.02    1.00 
+	In: sku_medium_gear_vessel16(slot4)
+sku_part_medium_gear20 at   -0.17    1.14   -0.01   -0.00    0.00    0.01    1.00 
+	In: sku_medium_gear_vessel16(slot3)
+sku_large_gear_vessel21 at    0.39   -1.26    0.92    0.00    0.00    0.72    0.69 
+	slot1 sku_part_large_gear open ( { x=+0.392, y=-1.31, z=+0.920 } )
+	slot2 sku_part_large_gear sku_part_large_gear23 ( { x=+0.388, y=-1.21, z=+0.920 } )
+sku_part_large_gear22 at    0.39   -1.21    0.92    0.00   -0.00    0.02    1.00 
+	In: sku_large_gear_vessel21(slot2)
+sku_part_large_gear23 at    0.39   -1.32    0.92   -0.00   -0.00    0.19    0.98 
+	In: sku_large_gear_vessel21(slot1)
+
+
+
+issueCrclCommand class crcl.base.MoveToType 0.0610, -0.0600,  0.0408  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType 0.0610, -0.0600,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.SetEndEffectorType close
+issueCrclCommand class crcl.base.DwellType:2.0
+issueCrclCommand class crcl.base.MoveToType 0.0610, -0.0600,  0.0408  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType-0.1690,  1.1400, -0.8592  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType-0.1690,  1.1400, -0.8992  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+
+Java:
+
+Free slot kit=sku_kit_m2l1_vessel14 slot=slot1 Gear=sku_part_medium_gear17 at 0.2300, -1.2000,  0.9200 -0.0110, -0.0030,  0.0220,  0.9997, 
+world gear    pose 0.2300, -1.2000,  0.9200 -0.0110, -0.0030,  0.0220,  0.9997, 
+world base    pose-0.1690, -1.1400,  0.9342  0.0000,  0.0000,  0.0000,  1.0000, 
+world baseinv pose 0.1690,  1.1400, -0.9342 -0.0000, -0.0000, -0.0000,  1.0000, 
+robot gear pose 0.3990, -0.0600, -0.0142 -0.0110, -0.0030,  0.0220,  0.9997, 
+pickpose 0.3990, -0.0600,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.MoveToType 0.3990, -0.0600,  0.0408  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType 0.3990, -0.0600,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.SetEndEffectorType closeClosest gear location= 0.3990, -0.0600,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+Gear sku_part_medium_gear17l ocation= 0.3990, -0.0600, -0.0142 -0.0110, -0.0030,  0.0220,  0.9997, 
+
+issueCrclCommand class crcl.base.DwellType:2.0
+issueCrclCommand class crcl.base.MoveToType 0.3990, -0.0600,  0.0408  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType 0.1690,  1.1400, -0.8592  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType 0.1690,  1.1400, -0.8992  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.SetEndEffectorType open 0.1690,  1.1400, -0.8992 -0.0110, -0.0030,  0.0220,  0.9997, 
+
+sku_kit_m2l1_vessel14 at  0.4000, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+	slot1 sku_part_medium_gear open ( { x=+0.456, y=-1.01, z=+0.920 } )
+	slot2 sku_part_medium_gear open ( { x=+0.453, y=-1.09, z=+0.920 } )
+	slot3 sku_part_large_gear open ( { x=+0.360, y=-1.05, z=+0.920 } )
+sku_kit_m2l1_vessel15 at  0.1800, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+	slot1 sku_part_medium_gear open ( { x=+0.236, y=-1.01, z=+0.920 } )
+	slot2 sku_part_medium_gear open ( { x=+0.233, y=-1.09, z=+0.920 } )
+	slot3 sku_part_large_gear open ( { x=+0.140, y=-1.05, z=+0.920 } )
+sku_medium_gear_vessel16 at  0.1900, -1.2400,  0.9200  0.0000,  0.0000,  0.0170,  0.9999, 
+	slot1 sku_part_medium_gear open ( { x=+0.228, y=-1.20, z=+0.920 } )
+	slot2 sku_part_medium_gear sku_part_medium_gear18 ( { x=+0.149, y=-1.20, z=+0.920 } )
+	slot3 sku_part_medium_gear sku_part_medium_gear20 ( { x=+0.231, y=-1.28, z=+0.920 } )
+	slot4 sku_part_medium_gear sku_part_medium_gear19 ( { x=+0.152, y=-1.28, z=+0.920 } )
+sku_part_medium_gear17 at  0.1690,  1.1400, -0.8992 -0.0110, -0.0030,  0.0220,  0.9997, 
+	In: sku_medium_gear_vessel16(slot1)
+sku_part_medium_gear18 at  0.1500, -1.2000,  0.9200 -0.0010, -0.0000,  0.0170,  0.9999, 
+	In: sku_medium_gear_vessel16(slot2)
+sku_part_medium_gear19 at  0.1500, -1.2800,  0.9200  0.0010, -0.0030,  0.0180,  0.9998, 
+	In: sku_medium_gear_vessel16(slot4)
+sku_part_medium_gear20 at  0.2300, -1.2800,  0.9200 -0.0020,  0.0010,  0.0120,  0.9999, 
+	In: sku_medium_gear_vessel16(slot3)
+sku_large_gear_vessel21 at  0.3900, -1.2600,  0.9200  0.0000,  0.0000,  0.7210,  0.6930, 
+	slot1 sku_part_large_gear sku_part_large_gear23 ( { x=+0.392, y=-1.31, z=+0.920 } )
+	slot2 sku_part_large_gear sku_part_large_gear22 ( { x=+0.388, y=-1.21, z=+0.920 } )
+sku_part_large_gear22 at  0.3900, -1.2100,  0.9200  0.0020, -0.0020,  0.0160,  0.9999, 
+	In: sku_large_gear_vessel21(slot2)
+sku_part_large_gear23 at  0.3900, -1.3200,  0.9200 -0.0020, -0.0010,  0.1880,  0.9822, 
+	In: sku_large_gear_vessel21(slot1)
+
+
+C++
+RCS> Free slot kit=sku_kit_m2l1_vessel14 slot=slot1 Gear=sku_part_medium_gear17 at   0.23,  -1.20,   0.92,-0.011,-0.003,0.022,1.000
+World Gear Coord=   0.23,  -1.20,   0.92,-0.011,-0.003,0.022,1.000
+Robot base    Coord=  -0.17,  -1.14,   0.93,0.000,0.000,0.000,1.000
+Robot baseinv Coord=   0.17,   1.14,  -0.93,0.000,0.000,0.000,1.000
+Robot Gear Coord   =   0.40,  -0.06,  -0.01,-0.011,-0.003,0.022,1.000
+Robot Retract Coord=   0.40,  -0.06,   0.00,1.000,0.000,0.000,0.000
+
+
+RCS> auto
+RCS> Free slot kit=sku_kit_m2l1_vessel14 slot=slot1 Gear=sku_part_medium_gear17 at   0.23,  -1.20,   0.92,-0.011,-0.003,0.022,1.000
+crcl moveTo[5]   0.40,  -0.06,   0.04,1.000,0.000,0.000,0.000
+crcl [6] dwell=0.1
+crcl moveTo[8]   0.40,  -0.06,   0.00,1.000,0.000,0.000,0.000
+crcl [9] dwell=0.1
+crcl setGripper[11]0
+crcl [12] dwell=2
+crcl moveTo[14]   0.40,  -0.06,   0.04,1.000,0.000,0.000,0.000
+crcl [15] dwell=0.1
+crcl moveTo[17]   0.62,   0.13,   0.06,1.000,0.000,0.000,0.000
+crcl [18] dwell=0.1
+crcl moveTo[20]   0.62,   0.13,   0.02,1.000,0.000,0.000,0.000
+crcl [21] dwell=0.1
+crcl setGripper[23]1
+crcl [24] dwell=2
+crcl moveTo[26]   0.62,   0.13,   0.06,1.000,0.000,0.000,0.000
+crcl [27] dwell=0.1
+Free slot kit=sku_kit_m2l1_vessel14 slot=slot1 Gear=sku_part_medium_gear17 at   0.23,  -1.20,   0.92,-0.011,-0.003,0.022,1.000
+crcl moveTo[30]   0.40,  -0.06,   0.04,1.000,0.000,0.000,0.000
+crcl [31] dwell=0.1
+crcl moveTo[33]   0.40,  -0.06,   0.00,1.000,0.000,0.000,0.000
+crcl [34] dwell=0.1
+crcl setGripper[36]0
+crcl [37] dwell=2
+crcl moveTo[39]   0.40,  -0.06,   0.04,1.000,0.000,0.000,0.000
+crcl [40] dwell=0.1
+crcl moveTo[42]   0.62,   0.13,   0.06,1.000,0.000,0.000,0.000
+crcl [43] dwell=0.1
+crcl moveTo[45]   0.62,   0.13,   0.02,1.000,0.000,0.000,0.000
+crcl [46] dwell=0.1
+crcl setGripper[48]1
+crcl [49] dwell=2
+crcl moveTo[51]   0.62,   0.13,   0.06,1.000,0.000,0.000,0.000
+crcl [52] dwell=0.1
+Free slot kit=sku_kit_m2l1_vessel14 slot=slot2 Gear=sku_part_medium_gear18 at   0.15,  -1.20,   0.92,-0.001,-0.001,0.017,1.000
+crcl moveTo[55]   0.32,  -0.06,   0.04,1.000,0.000,0.000,0.000
+crcl [56] dwell=0.1
+crcl moveTo[58]   0.32,  -0.06,   0.00,1.000,0.000,0.000,0.000
+crcl [59] dwell=0.1
+crcl setGripper[61]0
+crcl [62] dwell=2
+crcl moveTo[64]   0.32,  -0.06,   0.04,1.000,0.000,0.000,0.000
+crcl [65] dwell=0.1
+crcl moveTo[67]   0.62,   0.05,   0.06,1.000,0.000,0.000,0.000
+crcl [68] dwell=0.1
+crcl moveTo[70]   0.62,   0.05,   0.02,1.000,0.000,0.000,0.000
+crcl [71] dwell=0.1
+crcl setGripper[73]1
+crcl [74] dwell=2
+crcl moveTo[76]   0.62,   0.05,   0.06,1.000,0.000,0.000,0.000
+crcl [77] dwell=0.1
+Free slot kit=sku_kit_m2l1_vessel14 slot=slot2 Gear=sku_part_medium_gear18 at   0.15,  -1.20,   0.92,-0.001,-0.001,0.017,1.000
+crcl moveTo[80]   0.32,  -0.06,   0.04,1.000,0.000,0.000,0.000
+crcl [81] dwell=0.1
+crcl moveTo[83]   0.32,  -0.06,   0.00,1.000,0.000,0.000,0.000
+crcl [84] dwell=0.1
+crcl setGripper[86]0
+crcl [87] dwell=2
+crcl moveTo[89]   0.32,  -0.06,   0.04,1.000,0.000,0.000,0.000
+crcl [90] dwell=0.1
+crcl moveTo[92]   0.62,   0.05,   0.06,1.000,0.000,0.000,0.000
+crcl [93] dwell=0.1
+crcl moveTo[95]   0.62,   0.05,   0.02,1.000,0.000,0.000,0.000
+crcl [96] dwell=0.1
+crcl setGripper[98]1
+crcl [99] dwell=2
+crcl moveTo[101]   0.62,   0.05,   0.06,1.000,0.000,0.000,0.000
+crcl [102] dwell=0.1
+Free slot kit=sku_kit_m2l1_vessel14 slot=slot3 Gear=sku_part_large_gear23 at   0.39,  -1.32,   0.92,-0.002,-0.001,0.188,0.982
+crcl moveTo[105]   0.56,  -0.18,   0.04,1.000,0.000,0.000,0.000
+crcl [106] dwell=0.1
+crcl moveTo[108]   0.56,  -0.18,   0.00,1.000,0.000,0.000,0.000
+crcl [109] dwell=0.1
+crcl setGripper[111]0
+crcl [112] dwell=2
+crcl moveTo[114]   0.56,  -0.18,   0.04,1.000,0.000,0.000,0.000
+crcl [115] dwell=0.1
+crcl moveTo[117]   0.53,   0.10,   0.06,1.000,0.000,0.000,0.000
+crcl [118] dwell=0.1
+crcl moveTo[120]   0.53,   0.10,   0.02,1.000,0.000,0.000,0.000
+crcl [121] dwell=0.1
+crcl setGripper[123]1
+crcl [124] dwell=2
+crcl moveTo[126]   0.53,   0.10,   0.06,1.000,0.000,0.000,0.000
+crcl [127] dwell=0.1
+Free slot kit=sku_kit_m2l1_vessel14 slot=slot3 Gear=sku_part_large_gear23 at   0.39,  -1.32,   0.92,-0.002,-0.001,0.188,0.982
+crcl moveTo[130]   0.56,  -0.18,   0.04,1.000,0.000,0.000,0.000
+crcl [131] dwell=0.1
+crcl moveTo[133]   0.56,  -0.18,   0.00,1.000,0.000,0.000,0.000
+crcl [134] dwell=0.1
+crcl setGripper[136]0
+crcl [137] dwell=2
+crcl moveTo[139]   0.56,  -0.18,   0.04,1.000,0.000,0.000,0.000
+crcl [140] dwell=0.1
+crcl moveTo[142]   0.53,   0.10,   0.06,1.000,0.000,0.000,0.000
+crcl [143] dwell=0.1
+crcl moveTo[145]   0.53,   0.10,   0.02,1.000,0.000,0.000,0.000
+crcl [146] dwell=0.1
+crcl setGripper[148]1
+crcl [149] dwell=2
+crcl moveTo[151]   0.53,   0.10,   0.06,1.000,0.000,0.000,0.000
+crcl [152] dwell=0.1
+Free slot kit=sku_kit_m2l1_vessel15 slot=slot1 Gear=sku_part_medium_gear20 at   0.23,  -1.28,   0.92,-0.002,0.001,0.012,1.000
+crcl moveTo[155]   0.40,  -0.14,   0.04,1.000,0.000,0.000,0.000
+crcl [156] dwell=0.1
+crcl moveTo[158]   0.40,  -0.14,   0.00,1.000,0.000,0.000,0.000
+crcl [159] dwell=0.1
+crcl setGripper[161]0
+crcl [162] dwell=2
+crcl moveTo[164]   0.40,  -0.14,   0.04,1.000,0.000,0.000,0.000
+crcl [165] dwell=0.1
+crcl moveTo[167]   0.41,   0.12,   0.06,1.000,0.000,0.000,0.000
+crcl [168] dwell=0.1
+crcl moveTo[170]   0.41,   0.12,   0.02,1.000,0.000,0.000,0.000
+crcl [171] dwell=0.1
+crcl setGripper[173]1
+crcl [174] dwell=2
+crcl moveTo[176]   0.41,   0.12,   0.06,1.000,0.000,0.000,0.000
+crcl [177] dwell=0.1
+Free slot kit=sku_kit_m2l1_vessel15 slot=slot1 Gear=sku_part_medium_gear20 at   0.23,  -1.28,   0.92,-0.002,0.001,0.012,1.000
+crcl moveTo[180]   0.40,  -0.14,   0.04,1.000,0.000,0.000,0.000
+crcl [181] dwell=0.1
+crcl moveTo[183]   0.40,  -0.14,   0.00,1.000,0.000,0.000,0.000
+crcl [184] dwell=0.1
+crcl setGripper[186]0
+crcl [187] dwell=2
+crcl moveTo[189]   0.40,  -0.14,   0.04,1.000,0.000,0.000,0.000
+crcl [190] dwell=0.1
+crcl moveTo[192]   0.41,   0.12,   0.06,1.000,0.000,0.000,0.000
+crcl [193] dwell=0.1
+crcl moveTo[195]   0.41,   0.12,   0.02,1.000,0.000,0.000,0.000
+crcl [196] dwell=0.1
+crcl setGripper[198]1
+crcl [199] dwell=2
+crcl moveTo[201]   0.41,   0.12,   0.06,1.000,0.000,0.000,0.000
+crcl [202] dwell=0.1
+Free slot kit=sku_kit_m2l1_vessel15 slot=slot2 Gear=sku_part_medium_gear19 at   0.15,  -1.28,   0.92,0.001,-0.003,0.018,1.000
+crcl moveTo[205]   0.32,  -0.14,   0.04,1.000,0.000,0.000,0.000
+crcl [206] dwell=0.1
+crcl moveTo[208]   0.32,  -0.14,   0.00,1.000,0.000,0.000,0.000
+crcl [209] dwell=0.1
+crcl setGripper[211]0
+crcl [212] dwell=2
+crcl moveTo[214]   0.32,  -0.14,   0.04,1.000,0.000,0.000,0.000
+crcl [215] dwell=0.1
+crcl moveTo[217]   0.41,   0.04,   0.06,1.000,0.000,0.000,0.000
+crcl [218] dwell=0.1
+crcl moveTo[220]   0.41,   0.04,   0.02,1.000,0.000,0.000,0.000
+crcl [221] dwell=0.1
+crcl setGripper[223]1
+crcl [224] dwell=2
+crcl moveTo[226]   0.41,   0.04,   0.06,1.000,0.000,0.000,0.000
+crcl [227] dwell=0.1
+[FATAL] [1603838342.518525102, 22.832000000]: Error: No matching free gear in supply vessel to move
+
+debug:
+Free slot kit=sku_kit_m2l1_vessel14 slot=slot1 Gear=sku_part_medium_gear17 at 0.2300, -1.2000,  0.9200 -0.0110, -0.0030,  0.0220,  0.9997, 
+world gear    pose 0.2300, -1.2000,  0.9200 -0.0110, -0.0030,  0.0220,  0.9997, 
+world base    pose-0.1690, -1.1400,  0.9342  0.0000,  0.0000,  0.0000,  1.0000, 
+world baseinv pose 0.1690,  1.1400, -0.9342 -0.0000, -0.0000, -0.0000,  1.0000, 
+robot gear pose 0.3990, -0.0600, -0.0142 -0.0110, -0.0030,  0.0220,  0.9997, 
+pickpose 0.3990, -0.0600,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.MoveToType 0.3990, -0.0600,  0.0408  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType 0.3990, -0.0600,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.SetEndEffectorType closeClosest gear location= 0.3990, -0.0600,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+Gear sku_part_medium_gear17l ocation= 0.3990, -0.0600, -0.0142 -0.0110, -0.0030,  0.0220,  0.9997, 
+Closest Gear sku_part_medium_gear17
+
+issueCrclCommand class crcl.base.DwellType:2.0
+issueCrclCommand class crcl.base.MoveToType 0.3990, -0.0600,  0.0408  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+kitloc 0.4000, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+slotloc 0.4564, -1.0120,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+slotpose 0.6254,  0.1280, -0.0142  0.0000,  0.0000,  0.0000,  1.0000, 
+slotoffset 0.0000,  0.0000, -0.0350  0.0000,  0.0000,  0.0000,  1.0000, 
+placepose 0.6254,  0.1280,  0.0208  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.MoveToType 0.6254,  0.1280,  0.0608  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType 0.6254,  0.1280,  0.0208  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.SetEndEffectorType open 0.4564, -1.0120,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, sku_kit_m2l1_vessel14 at  0.4000, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+	slot1 sku_part_medium_gear sku_part_medium_gear17 ( 0.4564,-1.0120, 0.9200)
+	slot2 sku_part_medium_gear open ( 0.4535,-1.0920, 0.9200)
+	slot3 sku_part_large_gear open ( 0.3600,-1.0485, 0.9200)
+sku_kit_m2l1_vessel15 at  0.1800, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+	slot1 sku_part_medium_gear open ( 0.2364,-1.0120, 0.9200)
+	slot2 sku_part_medium_gear open ( 0.2335,-1.0920, 0.9200)
+	slot3 sku_part_large_gear open ( 0.1400,-1.0485, 0.9200)
+sku_medium_gear_vessel16 at  0.1900, -1.2400,  0.9200  0.0000,  0.0000,  0.0170,  0.9999, 
+	slot1 sku_part_medium_gear open ( 0.2282,-1.1991, 0.9200)
+	slot2 sku_part_medium_gear sku_part_medium_gear18 ( 0.1491,-1.2018, 0.9200)
+	slot3 sku_part_medium_gear sku_part_medium_gear20 ( 0.2309,-1.2782, 0.9200)
+	slot4 sku_part_medium_gear sku_part_medium_gear19 ( 0.1518,-1.2809, 0.9200)
+sku_part_medium_gear17 at  0.4564, -1.0120,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_medium_gear_vessel16(slot1)
+sku_part_medium_gear18 at  0.1500, -1.2000,  0.9200 -0.0010, -0.0000,  0.0170,  0.9999, 
+	In: sku_medium_gear_vessel16(slot2)
+sku_part_medium_gear19 at  0.1500, -1.2800,  0.9200  0.0010, -0.0030,  0.0180,  0.9998, 
+	In: sku_medium_gear_vessel16(slot4)
+sku_part_medium_gear20 at  0.2300, -1.2800,  0.9200 -0.0020,  0.0010,  0.0120,  0.9999, 
+	In: sku_medium_gear_vessel16(slot3)
+sku_large_gear_vessel21 at  0.3900, -1.2600,  0.9200  0.0000,  0.0000,  0.7210,  0.6930, 
+	slot1 sku_part_large_gear sku_part_large_gear23 ( 0.3922,-1.3150, 0.9200)
+	slot2 sku_part_large_gear sku_part_large_gear22 ( 0.3878,-1.2050, 0.9200)
+sku_part_large_gear22 at  0.3900, -1.2100,  0.9200  0.0020, -0.0020,  0.0160,  0.9999, 
+	In: sku_large_gear_vessel21(slot2)
+sku_part_large_gear23 at  0.3900, -1.3200,  0.9200 -0.0020, -0.0010,  0.1880,  0.9822, 
+	In: sku_large_gear_vessel21(slot1)
+
+issueCrclCommand class crcl.base.DwellType:2.0
+issueCrclCommand class crcl.base.MoveToType 0.6254,  0.1280,  0.0608  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+Free slot kit=sku_kit_m2l1_vessel14 slot=slot2 Gear=sku_part_medium_gear18 at 0.1500, -1.2000,  0.9200 -0.0010, -0.0000,  0.0170,  0.9999, 
+world gear    pose 0.1500, -1.2000,  0.9200 -0.0010, -0.0000,  0.0170,  0.9999, 
+world base    pose-0.1690, -1.1400,  0.9342  0.0000,  0.0000,  0.0000,  1.0000, 
+world baseinv pose 0.1690,  1.1400, -0.9342 -0.0000, -0.0000, -0.0000,  1.0000, 
+robot gear pose 0.3190, -0.0600, -0.0142 -0.0010,  0.0000,  0.0170,  0.9999, 
+pickpose 0.3190, -0.0600,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.MoveToType 0.3190, -0.0600,  0.0408  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType 0.3190, -0.0600,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.SetEndEffectorType closeClosest gear location= 0.3190, -0.0600,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+Gear sku_part_medium_gear17l ocation= 0.6254,  0.1280, -0.0142  0.0000,  0.0000,  0.0000,  1.0000, 
+Gear sku_part_medium_gear18l ocation= 0.3190, -0.0600, -0.0142 -0.0010,  0.0000,  0.0170,  0.9999, 
+Closest Gear sku_part_medium_gear18
+
+issueCrclCommand class crcl.base.DwellType:2.0
+issueCrclCommand class crcl.base.MoveToType 0.3190, -0.0600,  0.0408  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+kitloc 0.4000, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+slotloc 0.4535, -1.0920,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+slotpose 0.6225,  0.0480, -0.0142  0.0000,  0.0000,  0.0000,  1.0000, 
+slotoffset 0.0000,  0.0000, -0.0350  0.0000,  0.0000,  0.0000,  1.0000, 
+placepose 0.6225,  0.0480,  0.0208  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.MoveToType 0.6225,  0.0480,  0.0608  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType 0.6225,  0.0480,  0.0208  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.SetEndEffectorType open 0.4535, -1.0920,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, sku_kit_m2l1_vessel14 at  0.4000, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+	slot1 sku_part_medium_gear sku_part_medium_gear17 ( 0.4564,-1.0120, 0.9200)
+	slot2 sku_part_medium_gear sku_part_medium_gear18 ( 0.4535,-1.0920, 0.9200)
+	slot3 sku_part_large_gear open ( 0.3600,-1.0485, 0.9200)
+sku_kit_m2l1_vessel15 at  0.1800, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+	slot1 sku_part_medium_gear open ( 0.2364,-1.0120, 0.9200)
+	slot2 sku_part_medium_gear open ( 0.2335,-1.0920, 0.9200)
+	slot3 sku_part_large_gear open ( 0.1400,-1.0485, 0.9200)
+sku_medium_gear_vessel16 at  0.1900, -1.2400,  0.9200  0.0000,  0.0000,  0.0170,  0.9999, 
+	slot1 sku_part_medium_gear open ( 0.2282,-1.1991, 0.9200)
+	slot2 sku_part_medium_gear open ( 0.1491,-1.2018, 0.9200)
+	slot3 sku_part_medium_gear sku_part_medium_gear20 ( 0.2309,-1.2782, 0.9200)
+	slot4 sku_part_medium_gear sku_part_medium_gear19 ( 0.1518,-1.2809, 0.9200)
+sku_part_medium_gear17 at  0.4564, -1.0120,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_medium_gear_vessel16(slot1)
+sku_part_medium_gear18 at  0.4535, -1.0920,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_medium_gear_vessel16(slot2)
+sku_part_medium_gear19 at  0.1500, -1.2800,  0.9200  0.0010, -0.0030,  0.0180,  0.9998, 
+	In: sku_medium_gear_vessel16(slot4)
+sku_part_medium_gear20 at  0.2300, -1.2800,  0.9200 -0.0020,  0.0010,  0.0120,  0.9999, 
+	In: sku_medium_gear_vessel16(slot3)
+sku_large_gear_vessel21 at  0.3900, -1.2600,  0.9200  0.0000,  0.0000,  0.7210,  0.6930, 
+	slot1 sku_part_large_gear sku_part_large_gear23 ( 0.3922,-1.3150, 0.9200)
+	slot2 sku_part_large_gear sku_part_large_gear22 ( 0.3878,-1.2050, 0.9200)
+sku_part_large_gear22 at  0.3900, -1.2100,  0.9200  0.0020, -0.0020,  0.0160,  0.9999, 
+	In: sku_large_gear_vessel21(slot2)
+sku_part_large_gear23 at  0.3900, -1.3200,  0.9200 -0.0020, -0.0010,  0.1880,  0.9822, 
+	In: sku_large_gear_vessel21(slot1)
+
+issueCrclCommand class crcl.base.DwellType:2.0
+issueCrclCommand class crcl.base.MoveToType 0.6225,  0.0480,  0.0608  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+Free slot kit=sku_kit_m2l1_vessel14 slot=slot3 Gear=sku_part_large_gear23 at 0.3900, -1.3200,  0.9200 -0.0020, -0.0010,  0.1880,  0.9822, 
+world gear    pose 0.3900, -1.3200,  0.9200 -0.0020, -0.0010,  0.1880,  0.9822, 
+world base    pose-0.1690, -1.1400,  0.9342  0.0000,  0.0000,  0.0000,  1.0000, 
+world baseinv pose 0.1690,  1.1400, -0.9342 -0.0000, -0.0000, -0.0000,  1.0000, 
+robot gear pose 0.5590, -0.1800, -0.0142 -0.0020, -0.0010,  0.1880,  0.9822, 
+pickpose 0.5590, -0.1800,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.MoveToType 0.5590, -0.1800,  0.0408  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType 0.5590, -0.1800,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.SetEndEffectorType closeClosest gear location= 0.5590, -0.1800,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+Gear sku_part_medium_gear17l ocation= 0.6254,  0.1280, -0.0142  0.0000,  0.0000,  0.0000,  1.0000, 
+Gear sku_part_medium_gear18l ocation= 0.6225,  0.0480, -0.0142  0.0000,  0.0000,  0.0000,  1.0000, 
+Gear sku_part_medium_gear19l ocation= 0.3190, -0.1400, -0.0142  0.0010, -0.0030,  0.0180,  0.9998, 
+Gear sku_part_medium_gear20l ocation= 0.3990, -0.1400, -0.0142 -0.0020,  0.0010,  0.0120,  0.9999, 
+Gear sku_part_large_gear22l ocation= 0.5590, -0.0700, -0.0142  0.0020, -0.0020,  0.0160,  0.9999, 
+Gear sku_part_large_gear23l ocation= 0.5590, -0.1800, -0.0142 -0.0020, -0.0010,  0.1880,  0.9822, 
+Closest Gear sku_part_large_gear23
+
+issueCrclCommand class crcl.base.DwellType:2.0
+issueCrclCommand class crcl.base.MoveToType 0.5590, -0.1800,  0.0408  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+kitloc 0.4000, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+slotloc 0.3600, -1.0485,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+slotpose 0.5290,  0.0915, -0.0142  0.0000,  0.0000,  0.0000,  1.0000, 
+slotoffset 0.0000,  0.0000, -0.0350  0.0000,  0.0000,  0.0000,  1.0000, 
+placepose 0.5290,  0.0915,  0.0208  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.MoveToType 0.5290,  0.0915,  0.0608  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType 0.5290,  0.0915,  0.0208  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.SetEndEffectorType open 0.3600, -1.0485,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, sku_kit_m2l1_vessel14 at  0.4000, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+	slot1 sku_part_medium_gear sku_part_medium_gear17 ( 0.4564,-1.0120, 0.9200)
+	slot2 sku_part_medium_gear sku_part_medium_gear18 ( 0.4535,-1.0920, 0.9200)
+	slot3 sku_part_large_gear sku_part_large_gear23 ( 0.3600,-1.0485, 0.9200)
+sku_kit_m2l1_vessel15 at  0.1800, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+	slot1 sku_part_medium_gear open ( 0.2364,-1.0120, 0.9200)
+	slot2 sku_part_medium_gear open ( 0.2335,-1.0920, 0.9200)
+	slot3 sku_part_large_gear open ( 0.1400,-1.0485, 0.9200)
+sku_medium_gear_vessel16 at  0.1900, -1.2400,  0.9200  0.0000,  0.0000,  0.0170,  0.9999, 
+	slot1 sku_part_medium_gear open ( 0.2282,-1.1991, 0.9200)
+	slot2 sku_part_medium_gear open ( 0.1491,-1.2018, 0.9200)
+	slot3 sku_part_medium_gear sku_part_medium_gear20 ( 0.2309,-1.2782, 0.9200)
+	slot4 sku_part_medium_gear sku_part_medium_gear19 ( 0.1518,-1.2809, 0.9200)
+sku_part_medium_gear17 at  0.4564, -1.0120,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_medium_gear_vessel16(slot1)
+sku_part_medium_gear18 at  0.4535, -1.0920,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_medium_gear_vessel16(slot2)
+sku_part_medium_gear19 at  0.1500, -1.2800,  0.9200  0.0010, -0.0030,  0.0180,  0.9998, 
+	In: sku_medium_gear_vessel16(slot4)
+sku_part_medium_gear20 at  0.2300, -1.2800,  0.9200 -0.0020,  0.0010,  0.0120,  0.9999, 
+	In: sku_medium_gear_vessel16(slot3)
+sku_large_gear_vessel21 at  0.3900, -1.2600,  0.9200  0.0000,  0.0000,  0.7210,  0.6930, 
+	slot1 sku_part_large_gear open ( 0.3922,-1.3150, 0.9200)
+	slot2 sku_part_large_gear sku_part_large_gear22 ( 0.3878,-1.2050, 0.9200)
+sku_part_large_gear22 at  0.3900, -1.2100,  0.9200  0.0020, -0.0020,  0.0160,  0.9999, 
+	In: sku_large_gear_vessel21(slot2)
+sku_part_large_gear23 at  0.3600, -1.0485,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_large_gear_vessel21(slot1)
+
+issueCrclCommand class crcl.base.DwellType:2.0
+issueCrclCommand class crcl.base.MoveToType 0.5290,  0.0915,  0.0608  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+Free slot kit=sku_kit_m2l1_vessel15 slot=slot1 Gear=sku_part_medium_gear20 at 0.2300, -1.2800,  0.9200 -0.0020,  0.0010,  0.0120,  0.9999, 
+world gear    pose 0.2300, -1.2800,  0.9200 -0.0020,  0.0010,  0.0120,  0.9999, 
+world base    pose-0.1690, -1.1400,  0.9342  0.0000,  0.0000,  0.0000,  1.0000, 
+world baseinv pose 0.1690,  1.1400, -0.9342 -0.0000, -0.0000, -0.0000,  1.0000, 
+robot gear pose 0.3990, -0.1400, -0.0142 -0.0020,  0.0010,  0.0120,  0.9999, 
+pickpose 0.3990, -0.1400,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.MoveToType 0.3990, -0.1400,  0.0408  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType 0.3990, -0.1400,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.SetEndEffectorType closeClosest gear location= 0.3990, -0.1400,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+Gear sku_part_medium_gear17l ocation= 0.6254,  0.1280, -0.0142  0.0000,  0.0000,  0.0000,  1.0000, 
+Gear sku_part_medium_gear18l ocation= 0.6225,  0.0480, -0.0142  0.0000,  0.0000,  0.0000,  1.0000, 
+Gear sku_part_medium_gear19l ocation= 0.3190, -0.1400, -0.0142  0.0010, -0.0030,  0.0180,  0.9998, 
+Gear sku_part_medium_gear20l ocation= 0.3990, -0.1400, -0.0142 -0.0020,  0.0010,  0.0120,  0.9999, 
+Closest Gear sku_part_medium_gear20
+
+issueCrclCommand class crcl.base.DwellType:2.0
+issueCrclCommand class crcl.base.MoveToType 0.3990, -0.1400,  0.0408  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+kitloc 0.1800, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+slotloc 0.2364, -1.0120,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+slotpose 0.4054,  0.1280, -0.0142  0.0000,  0.0000,  0.0000,  1.0000, 
+slotoffset 0.0000,  0.0000, -0.0350  0.0000,  0.0000,  0.0000,  1.0000, 
+placepose 0.4054,  0.1280,  0.0208  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.MoveToType 0.4054,  0.1280,  0.0608  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType 0.4054,  0.1280,  0.0208  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.SetEndEffectorType open 0.2364, -1.0120,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, sku_kit_m2l1_vessel14 at  0.4000, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+	slot1 sku_part_medium_gear sku_part_medium_gear17 ( 0.4564,-1.0120, 0.9200)
+	slot2 sku_part_medium_gear sku_part_medium_gear18 ( 0.4535,-1.0920, 0.9200)
+	slot3 sku_part_large_gear sku_part_large_gear23 ( 0.3600,-1.0485, 0.9200)
+sku_kit_m2l1_vessel15 at  0.1800, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+	slot1 sku_part_medium_gear sku_part_medium_gear20 ( 0.2364,-1.0120, 0.9200)
+	slot2 sku_part_medium_gear open ( 0.2335,-1.0920, 0.9200)
+	slot3 sku_part_large_gear open ( 0.1400,-1.0485, 0.9200)
+sku_medium_gear_vessel16 at  0.1900, -1.2400,  0.9200  0.0000,  0.0000,  0.0170,  0.9999, 
+	slot1 sku_part_medium_gear open ( 0.2282,-1.1991, 0.9200)
+	slot2 sku_part_medium_gear open ( 0.1491,-1.2018, 0.9200)
+	slot3 sku_part_medium_gear open ( 0.2309,-1.2782, 0.9200)
+	slot4 sku_part_medium_gear sku_part_medium_gear19 ( 0.1518,-1.2809, 0.9200)
+sku_part_medium_gear17 at  0.4564, -1.0120,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_medium_gear_vessel16(slot1)
+sku_part_medium_gear18 at  0.4535, -1.0920,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_medium_gear_vessel16(slot2)
+sku_part_medium_gear19 at  0.1500, -1.2800,  0.9200  0.0010, -0.0030,  0.0180,  0.9998, 
+	In: sku_medium_gear_vessel16(slot4)
+sku_part_medium_gear20 at  0.2364, -1.0120,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_medium_gear_vessel16(slot3)
+sku_large_gear_vessel21 at  0.3900, -1.2600,  0.9200  0.0000,  0.0000,  0.7210,  0.6930, 
+	slot1 sku_part_large_gear open ( 0.3922,-1.3150, 0.9200)
+	slot2 sku_part_large_gear sku_part_large_gear22 ( 0.3878,-1.2050, 0.9200)
+sku_part_large_gear22 at  0.3900, -1.2100,  0.9200  0.0020, -0.0020,  0.0160,  0.9999, 
+	In: sku_large_gear_vessel21(slot2)
+sku_part_large_gear23 at  0.3600, -1.0485,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_large_gear_vessel21(slot1)
+
+issueCrclCommand class crcl.base.DwellType:2.0
+issueCrclCommand class crcl.base.MoveToType 0.4054,  0.1280,  0.0608  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+Free slot kit=sku_kit_m2l1_vessel15 slot=slot2 Gear=sku_part_medium_gear19 at 0.1500, -1.2800,  0.9200  0.0010, -0.0030,  0.0180,  0.9998, 
+world gear    pose 0.1500, -1.2800,  0.9200  0.0010, -0.0030,  0.0180,  0.9998, 
+world base    pose-0.1690, -1.1400,  0.9342  0.0000,  0.0000,  0.0000,  1.0000, 
+world baseinv pose 0.1690,  1.1400, -0.9342 -0.0000, -0.0000, -0.0000,  1.0000, 
+robot gear pose 0.3190, -0.1400, -0.0142  0.0010, -0.0030,  0.0180,  0.9998, 
+pickpose 0.3190, -0.1400,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.MoveToType 0.3190, -0.1400,  0.0408  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType 0.3190, -0.1400,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.SetEndEffectorType closeClosest gear location= 0.3190, -0.1400,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+Gear sku_part_medium_gear17l ocation= 0.6254,  0.1280, -0.0142  0.0000,  0.0000,  0.0000,  1.0000, 
+Gear sku_part_medium_gear18l ocation= 0.6225,  0.0480, -0.0142  0.0000,  0.0000,  0.0000,  1.0000, 
+Gear sku_part_medium_gear19l ocation= 0.3190, -0.1400, -0.0142  0.0010, -0.0030,  0.0180,  0.9998, 
+Closest Gear sku_part_medium_gear19
+
+issueCrclCommand class crcl.base.DwellType:2.0
+issueCrclCommand class crcl.base.MoveToType 0.3190, -0.1400,  0.0408  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+kitloc 0.1800, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+slotloc 0.2335, -1.0920,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+slotpose 0.4025,  0.0480, -0.0142  0.0000,  0.0000,  0.0000,  1.0000, 
+slotoffset 0.0000,  0.0000, -0.0350  0.0000,  0.0000,  0.0000,  1.0000, 
+placepose 0.4025,  0.0480,  0.0208  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.MoveToType 0.4025,  0.0480,  0.0608  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType 0.4025,  0.0480,  0.0208  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.SetEndEffectorType open 0.2335, -1.0920,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, sku_kit_m2l1_vessel14 at  0.4000, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+	slot1 sku_part_medium_gear sku_part_medium_gear17 ( 0.4564,-1.0120, 0.9200)
+	slot2 sku_part_medium_gear sku_part_medium_gear18 ( 0.4535,-1.0920, 0.9200)
+	slot3 sku_part_large_gear sku_part_large_gear23 ( 0.3600,-1.0485, 0.9200)
+sku_kit_m2l1_vessel15 at  0.1800, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+	slot1 sku_part_medium_gear sku_part_medium_gear20 ( 0.2364,-1.0120, 0.9200)
+	slot2 sku_part_medium_gear sku_part_medium_gear19 ( 0.2335,-1.0920, 0.9200)
+	slot3 sku_part_large_gear open ( 0.1400,-1.0485, 0.9200)
+sku_medium_gear_vessel16 at  0.1900, -1.2400,  0.9200  0.0000,  0.0000,  0.0170,  0.9999, 
+	slot1 sku_part_medium_gear open ( 0.2282,-1.1991, 0.9200)
+	slot2 sku_part_medium_gear open ( 0.1491,-1.2018, 0.9200)
+	slot3 sku_part_medium_gear open ( 0.2309,-1.2782, 0.9200)
+	slot4 sku_part_medium_gear open ( 0.1518,-1.2809, 0.9200)
+sku_part_medium_gear17 at  0.4564, -1.0120,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_medium_gear_vessel16(slot1)
+sku_part_medium_gear18 at  0.4535, -1.0920,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_medium_gear_vessel16(slot2)
+sku_part_medium_gear19 at  0.2335, -1.0920,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_medium_gear_vessel16(slot4)
+sku_part_medium_gear20 at  0.2364, -1.0120,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_medium_gear_vessel16(slot3)
+sku_large_gear_vessel21 at  0.3900, -1.2600,  0.9200  0.0000,  0.0000,  0.7210,  0.6930, 
+	slot1 sku_part_large_gear open ( 0.3922,-1.3150, 0.9200)
+	slot2 sku_part_large_gear sku_part_large_gear22 ( 0.3878,-1.2050, 0.9200)
+sku_part_large_gear22 at  0.3900, -1.2100,  0.9200  0.0020, -0.0020,  0.0160,  0.9999, 
+	In: sku_large_gear_vessel21(slot2)
+sku_part_large_gear23 at  0.3600, -1.0485,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_large_gear_vessel21(slot1)
+
+issueCrclCommand class crcl.base.DwellType:2.0
+issueCrclCommand class crcl.base.MoveToType 0.4025,  0.0480,  0.0608  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+Free slot kit=sku_kit_m2l1_vessel15 slot=slot3 Gear=sku_part_large_gear22 at 0.3900, -1.2100,  0.9200  0.0020, -0.0020,  0.0160,  0.9999, 
+world gear    pose 0.3900, -1.2100,  0.9200  0.0020, -0.0020,  0.0160,  0.9999, 
+world base    pose-0.1690, -1.1400,  0.9342  0.0000,  0.0000,  0.0000,  1.0000, 
+world baseinv pose 0.1690,  1.1400, -0.9342 -0.0000, -0.0000, -0.0000,  1.0000, 
+robot gear pose 0.5590, -0.0700, -0.0142  0.0020, -0.0020,  0.0160,  0.9999, 
+pickpose 0.5590, -0.0700,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.MoveToType 0.5590, -0.0700,  0.0408  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType 0.5590, -0.0700,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.SetEndEffectorType closeClosest gear location= 0.5590, -0.0700,  0.0008  1.0000,  0.0000,  0.0000,  0.0000, 
+Gear sku_part_medium_gear17l ocation= 0.6254,  0.1280, -0.0142  0.0000,  0.0000,  0.0000,  1.0000, 
+Gear sku_part_medium_gear18l ocation= 0.6225,  0.0480, -0.0142  0.0000,  0.0000,  0.0000,  1.0000, 
+Gear sku_part_medium_gear19l ocation= 0.4025,  0.0480, -0.0142  0.0000,  0.0000,  0.0000,  1.0000, 
+Gear sku_part_medium_gear20l ocation= 0.4054,  0.1280, -0.0142  0.0000,  0.0000,  0.0000,  1.0000, 
+Gear sku_part_large_gear22l ocation= 0.5590, -0.0700, -0.0142  0.0020, -0.0020,  0.0160,  0.9999, 
+Closest Gear sku_part_large_gear22
+
+issueCrclCommand class crcl.base.DwellType:2.0
+issueCrclCommand class crcl.base.MoveToType 0.5590, -0.0700,  0.0408  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+kitloc 0.1800, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+slotloc 0.1400, -1.0485,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+slotpose 0.3090,  0.0915, -0.0142  0.0000,  0.0000,  0.0000,  1.0000, 
+slotoffset 0.0000,  0.0000, -0.0350  0.0000,  0.0000,  0.0000,  1.0000, 
+placepose 0.3090,  0.0915,  0.0208  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.MoveToType 0.3090,  0.0915,  0.0608  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.MoveToType 0.3090,  0.0915,  0.0208  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+issueCrclCommand class crcl.base.SetEndEffectorType open 0.1400, -1.0485,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, sku_kit_m2l1_vessel14 at  0.4000, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+	slot1 sku_part_medium_gear sku_part_medium_gear17 ( 0.4564,-1.0120, 0.9200)
+	slot2 sku_part_medium_gear sku_part_medium_gear18 ( 0.4535,-1.0920, 0.9200)
+	slot3 sku_part_large_gear sku_part_large_gear23 ( 0.3600,-1.0485, 0.9200)
+sku_kit_m2l1_vessel15 at  0.1800, -1.0500,  0.9200  0.0000,  0.0000, -0.7200,  0.6940, 
+	slot1 sku_part_medium_gear sku_part_medium_gear20 ( 0.2364,-1.0120, 0.9200)
+	slot2 sku_part_medium_gear sku_part_medium_gear19 ( 0.2335,-1.0920, 0.9200)
+	slot3 sku_part_large_gear sku_part_large_gear22 ( 0.1400,-1.0485, 0.9200)
+sku_medium_gear_vessel16 at  0.1900, -1.2400,  0.9200  0.0000,  0.0000,  0.0170,  0.9999, 
+	slot1 sku_part_medium_gear open ( 0.2282,-1.1991, 0.9200)
+	slot2 sku_part_medium_gear open ( 0.1491,-1.2018, 0.9200)
+	slot3 sku_part_medium_gear open ( 0.2309,-1.2782, 0.9200)
+	slot4 sku_part_medium_gear open ( 0.1518,-1.2809, 0.9200)
+sku_part_medium_gear17 at  0.4564, -1.0120,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_medium_gear_vessel16(slot1)
+sku_part_medium_gear18 at  0.4535, -1.0920,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_medium_gear_vessel16(slot2)
+sku_part_medium_gear19 at  0.2335, -1.0920,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_medium_gear_vessel16(slot4)
+sku_part_medium_gear20 at  0.2364, -1.0120,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_medium_gear_vessel16(slot3)
+sku_large_gear_vessel21 at  0.3900, -1.2600,  0.9200  0.0000,  0.0000,  0.7210,  0.6930, 
+	slot1 sku_part_large_gear open ( 0.3922,-1.3150, 0.9200)
+	slot2 sku_part_large_gear open ( 0.3878,-1.2050, 0.9200)
+sku_part_large_gear22 at  0.1400, -1.0485,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_large_gear_vessel21(slot2)
+sku_part_large_gear23 at  0.3600, -1.0485,  0.9200  0.0000,  0.0000,  0.0000,  1.0000, 
+	In: sku_large_gear_vessel21(slot1)
+
+issueCrclCommand class crcl.base.DwellType:2.0
+issueCrclCommand class crcl.base.MoveToType 0.3090,  0.0915,  0.0608  1.0000,  0.0000,  0.0000,  0.0000, 
+issueCrclCommand class crcl.base.DwellType:0.1
+BUILD SUCCESSFUL (total time: 2 minutes 31 seconds)
+
+
+
+
+

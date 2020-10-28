@@ -38,13 +38,23 @@ struct CGearDemo
     CGearDemo(std::shared_ptr<CCrclApi>  crclApi);
     int init(std::string inifile, std::string robotName);
     int issueRobotCommands(int & state);
+    int issueCommands(int & state);
     int isDone(int & state );
+    int isWorking( );
     void start();
     void stop();
-    std::deque<crcl_rosmsgs::CrclCommandMsg> & undoQ() { return r->undoQ(); }
+
+    WorldModel::CShape * findFreeGear(WorldModel::CInstances &now_instances, std::string geartype);
+
+    bool findOpenKittingGearSlot(WorldModel::CInstances &now_instances,
+                                 WorldModel::CShape & kit,
+                                 std::map<std::string, std::string> &slotprop);
+
 protected:
     std::shared_ptr<CCrclApi>  r;
-    WorldModel::CShape * _instance;
+    WorldModel::CShape * _gear;
+    WorldModel::CShape  _kit;
+    std::map<std::string, std::string> _openslotprop;
     WorldModel::CShapes _shapes;
     std::string _path;
     tf::Pose _baseoffset;

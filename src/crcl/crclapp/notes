@@ -1,3 +1,88 @@
+sku_large_gear_vessel1 at    0.31,   0.60,  -0.21,0.000,0.000,0.021,1.000|height=0
+sku_large_gear_vessel2 at   -0.18,   0.43,  -0.21,0.000,0.000,0.021,1.000|height=0
+sku_kit_s2l2_vessel3 at    0.32,   0.44,  -0.21,0.000,0.000,0.021,1.000|height=0
+sku_part_large_gear6 at    0.25,   0.60,  -0.19,0.001,-0.000,0.001,1.000|height=0
+sku_part_large_gear7 at   -0.12,   0.43,  -0.19,0.001,0.000,0.001,1.000|height=0
+sku_part_large_gear8 at   -0.23,   0.43,  -0.19,-0.000,0.000,0.002,1.000|height=0
+sku_small_gear_vessel9 at    0.12,   0.59,  -0.21,0.000,0.000,0.023,1.000|height=0
+sku_part_small_gear10 at    0.15,   0.56,  -0.19,-0.014,0.006,0.031,0.999|height=0
+sku_part_large_gear5 at    0.36,   0.60,  -0.19,-0.000,-0.000,0.003,1.000|height=0
+sku_part_small_gear12 at    0.09,   0.62,  -0.19,0.001,0.001,0.007,1.000|height=0
+sku_part_small_gear13 at    0.08,   0.55,  -0.19,-0.029,0.021,0.024,0.999|height=0
+sku_kit_m2l1_vessel14 at    0.57,   0.09,  -0.20,0.000,0.000,-0.720,0.694|height=0
+sku_part_small_gear11 at    0.15,   0.62,  -0.19,-0.006,-0.017,0.001,1.000|height=0
+sku_kit_s2l2_vessel4 at    0.07,   0.43,  -0.21,0.000,0.000,0.021,1.000|height=0
+sku_kit_m2l1_vessel15 at    0.35,   0.09,  -0.20,0.000,0.000,-0.720,0.694|height=0
+sku_medium_gear_vessel16 at    0.36,  -0.10,  -0.19,0.000,0.000,0.017,1.000|height=0
+sku_part_medium_gear17 at    0.40,  -0.06,  -0.19,-0.011,-0.003,0.022,1.000|height=0
+sku_part_medium_gear18 at    0.32,  -0.06,  -0.19,-0.001,-0.001,0.017,1.000|height=0
+sku_part_medium_gear19 at    0.32,  -0.14,  -0.19,0.001,-0.003,0.018,1.000|height=0
+sku_part_medium_gear20 at    0.40,  -0.14,  -0.19,-0.002,0.001,0.012,1.000|height=0
+sku_large_gear_vessel21 at    0.56,  -0.12,  -0.20,0.000,0.000,0.721,0.693|height=0
+sku_part_large_gear22 at    0.56,  -0.07,  -0.19,0.002,-0.002,0.016,1.000|height=0
+sku_part_large_gear23 at    0.56,  -0.18,  -0.19,-0.002,-0.001,0.188,0.982|height=0
+
+
+
+RCS> inferences
+RCS> sku_kit_m2l1_vessel14 at    0.40,  -1.05,   0.92,0.000,0.000,-0.720,0.694
+        slot1 sku_part_medium_gear open ( 0.45559 -1.00712  0.91599)
+        slot2 sku_part_medium_gear open ( 0.45263 -1.08706  0.91599)
+        slot3 sku_part_large_gear open ( 0.35917 -1.04358  0.91599)
+sku_kit_m2l1_vessel15 at    0.18,  -1.05,   0.92,0.000,0.000,-0.720,0.694
+        slot1 sku_part_medium_gear open ( 0.23969 -1.01508  0.91599)
+        slot2 sku_part_medium_gear open ( 0.23674 -1.09502  0.91599)
+        slot3 sku_part_large_gear open ( 0.14328 -1.05154  0.91599)
+sku_medium_gear_vessel16 at    0.19,  -1.24,   0.92,0.000,0.000,0.017,1.000
+        slot1 sku_part_medium_gear sku_part_medium_gear17 ( 0.22842 -1.19713  0.92317)
+        slot2 sku_part_medium_gear sku_part_medium_gear18 ( 0.14927 -1.19981  0.92317)
+        slot3 sku_part_medium_gear sku_part_medium_gear20 ( 0.23110 -1.27629  0.92317)
+        slot4 sku_part_medium_gear sku_part_medium_gear19 ( 0.15195 -1.27897  0.92317)
+sku_part_medium_gear17 at    0.23,  -1.20,   0.92,-0.011,-0.003,0.022,1.000
+        In: sku_medium_gear_vessel16(slot1)
+sku_part_medium_gear18 at    0.15,  -1.20,   0.92,-0.001,-0.001,0.017,1.000
+        In: sku_medium_gear_vessel16(slot2)
+sku_part_medium_gear19 at    0.15,  -1.28,   0.92,0.001,-0.003,0.018,1.000
+        In: sku_medium_gear_vessel16(slot4)
+sku_part_medium_gear20 at    0.23,  -1.28,   0.92,-0.002,0.001,0.012,1.000
+        In: sku_medium_gear_vessel16(slot3)
+sku_large_gear_vessel21 at    0.39,  -1.26,   0.92,0.000,0.000,0.721,0.693
+        slot1 sku_part_large_gear sku_part_large_gear23 ( 0.39442 -1.31785  0.91521)
+        slot2 sku_part_large_gear sku_part_large_gear22 ( 0.38994 -1.20795  0.91521)
+sku_part_large_gear22 at    0.39,  -1.21,   0.92,0.002,-0.002,0.016,1.000
+        In: sku_large_gear_vessel21(slot2)
+sku_part_large_gear23 at    0.39,  -1.32,   0.92,-0.002,-0.001,0.188,0.982
+        In: sku_large_gear_vessel21(slot1)
+
+
+RCS> sku_kit_m2l1_vessel14 at    0.40,  -1.05,   0.92,0.000,0.000,-0.720,0.694
+        slot1 sku_part_medium_gear sku_part_medium_gear17 ( 0.45559 -1.00712  0.91599)
+        slot2 sku_part_medium_gear open ( 0.45263 -1.08706  0.91599)
+        slot3 sku_part_large_gear open ( 0.35917 -1.04358  0.91599)
+sku_kit_m2l1_vessel15 at    0.18,  -1.05,   0.92,0.000,0.000,-0.720,0.694
+        slot1 sku_part_medium_gear open ( 0.23969 -1.01508  0.91599)
+        slot2 sku_part_medium_gear open ( 0.23674 -1.09502  0.91599)
+        slot3 sku_part_large_gear open ( 0.14328 -1.05154  0.91599)
+sku_medium_gear_vessel16 at    0.19,  -1.24,   0.92,0.000,0.000,0.017,1.000
+        slot1 sku_part_medium_gear open ( 0.22842 -1.19713  0.92317)
+        slot2 sku_part_medium_gear sku_part_medium_gear18 ( 0.14927 -1.19981  0.92317)
+        slot3 sku_part_medium_gear sku_part_medium_gear20 ( 0.23110 -1.27629  0.92317)
+        slot4 sku_part_medium_gear sku_part_medium_gear19 ( 0.15195 -1.27897  0.92317)
+sku_part_medium_gear17 at    0.46,  -1.01,   0.92,-0.048,-0.007,0.359,0.932
+        In: sku_kit_m2l1_vessel14(slot1)
+sku_part_medium_gear18 at    0.15,  -1.20,   0.92,-0.001,-0.001,0.017,1.000
+        In: sku_medium_gear_vessel16(slot2)
+sku_part_medium_gear19 at    0.15,  -1.28,   0.92,0.001,-0.003,0.018,1.000
+        In: sku_medium_gear_vessel16(slot4)
+sku_part_medium_gear20 at    0.23,  -1.28,   0.92,-0.002,0.001,0.012,1.000
+        In: sku_medium_gear_vessel16(slot3)
+sku_large_gear_vessel21 at    0.39,  -1.26,   0.92,0.000,0.000,0.721,0.693
+        slot1 sku_part_large_gear sku_part_large_gear23 ( 0.39442 -1.31785  0.91521)
+        slot2 sku_part_large_gear sku_part_large_gear22 ( 0.38994 -1.20795  0.91521)
+sku_part_large_gear22 at    0.39,  -1.21,   0.92,0.002,-0.002,0.016,1.000
+        In: sku_large_gear_vessel21(slot2)
+sku_part_large_gear23 at    0.39,  -1.32,   0.92,-0.002,-0.001,0.188,0.982
+        In: sku_large_gear_vessel21(slot1)
 
 
 

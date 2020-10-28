@@ -94,6 +94,7 @@ CGlobals::CGlobals()
     bGripperSpeed=0;
     bRepeatCannedDemo=0;
     bAutoCrclStatus=0;
+    bSynchronousCmds=0;
 
     // Global debugging files
     DEBUG_Model_Status=0;
