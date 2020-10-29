@@ -453,7 +453,7 @@ public class CRCLClient implements Runnable {
                     }
                 } else {
                     // update graspgear location
-                    System.out.print(" open");
+                    System.out.println(" open");
                     if (graspedgear != null) {
                         CShape.inference_type inference = KittingDemo._kit.findInference(KittingDemo._openslot.name());
                         PmPose slotloc = Globals.convertTranPose(inference.location);
@@ -461,9 +461,9 @@ public class CRCLClient implements Runnable {
                         CShape gear = CShapes.findInstance(CShapes.instances, graspedgear.name());
                         gear._location = slotloc; // offset?
 
-                        System.out.print(KittingDemo.dumpPmPose(gear._location));
+                        System.out.println("gear new location" + KittingDemo.dumpPmPose(gear._location));
                         KittingDemo.fakeFirstOrderLogic();
-                        System.out.print(KittingDemo.dumpInferences());
+                        System.out.println("New kitting scene inferences after gear move\n"+KittingDemo.dumpInferences());
                     }
 
                 }
@@ -471,6 +471,7 @@ public class CRCLClient implements Runnable {
             System.out.println();
         } else {
             try {
+                System.out.print("lnissueCrclCommand " + instance.getCRCLCommand().getClass());
                 issueCrclCommand();
             } catch (Exception ex) {
                 System.out.println("Failed issueCrclCommand " + instance.getName());
