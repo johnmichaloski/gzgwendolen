@@ -13,14 +13,18 @@ import rcs.posemath.PmCartesian;
 import rcs.posemath.PmQuaternion;
 
 /**
- *
- * @author michalos
+ * model information about the objects in the scene. 
+ * @author michaloski
  */
 public class rcs_world {
 
-    /// gripper offset for container slot
+    /** gripper offset for container slot*/
     public static Map<String, PmPose> slotoffset = new HashMap<>();
 
+    /**
+     * defines the gripper offset to a given part type. Hard coded for
+     * now.
+     */
     public static void hardcode() {
         try {
             slotoffset.put("vessel", new PmPose(new PmCartesian(0.00, 0.00, -0.035),

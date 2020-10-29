@@ -23,26 +23,35 @@ import static gwendolyncrclclient.CShapes.instances;
 import static gwendolyncrclclient.CShapes.snapshotInstances;
 import javafx.util.Pair;
 import java.lang.*;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 /**
- *
+ * Provides methods to perform or fake performing the
+ * kitting demonstration for the fanuc robot. If live
+ * crcl model status, then the robot will use the model inferences
+ * to determine the free gear and matching kit open slot.
+ * 
  * @author michalos
  */
 public class KittingDemo {
 
+    /**
+     * construct the kittingdemo, provide a reference to the
+     * crcl client api.
+     * @param crcl CRCLClient class pointer.
+     */
     public KittingDemo(CRCLClient crcl) {
         r = crcl;
     }
 
-    public int init(String inifile, String robotName) {
-
-        return 0;
-    }
-
+    /**
+     * use a state table to issue robot command.
+     * KittingDemo class will do the following:
+    * 1) find an available gear (in supply tray) and kit open slot to place the
+    * 2-5) approach, move to gear, grasp gear, and retract
+    * 5-8) approach kit open slot move to near open slot, release gear, and then retract 
+     * @param state current state to execute.
+     * @return updated state number.
+     */
     public int issueRobotCommands(int state) {
         // Must declare all variables beforehand
 

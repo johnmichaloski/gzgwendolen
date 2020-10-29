@@ -21,8 +21,10 @@ import rcs.posemath.Posemath;
 import rcs.posemath.PmQuaternion;
 import javafx.util.Pair;
 /**
- *
- * @author michalos
+ * Shapes is a container for the shapes in the kitting scene,
+ * the definitions defining the parts in the scene (gears, kits,
+ * supply vessel, as well as the slots in a tray).
+ * @author michaloski
  */
 public class CShapes {
 
@@ -30,6 +32,10 @@ public class CShapes {
     public static Vector<CShape> definitions = new Vector<CShape>();
     public static Vector<CShape> instances = new Vector<CShape>();
 
+    /**
+     * initialize all the shape attributes, and if a tray describes
+     * all the slots contained.
+     */
     public static void initDefinitions() {
         PmPose dimensions;
 
@@ -183,6 +189,11 @@ public class CShapes {
         }
     }
 
+    /**
+     * access method to find the associated definition for a type.
+     * @param atype sku name of type
+     * @return shape definition describing the shapetype.
+     */
     static public CShape findDefinition(String atype) {
         for (int i = 0; i < definitions.size(); i++) {
             if (definitions.get(i).type().equalsIgnoreCase( atype)) {
@@ -192,6 +203,13 @@ public class CShapes {
         return null;
     }
 
+    /**
+     * accessor function to find a matching name in the instances
+     * vector supplied as a calling argument.
+     * @param shapes pointer to vector containg shapes
+     * @param aname name of the shape (sku with numeric trailing id).
+     * @return shape definition of the instance.
+     */
     static public CShape findInstance(Vector<CShape> shapes, String aname) {
         // @todo this finds global instance name, not class instance name
         for (int i = 0; i < shapes.size(); i++) {
@@ -202,6 +220,10 @@ public class CShapes {
         return null;
     }
 
+    /**
+     * mutex clone of current instance.
+     * @return clone of the intances.
+     */
     static public Vector<CShape> snapshotInstances() {
         Vector<CShape> now_instances = new Vector<CShape>();
         try {
@@ -216,6 +238,13 @@ public class CShapes {
         return now_instances;
     }
 
+    /**
+     * store the instance properties for given model.
+     * Will parse the crcl xml models in ther status
+     * report for inferences also.
+     * @param name sku type plus numeric trailing id
+     * @param model name and pose of model.
+     */
     public static void storeInstanceProperties(String name,
             ModelsStatusType model) {
 
@@ -272,6 +301,11 @@ public class CShapes {
 
     }
 
+    /**
+     * simple store of a model instance given name and pose
+     * @param name sku name of the shape
+     * @param centroid location in world coordinates of the shape 
+     */
     public static void storeInstance(String name,
             PmPose centroid) {
 
@@ -307,6 +341,13 @@ public class CShapes {
 
     }
 
+    /**
+     * given a tray with slot, find the shape definition for the
+     * given slot name (e.g., slot1, slot2, ...
+     * @param tray tray either kit or supply vessel that containes slots.
+     * @param slotname name of the slot
+     * @return shape definition of the slot.
+     */
     public static CShape findSlot(CShape tray, String slotname) {
         // either kit or vessel - now do slots
         CShape slotz = findDefinition(tray.type());
@@ -324,6 +365,12 @@ public class CShapes {
         return null;
     }
 
+    /**
+     * use the model inferences to find a free gear of type geartyp
+     * in the supply vessels.
+     * @param geartype type of gear, either sm, med, lg.
+     * @return shape definition of gear.
+     */
     public static CShape findFreeGear(String geartype) {
         Vector<CShape> now_instances = snapshotInstances();
 
@@ -355,6 +402,10 @@ public class CShapes {
         return null;
     }
 
+    /**
+     * find an open slot that in one of the kits. 
+     * @return a pair: shape defoining the kit and open slot.
+     */
     public static Pair<CShape, CShape> findOpenKittingGearSlot()
             //CShape kit,   CShape openslot) 
     {
@@ -397,7 +448,6 @@ public class CShapes {
 
         }
         return new Pair<CShape, CShape>(null,null);
-       //return false;
     }
 
 

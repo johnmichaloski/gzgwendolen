@@ -6,7 +6,8 @@
 package gwendolyncrclclient;
 
 /**
- *
+ * Runs a separate thread to retrieve and report on the status
+ * of crcl communication. Not used for now.
  * @author michalos
  */
 public class StatusThread implements Runnable {
