@@ -21,6 +21,7 @@ import rcs.posemath.PmQuaternion;
  */
 public class Globals {
 
+    public static boolean bDebug=false;
     /**
      * a flag to signal if all the object instances in the model status have
      * been read at least once.

@@ -25,18 +25,17 @@ import javafx.util.Pair;
 import java.lang.*;
 
 /**
- * Provides methods to perform or fake performing the
- * kitting demonstration for the fanuc robot. If live
- * crcl model status, then the robot will use the model inferences
- * to determine the free gear and matching kit open slot.
- * 
+ * Provides methods to perform or fake performing the kitting demonstration for
+ * the fanuc robot. If live crcl model status, then the robot will use the model
+ * inferences to determine the free gear and matching kit open slot.
+ *
  * @author michalos
  */
 public class KittingDemo {
 
     /**
-     * construct the kittingdemo, provide a reference to the
-     * crcl client api.
+     * construct the kittingdemo, provide a reference to the crcl client api.
+     *
      * @param crcl CRCLClient class pointer.
      */
     public KittingDemo(CRCLClient crcl) {
@@ -44,11 +43,12 @@ public class KittingDemo {
     }
 
     /**
-     * use a state table to issue robot command.
-     * KittingDemo class will do the following:
-    * 1) find an available gear (in supply tray) and kit open slot to place the
-    * 2-5) approach, move to gear, grasp gear, and retract
-    * 5-8) approach kit open slot move to near open slot, release gear, and then retract 
+     * use a state table to issue robot command. KittingDemo class will do the
+     * following: 1) find an available gear (in supply tray) and kit open slot
+     * to place the 2-5) approach, move to gear, grasp gear, and retract 5-8)
+     * approach kit open slot move to near open slot, release gear, and then
+     * retract
+     *
      * @param state current state to execute.
      * @return updated state number.
      */
@@ -87,7 +87,9 @@ public class KittingDemo {
                     }
                     String s = "Free slot kit=" + _kit.name() + " slot=" + _openslot.name()
                             + " Gear=" + _gear.name() + " at" + dumpPmPose(_gear._location) + "\n";
-                    System.out.print(s);
+                    if (Globals.bDebug) {
+                        System.out.print(s);
+                    }
 
                     ++state;
                     return state;
@@ -98,10 +100,11 @@ public class KittingDemo {
                     gearname = _gear.name();
 
                     gearWorldCrd = _gear._location;
-                    System.out.println("world gear    pose" + KittingDemo.dumpPmPose(gearWorldCrd));
-                    System.out.println("world base    pose" + KittingDemo.dumpPmPose(rcs_robot.BasePose));
-                    System.out.println("world baseinv pose" + KittingDemo.dumpPmPose(rcs_robot.BasePoseInv));
-
+                    if (Globals.bDebug) {
+                        System.out.println("world gear    pose" + KittingDemo.dumpPmPose(gearWorldCrd));
+                        System.out.println("world base    pose" + KittingDemo.dumpPmPose(rcs_robot.BasePose));
+                        System.out.println("world baseinv pose" + KittingDemo.dumpPmPose(rcs_robot.BasePoseInv));
+                    }
                     //affpoase = Posemath.pmPosePoseMult(affpose, affpose, affpose)rcs_robot.basePoseInv * affpose;
                     gearRobotCrd = new PmPose();
 
@@ -109,7 +112,9 @@ public class KittingDemo {
                             gearWorldCrd,
                             gearRobotCrd);
 
-                    System.out.println("robot gear pose" + KittingDemo.dumpPmPose(gearRobotCrd));
+                    if (Globals.bDebug) {
+                        System.out.println("robot gear pose" + KittingDemo.dumpPmPose(gearRobotCrd));
+                    }
 
                     // The object gripper offset is where on the object it is to be gripped
                     // e.g., offset.gripper.largegear = 0.0,0.0, -0.030, 0.0, 0.0.,0.0
@@ -122,7 +127,10 @@ public class KittingDemo {
                     Posemath.pmPosePoseMult(new PmPose(gearRobotCrd.tran, bend),
                             new PmPose(gripperoffset.tran, gripperoffset.rot),
                             pickpose);
-                    System.out.println("pickpose" + KittingDemo.dumpPmPose(pickpose));
+
+                    if (Globals.bDebug) {
+                        System.out.println("pickpose" + KittingDemo.dumpPmPose(pickpose));
+                    }
 
                     offset = pickpose.tran;
                     // Retract
@@ -172,28 +180,29 @@ public class KittingDemo {
 
                     CShape.inference_type inference = _kit.findInference(_openslot.name());
                     PmPose slotloc = Globals.convertTranPose(inference.location);
-                    System.out.println("kitloc" + dumpPmPose(_kit._location));
-                    System.out.println("slotloc" + dumpPmPose(slotloc));
-                  
+                    if (Globals.bDebug) {
+                        System.out.println("kitloc" + dumpPmPose(_kit._location));
+                        System.out.println("slotloc" + dumpPmPose(slotloc));
+                    }
                     // This xyz already has been reoriented by tray rotation.
-                   // CShape openslot = CShapes.findSlot(_kit, _openslot.name());
+                    // CShape openslot = CShapes.findSlot(_kit, _openslot.name());
 
                     // compute reorient based on kit rotation
                     //PmPose slotloc = openslot._location; // offset of locatino in tray
- 
 //                    PmRotationMatrix m = toRotMat(_kit._location);
 //                    //        PmCartesian vec_slot = _kit._location.tran +  (m*slotloc.tran);
 //                    PmCartesian vec_slot = new PmCartesian();
 //                    Posemath.pmMatCartMult(m, slotloc.tran, vec_slot);
 //                    PmCartesian tran = Posemath.add(_kit._location.tran, vec_slot);
 //                    slotpose = new PmPose(tran, new PmQuaternion(1., 0., 0., 0.));
-
                     //PmPose slotpose = new PmPose();
                     // slotpose = rcs_robot.basePose.inverse() * slotpose;
                     Posemath.pmPosePoseMult(rcs_robot.BasePoseInv,
                             slotloc,
                             slotpose);
-                    System.out.println("slotpose" + dumpPmPose(slotpose));
+                    if (Globals.bDebug) {
+                        System.out.println("slotpose" + dumpPmPose(slotpose));
+                    }
 
                     // up in z only for grasping now - hard coded
                     slotoffset = rcs_world.slotoffset.get("vessel");
@@ -202,10 +211,10 @@ public class KittingDemo {
                     Posemath.pmPosePoseMult(new PmPose(slotpose.tran, bend),
                             slotoffset,
                             placepose);
-                    System.out.println("slotoffset" + dumpPmPose(slotoffset));
-
-                    System.out.println("placepose" + dumpPmPose(placepose));
-
+                    if (Globals.bDebug) {
+                        System.out.println("slotoffset" + dumpPmPose(slotoffset));
+                        System.out.println("placepose" + dumpPmPose(placepose));
+                    }
                     offset = placepose.tran; // xyz position
 
                     // Approach
@@ -363,7 +372,7 @@ public class KittingDemo {
                     Posemath.pmMatCartMult(m, slot._location.tran, rotorigin);
                     PmCartesian pos_slot = Posemath.add(tray._location.tran, rotorigin);
 
-                    inference.location = String.format("%7.4f,%7.4f,%7.4f" , pos_slot.x, pos_slot.y, pos_slot.z);
+                    inference.location = String.format("%7.4f,%7.4f,%7.4f", pos_slot.x, pos_slot.y, pos_slot.z);
                     tray.inferences.add(inference);
                 }
 
@@ -444,7 +453,9 @@ public class KittingDemo {
     }
 
     public static CShape closestGear(PmPose location) {
-        System.out.println("Closest gear location=" + dumpPmPose(location));
+        if (Globals.bDebug) {
+            System.out.println("Closest gear location=" + dumpPmPose(location));
+        }
         CShape gear = null;
 
         try {
@@ -459,7 +470,9 @@ public class KittingDemo {
                         shape._location,
                         shapeRobotCrd);
                 PmCartesian pos_part = shapeRobotCrd.tran;
-                System.out.println("Gear " + shape.name() + "l ocation=" + dumpPmPose(shapeRobotCrd));
+                if (Globals.bDebug) {
+                    System.out.println("Gear " + shape.name() + "location=" + dumpPmPose(shapeRobotCrd));
+                }
 
                 // Compute distance between slot and part
                 double mag = Posemath.mag(Posemath.subtract(pos_move, pos_part));
@@ -469,7 +482,7 @@ public class KittingDemo {
                 if (Math.abs(mag) < 0.025) {
                     try {
                         gear = (CShape) shape.clone();
-                        System.out.println("Closest Gear " + shape.name());
+                        System.out.println("Closest Gear to commanded location" + shape.name());
 
                         return gear;
                     } catch (Exception ex) {
@@ -598,7 +611,6 @@ public class KittingDemo {
             return null;
         }
     }
-    
 
     ////////////////////////////////////////////
     CRCLClient r;

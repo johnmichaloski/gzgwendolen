@@ -29,6 +29,7 @@ public class GwendolynCrclClient {
     public static void main(String[] args) {
         try {
             // TODO code application logic here
+            Globals.bDebug=false;  // no in depth diagnostics
             Globals.bLoopback = true;
             CShapes.initDefinitions();  // define gears trays object properties
             // Seems to work
@@ -40,10 +41,15 @@ public class GwendolynCrclClient {
 
             KittingDemo kittingdemo = new KittingDemo(crcl);
             // Seems to work
-            //System.out.print(KittingDemo.dumpInstances());
+            if (Globals.bDebug) {
+                System.out.print(KittingDemo.dumpInstances());
+            }
+            
             KittingDemo.fakeFirstOrderLogic();
             // Seems to work
-            System.out.print(KittingDemo.dumpInferences());
+            if (Globals.bDebug) {
+                System.out.print(KittingDemo.dumpInferences());
+            }
 
             // read CRCL status, report
             ///statuskitting();
