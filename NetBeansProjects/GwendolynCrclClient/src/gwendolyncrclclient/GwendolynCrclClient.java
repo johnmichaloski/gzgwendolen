@@ -11,11 +11,16 @@ import java.util.logging.Logger;
 import rcs.posemath.PmCartesian;
 import rcs.posemath.PmQuaternion;
 
+// https://www.programcreek.com/java-api-examples/org.apache.commons.cli.CommandLineParser
+import org.apache.commons.cli.*;
+
+
 /**
  * GwendolynCrclClient is the main class.
  * @author michalos
  */
 public class GwendolynCrclClient {
+   
 
     public static CRCLClient crcl;
 
@@ -27,10 +32,40 @@ public class GwendolynCrclClient {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        // Configuration options
+        Globals.bDebug = false;  // no in depth diagnostics
+        Globals.bLoopback = true; // crcl loopback
+
+        Options options = new Options();
+        options.addOption("l", "loopback", false, "loopback crcl behavior");
+        options.addOption("d", "debug", false, "debug statements");
+        options.addOption("h", "help", false, "print usage");
+        
+        CommandLineParser parser = new DefaultParser();
+
+        CommandLine commandLine = null;
         try {
+            commandLine = parser.parse(options, args);
+            if (commandLine.hasOption('l')) {
+                Globals.bLoopback = false;
+            }
+            if (commandLine.hasOption('d')) {
+                Globals.bDebug = true;
+            }
+            if (commandLine.hasOption('h')) {
+            new HelpFormatter().printHelp("GwendolynCrclClient [args]", options,true);
+            System.exit(0);
+        }
+        } catch (ParseException e) {
+            Logger.getLogger(GwendolynCrclClient.class.getName()).log(Level.SEVERE, "Unable to parse command line.", e);
+            new HelpFormatter().printHelp("GwendolynCrclClient [args]", options);
+            System.exit(-1);
+        }
+     
+        try {
+
             // TODO code application logic here
-            Globals.bDebug=false;  // no in depth diagnostics
-            Globals.bLoopback = true;
             CShapes.initDefinitions();  // define gears trays object properties
             // Seems to work
             //System.out.print(KittingDemo.dumpDefinitions());

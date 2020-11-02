@@ -15,3 +15,5 @@ docs/
 *.pro.user.*
 *.so*
 /NetBeansProjects/linalg/javaposemath/nbproject/private/
+/NetBeansProjects/GwendolenCrclClient/target/
+/NetBeansProjects/GwendolynCrclClient/dist/
