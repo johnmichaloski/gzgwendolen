@@ -35,7 +35,7 @@ public class GwendolynCrclClient {
         
         // Configuration options
         Globals.bDebug = false;  // no in depth diagnostics
-        Globals.bLoopback = true; // crcl loopback
+        Globals.bLoopback = false; // crcl loopback
 
         Options options = new Options();
         options.addOption("l", "loopback", false, "loopback crcl behavior");
@@ -48,7 +48,7 @@ public class GwendolynCrclClient {
         try {
             commandLine = parser.parse(options, args);
             if (commandLine.hasOption('l')) {
-                Globals.bLoopback = false;
+                Globals.bLoopback = true;
             }
             if (commandLine.hasOption('d')) {
                 Globals.bDebug = true;
@@ -75,21 +75,7 @@ public class GwendolynCrclClient {
             crcl = new CRCLClient();
 
             KittingDemo kittingdemo = new KittingDemo(crcl);
-            // Seems to work
-            if (Globals.bDebug) {
-                System.out.print(KittingDemo.dumpInstances());
-            }
-            
-            KittingDemo.fakeFirstOrderLogic();
-            // Seems to work
-            if (Globals.bDebug) {
-                System.out.print(KittingDemo.dumpInferences());
-            }
-
-            // read CRCL status, report
-            ///statuskitting();
-            // test of hard coded fanuc kitting publisher/client
-            // fanuckitting();
+ 
             int demostate = 0;
             int bozo;
 

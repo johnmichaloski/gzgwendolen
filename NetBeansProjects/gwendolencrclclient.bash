@@ -10,7 +10,7 @@ export apppath
  
 cmd=( gnome-terminal )
 
-cmd+=( --tab  --working-directory="$q" -e 'bash -c "printf \"\e]2;Gwendolen Planner Crcl Client\a\";cd $apppath; java -jar GwendolynCrclClient.jar;exec bash"')
+cmd+=( --tab  --working-directory="$q" -e 'bash -c "printf \"\e]2;Gwendolen Planner Crcl Client\a\";cd $apppath; java -jar GwendolynCrclClient.jar --loopback;exec bash"')
 
 "${cmd[@]}"
 

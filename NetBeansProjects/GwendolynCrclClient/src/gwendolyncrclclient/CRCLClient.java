@@ -83,6 +83,15 @@ public class CRCLClient implements Runnable {
                 s = new CRCLSocket("localhost", CRCLSocket.DEFAULT_PORT);
             } else {
                 KittingDemo.fakeSetup();
+                if (Globals.bDebug) {
+                    System.out.print(KittingDemo.dumpInstances());
+                }
+
+                KittingDemo.fakeFirstOrderLogic();
+                // Herein first order logic done when gear moved.
+                if (Globals.bDebug) {
+                    System.out.print(KittingDemo.dumpInferences());
+                }
             }
 
             // Create an instance to wrap all commands.
