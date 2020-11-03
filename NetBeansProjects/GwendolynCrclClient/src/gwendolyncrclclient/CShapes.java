@@ -19,7 +19,9 @@ import rcs.posemath.PmRotationVector;
 import rcs.posemath.PmRpy;
 import rcs.posemath.Posemath;
 import rcs.posemath.PmQuaternion;
-import javafx.util.Pair;
+
+import org.apache.commons.math3.util.Pair;
+
 /**
  * Shapes is a container for the shapes in the kitting scene,
  * the definitions defining the parts in the scene (gears, kits,

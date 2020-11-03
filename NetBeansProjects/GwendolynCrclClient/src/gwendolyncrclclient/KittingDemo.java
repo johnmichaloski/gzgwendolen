@@ -21,7 +21,7 @@ import static gwendolyncrclclient.CShapes.definitions;
 import static gwendolyncrclclient.CShapes.findDefinition;
 import static gwendolyncrclclient.CShapes.instances;
 import static gwendolyncrclclient.CShapes.snapshotInstances;
-import javafx.util.Pair;
+import org.apache.commons.math3.util.Pair;
 import java.lang.*;
 
 /**

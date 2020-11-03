@@ -54,7 +54,7 @@ public class GwendolynCrclClient {
                 Globals.bDebug = true;
             }
             if (commandLine.hasOption('h')) {
-            new HelpFormatter().printHelp("GwendolynCrclClient [args]", options,true);
+            new HelpFormatter().printHelp("java -jar GwendolynCrclClient.jar [-d] [-h] [-l]", options,true);
             System.exit(0);
         }
         } catch (ParseException e) {
