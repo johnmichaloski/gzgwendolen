@@ -135,7 +135,7 @@ This kitting setup corresponds to the following diagram
 
 
 
-![Figure1](./images/Simulated Kitting Demo in Java with hard coded kitting scene from agility lab_image1.gif)
+![Figure1](./images/SimulatedKittingDemoEmbeddedCrclTestHarness_image1.gif)
 
 
 
@@ -144,7 +144,7 @@ Included in the hard coding setup is the definition of all the types of objects 
 
 
 
-![Figure2](./images/Simulated Kitting Demo in Java with hard coded kitting scene from agility lab_image2.gif)
+![Figure2](./images/SimulatedKittingDemoEmbeddedCrclTestHarness_image2.gif)
 
 
 
@@ -380,6 +380,8 @@ The Java console output:
 	issueCrclCommand class crcl.base.MoveToType 0.5290,  0.0915, 0.0208 1.0000,  0.0000,  0.0000,  0.0000,  
 	issueCrclCommand class crcl.base.DwellType:0.1  
 	issueCrclCommand class crcl.base.SetEndEffectorType open gear new location 0.3600, -1.0485,  0.9200  0.0000,  0.0000, 0.0000, 1.0000, New kitting scene inferences after gear move 
+
+
 	sku_kit_m2l1_vessel14 at  0.4000, -1.0500,  0.9200  0.0000, 0.0000, -0.7200,  0.6940, 
 	     slot1 sku_part_medium_gear sku_part_medium_gear17 ( 0.4564,-1.0120, 
 	0.9200) 
@@ -687,11 +689,56 @@ FIX:
 
 
 
-![Figure3](./images/Simulated Kitting Demo in Java with hard coded kitting scene from agility lab_image3.gif)
+![Figure3](./images/SimulatedKittingDemoEmbeddedCrclTestHarness_image3.gif)
 
 
 
 
+
+
+
+
+
+
+
+## <a name="Windows_10_Deployment"></a>Windows 10 Deployment
+
+
+The Java Simulated Kitting Demo which can be used as self-contained CRCL testing harness has been ported to Windows and run successfully. Problems with non-existent libraries were resolved.  The following instructions assumes you have administrator rights to install on your PC.
+
+
+
+
+
+
+
+1. Download and install JDK 1.8+  from [<u>here</u>](https://adoptopenjdk.net/) 
+
+
+
+This set of specs were chosen 
+
+
+
+
+![Figure4](./images/SimulatedKittingDemoEmbeddedCrclTestHarness_image4.gif)
+
+
+
+2. Download and install Apache Netbeans (Version 11.2 is fine since it works):[<u>here</u>](https://netbeans.apache.org/download/nb112/nb112.html) 
+
+
+
+3. Fire up Netbeans (shortcut on desktop)If you get this popup, make sure a JDK is installed first:
+
+
+
+
+![Figure5](./images/SimulatedKittingDemoEmbeddedCrclTestHarness_image5.gif)
+
+
+
+4. You should be able to Clean and Build the GwendolynCrclClient project and then run it.
 
 
 
